@@ -1,0 +1,669 @@
+#N canvas 407 180 468 445 10;
+#X obj 125 49 nbx 5 14 1 10000 0 0 empty \$0-gridNumX gridNumX 0 -8
+0 10 -257985 -1 -1 75 256;
+#X obj 143 102 nbx 5 14 1 10000 0 0 empty \$0-gridNumY gridNumY 0 -8
+0 10 -257985 -1 -1 50 256;
+#X obj 125 226 bng 15 250 50 0 empty \$0-reset Reset 17 7 0 10 -257985
+-1 -1;
+#X msg 125 246 Reset;
+#X obj 125 267 s \$0-main;
+#X obj 272 222 nbx 5 14 -1e+37 1e+37 0 0 empty \$0-interval Interval
+0 -8 0 10 -257985 -1 -1 50 256;
+#X obj 252 316 tgl 15 1 empty \$0-sequence Sequence 17 7 0 10 -257985
+-1 -1 0 1;
+#X obj 270 268 bng 15 250 50 0 empty \$0-iterate Iterate 17 7 0 10
+-257985 -1 -1;
+#X msg 125 184 gridNumX \$1 \, gridNumY \$2 \, gridSize;
+#X obj 143 142 t b f;
+#X obj 125 163 pack 1 1;
+#X obj 188 226 tgl 15 0 empty \$0-raster Raster 17 7 0 10 -257985 -1
+-1 1 1;
+#X obj 188 267 s \$0-main;
+#X msg 188 246 raster \$1;
+#X obj 143 121 change;
+#X obj 125 68 change;
+#X msg 252 336 sequence \$1;
+#X msg 262 241 interval \$1;
+#X msg 270 288 conway;
+#N canvas 205 958 751 122 Living_Cells 0;
+#X obj 109 29 tgl 15 0 empty \$0-Living_Cell_1 empty 17 7 0 10 -204786
+-1 -1 0 1;
+#X obj 184 29 tgl 15 0 empty \$0-Living_Cell_2 empty 17 7 0 10 -204786
+-1 -1 1 1;
+#X obj 260 29 tgl 15 0 empty \$0-Living_Cell_3 empty 17 7 0 10 -204786
+-1 -1 1 1;
+#X obj 336 29 tgl 15 0 empty \$0-Living_Cell_4 empty 17 7 0 10 -204786
+-1 -1 0 1;
+#X obj 411 29 tgl 15 0 empty \$0-Living_Cell_5 empty 17 7 0 10 -204786
+-1 -1 0 1;
+#X obj 486 29 tgl 15 0 empty \$0-Living_Cell_6 empty 17 7 0 10 -204786
+-1 -1 0 1;
+#X obj 562 29 tgl 15 0 empty \$0-Living_Cell_7 empty 17 7 0 10 -204786
+-1 -1 0 1;
+#X obj 638 29 tgl 15 0 empty \$0-Living_Cell_8 empty 17 7 0 10 -204786
+-1 -1 0 1;
+#X msg 336 49 lCell_4 \$1;
+#X msg 109 49 lCell_1 \$1;
+#X msg 184 49 lCell_2 \$1;
+#X msg 260 49 lCell_3 \$1;
+#X msg 411 49 lCell_5 \$1;
+#X msg 486 49 lCell_6 \$1;
+#X msg 562 49 lCell_7 \$1;
+#X msg 638 49 lCell_8 \$1;
+#X obj 35 31 tgl 15 0 empty \$0-Living_Cell_0 empty 17 7 0 10 -204786
+-1 -1 0 1;
+#X msg 35 51 lCell_0 \$1;
+#X obj 34 70 s \$0-main;
+#X obj 112 71 s \$0-main;
+#X obj 184 70 s \$0-main;
+#X obj 260 70 s \$0-main;
+#X obj 336 70 s \$0-main;
+#X obj 411 70 s \$0-main;
+#X obj 486 70 s \$0-main;
+#X obj 564 70 s \$0-main;
+#X obj 638 70 s \$0-main;
+#X connect 0 0 9 0;
+#X connect 1 0 10 0;
+#X connect 2 0 11 0;
+#X connect 3 0 8 0;
+#X connect 4 0 12 0;
+#X connect 5 0 13 0;
+#X connect 6 0 14 0;
+#X connect 7 0 15 0;
+#X connect 8 0 22 0;
+#X connect 9 0 19 0;
+#X connect 10 0 20 0;
+#X connect 11 0 21 0;
+#X connect 12 0 23 0;
+#X connect 13 0 24 0;
+#X connect 14 0 25 0;
+#X connect 15 0 26 0;
+#X connect 16 0 17 0;
+#X connect 17 0 18 0;
+#X restore 125 357 pd Living_Cells;
+#N canvas 67 801 750 127 Dead_Cells 0;
+#X obj 113 31 tgl 15 0 empty \$0-Dead_Cell_1 empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 188 31 tgl 15 0 empty \$0-Dead_Cell_2 empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 264 31 tgl 15 0 empty \$0-Dead_Cell_3 empty 17 7 0 10 -261234
+-1 -1 1 1;
+#X obj 340 31 tgl 15 0 empty \$0-Dead_Cell_4 empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 415 31 tgl 15 0 empty \$0-Dead_Cell_5 empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 490 31 tgl 15 0 empty \$0-Dead_Cell_6 empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 566 31 tgl 15 0 empty \$0-Dead_Cell_7 empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X obj 642 31 tgl 15 0 empty \$0-Dead_Cell_8 empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X msg 340 51 dCell_4 \$1;
+#X msg 113 51 dCell_1 \$1;
+#X msg 188 51 dCell_2 \$1;
+#X msg 264 51 dCell_3 \$1;
+#X msg 415 51 dCell_5 \$1;
+#X msg 490 51 dCell_6 \$1;
+#X msg 566 51 dCell_7 \$1;
+#X msg 642 51 dCell_8 \$1;
+#X obj 38 31 tgl 15 0 empty \$0-Dead_Cell_0 empty 17 7 0 10 -261234
+-1 -1 0 1;
+#X msg 38 51 dCell_0 \$1;
+#X obj 38 72 s \$0-main;
+#X obj 113 72 s \$0-main;
+#X obj 188 72 s \$0-main;
+#X obj 264 72 s \$0-main;
+#X obj 340 72 s \$0-main;
+#X obj 418 72 s \$0-main;
+#X obj 490 72 s \$0-main;
+#X obj 566 72 s \$0-main;
+#X obj 642 72 s \$0-main;
+#X connect 0 0 9 0;
+#X connect 1 0 10 0;
+#X connect 2 0 11 0;
+#X connect 3 0 8 0;
+#X connect 4 0 12 0;
+#X connect 5 0 13 0;
+#X connect 6 0 14 0;
+#X connect 7 0 15 0;
+#X connect 8 0 22 0;
+#X connect 9 0 19 0;
+#X connect 10 0 20 0;
+#X connect 11 0 21 0;
+#X connect 12 0 23 0;
+#X connect 13 0 24 0;
+#X connect 14 0 25 0;
+#X connect 15 0 26 0;
+#X connect 16 0 17 0;
+#X connect 17 0 18 0;
+#X restore 125 378 pd Dead_Cells;
+#X obj 125 205 s \$0-main;
+#X obj 125 288 ofelia d -k \$0-main;
+#A __set if type(window) ~= "userdata" then \; window = ofWindow()
+\; end \; \; local a = ofelia \; local canvas = ofCanvas(this) \; local
+clock = ofClock(this \, "setup") \; local shaderDir = canvas:getDir()
+.. "/data/" \; local x \, y \, i \, j = 0 \, 0 \, 0 \, 0 \; local now
+= 0 \; local rectangle \, color = ofDrawRectangle \, ofSetColor \;
+a.shaderGameOfLife = ofShader() \; a.shaderRaster = ofShader() \; a.fboCells
+= ofFbo() \; a.fboLines = ofFbo() \; a.fboCellsCopy = ofFbo() \; a.pixels
+= ofPixels() \; a.gridNumX \, a.gridNumY = 1 \, 1 \; \; function a.new()
+\; ofWindow.addListener("setup" \, this) \; ofWindow.addListener("draw"
+\, this) \; ofWindow.addListener("mousePressed" \, this) \; ofWindow.addListener("exit"
+\, this) \; window:setPosition(30 \, 100) \; window:setSize(840 \,
+860) \; if ofWindow.exists then \; clock:delay(0) \; else \; window:create()
+\; end \; end \; \; function a.free() \; window:destroy() \; ofWindow.removeListener("setup"
+\, this) \; ofWindow.removeListener("draw" \, this) \; ofWindow.removeListener("mousePressed"
+\, this) \; ofWindow.removeListener("exit" \, this) \; end \; \; function
+a.setup() \; ofSetWindowTitle("Game of Life") \; ofSetBackgroundColor(0)
+\; a.width \, a.height = ofGetWidth() - 40 \, (ofGetHeight() - 60)/1.5
+\; a.fboCells:allocate(a.gridNumX \, a.gridNumY) \; a.fboLines:allocate(a.width
+\, a.height) \; a.shaderGameOfLife:load(shaderDir .. "GameOfLife")
+\; a.shaderRaster:load(shaderDir .. "Raster") \; end \; \; function
+a.draw() \; ofSetColor(240 \, 220 \, 100) \; ofDrawRectangle(20 \,
+20 \, 800 \, 800 / 1.5) \; ofSetColor(20 \, 170 \, 150) \; ofDrawRectangle(20
+\, (ofGetHeight() - 60)/ 3 * 2 + 40 \, 800 \, ((ofGetHeight()- 60)/
+3 )) \; a.fboCells:getTexture():setTextureMinMagFilter(GL_NEAREST \,
+GL_NEAREST) \; a.fboCells:getTexture():setTextureWrap(GL_REPEAT \,
+GL_REPEAT) \; a.fboCells:draw(20 \, 20 \, a.width \, a.height) \; if
+ofelia.raster == 1 then \; a.fboLines:draw(20 \, 20) \; end \; if now
+< ofGetElapsedTimeMillis() and a.sequence == 1 then \; now = ofGetElapsedTimeMillis()
++ a.interval \; a.conway() \; end \; return nil \; end \; \; function
+a.mousePressed(e) \; if ofGetMouseX() > 20 and ofGetMouseX() < a.width
++ 20 and ofGetMouseY() > 20 and ofGetMouseY() < a.height + 20 then
+\; a.fboCells:readToPixels(a.pixels) \; x = (e.x - 20 + (a.width /
+a.gridNumX)) // (a.width / a.gridNumX) \; y = (e.y - 20 + (a.height
+/ a.gridNumY)) // (a.height / a.gridNumY) \; a.fboCells:beginFbo()
+\; ofDisableAlphaBlending() \; if a.pixels:getColor(x - 1 \, y - 1).a
+== 255 then \; color(255 \, 255 \, 255 \, 0) \; rectangle(x * 1 - 1
+\, y * 1 - 1 \, 1 \, 1) \; else \; color(0 \, 0 \, 0 \, 255) \; rectangle(x
+* 1 - 1 \, y * 1 - 1 \, 1 \, 1) \; end \; a.fboCells:endFbo() \; end
+\; end \; \; function a.gridSize() \; a.fboCells:allocate(a.gridNumX
+\, a.gridNumY) \; a.fboCellsCopy:allocate(a.gridNumX \, a.gridNumY)
+\; a.shaderRaster:beginShader() \; a.shaderRaster:setUniformTexture("Tex0"
+\, a.fboLines:getTexture() \, 1) \; a.shaderRaster:setUniform2f("resolution"
+\, a.width \, a.height) \; a.shaderRaster:setUniform1f("gridNumX" \,
+a.gridNumX) \; a.shaderRaster:setUniform1f("gridNumY" \, a.gridNumY)
+\; a.fboLines:beginFbo() \; ofClear(0) \; ofDrawRectangle(0 \, 0 \,
+a.width \, a.height) \; a.fboLines:endFbo() \; a.shaderRaster:endShader()
+\; a.fboCells:beginFbo() \; ofClear(0) \; a.fboCells:endFbo() \; end
+\; \; function a.Reset() \; a.fboCells:beginFbo() \; ofClear(0) \;
+a.fboCells:endFbo() \; end \; \; function a.conway() \; a.shaderGameOfLife:beginShader()
+\; a.shaderGameOfLife:setUniformTexture("Tex0" \, a.fboCells:getTexture()
+\, 1) \; a.shaderGameOfLife:setUniform2f("resolution" \, a.gridNumX
+\, a.gridNumY) \; a.shaderGameOfLife:setUniform1f("lCell_0" \, ofelia.lCell_0)
+\; a.shaderGameOfLife:setUniform1f("lCell_1" \, ofelia.lCell_1) \;
+a.shaderGameOfLife:setUniform1f("lCell_2" \, ofelia.lCell_2) \; a.shaderGameOfLife:setUniform1f("lCell_3"
+\, ofelia.lCell_3) \; a.shaderGameOfLife:setUniform1f("lCell_4" \,
+ofelia.lCell_4) \; a.shaderGameOfLife:setUniform1f("lCell_5" \, ofelia.lCell_5)
+\; a.shaderGameOfLife:setUniform1f("lCell_6" \, ofelia.lCell_6) \;
+a.shaderGameOfLife:setUniform1f("lCell_7" \, ofelia.lCell_7) \; a.shaderGameOfLife:setUniform1f("lCell_8"
+\, ofelia.lCell_8) \; a.shaderGameOfLife:setUniform1f("dCell_0" \,
+ofelia.dCell_0) \; a.shaderGameOfLife:setUniform1f("dCell_1" \, ofelia.dCell_1)
+\; a.shaderGameOfLife:setUniform1f("dCell_2" \, ofelia.dCell_2) \;
+a.shaderGameOfLife:setUniform1f("dCell_3" \, ofelia.dCell_3) \; a.shaderGameOfLife:setUniform1f("dCell_4"
+\, ofelia.dCell_4) \; a.shaderGameOfLife:setUniform1f("dCell_5" \,
+ofelia.dCell_5) \; a.shaderGameOfLife:setUniform1f("dCell_6" \, ofelia.dCell_6)
+\; a.shaderGameOfLife:setUniform1f("dCell_7" \, ofelia.dCell_7) \;
+a.shaderGameOfLife:setUniform1f("dCell_8" \, ofelia.dCell_8) \; a.fboCellsCopy:beginFbo()
+\; ofClear(0) \; a.fboCells:draw(0 \, 0) \; a.fboCellsCopy:endFbo()
+\; a.shaderGameOfLife:endShader() \; a.fboCells:beginFbo() \; ofClear(0)
+\; a.fboCellsCopy:draw(0 \, 0) \; a.fboCells:endFbo() \; end \; \;
+function a.exit() \; a.shaderGameOfLife:unload() \; a.shaderRaster:unload()
+\; end \;;
+#N canvas 484 633 662 286 pattern 0;
+#X obj 259 75 bng 15 250 50 0 empty \$0-copy Copy 17 7 0 10 -257985
+-1 -1;
+#X obj 260 136 bng 15 250 50 0 empty \$0-paste Paste 17 7 0 10 -257985
+-1 -1;
+#X obj 44 142 bng 15 250 50 0 empty \$0-save Save 17 7 0 10 -257985
+-1 -1;
+#X obj 79 32 hradio 15 1 0 16 empty \$0-pattern Pattern 0 -8 0 10 -257985
+-1 -1 1;
+#X obj 44 204 text define -k \$0-preset;
+#A set 150 100 6445 6544 6546 6644 6646 6745 6940 6941 6949 6950 7039
+7042 7048 7051 7052 7140 7141 7149 7150 7345 7444 7446 7544 7546 7645
+\; 75 50 1522 1571 1573 1621 1623 1672 1767 1768 1776 1777 1816 1819
+1825 1828 1829 1867 1868 1876 1877 1972 2021 2023 2071 2073 2122 \;
+150 100 1214 1215 1314 1315 2214 2215 2216 2313 2317 2412 2418 2512
+2518 2615 2713 2717 2814 2815 2816 2915 3212 3213 3214 3312 3313 3314
+3411 3415 3610 3611 3615 3616 4612 4613 4712 4713 \; 10 20 \; 300 200
+27905 28898 27299 28900 27906 28103 28104 27902 27896 29099 28095 27098
+27694 27695 26699 26898 28499 26900 27893 27704 27100 28698 28700 27703
+28094 \; 300 200 28101 28500 28501 28302 28301 \; 40 20 388 428 408
+\; 75 50 1822 \; 10 10 \; 300 200 \; 10 10 23 26 32 34 35 37 43 46
+53 56 62 64 65 67 73 76 \; 300 200 42060 42260 42460 \; 0 0 \; 0 0
+\; 0 0 \; 1200 800 476359 \;;
+#X obj 106 73 text get \$0-preset;
+#X obj 79 52 t f f;
+#X obj 44 183 text set \$0-preset;
+#X msg 260 156 0;
+#X msg 466 200 0 0;
+#X obj 493 137 text delete \$0-preset;
+#X obj 466 179 until;
+#X msg 466 158 16;
+#X obj 466 95 t b b;
+#X obj 466 75 bng 15 250 50 0 empty empty delete 17 7 0 10 -258113
+-1 -1;
+#X msg 493 116 -1;
+#X obj 260 219 ofelia d -k \$0-getPresetCopy;
+#A __set local a = require("\$0-main") \; \; local rectangle \, color
+= ofDrawRectangle \, ofSetColor \; local x \, y \, k = 0 \, 0 \, 0
+\; \; function M.bang() \; a.fboCells:allocate(a.gridNumX \, a.gridNumY)
+\; a.fboCellsCopy:allocate(a.gridNumX \, a.gridNumY) \; if ofelia.presetList
+~= nil then \; if type(ofelia.presetList) ~= "table" then \; ofelia.presetList
+= {ofelia.presetList} \; end \; a.fboCells:beginFbo() \; ofClear(0)
+\; color(0) \; for k = 1 \, #ofelia.presetList do \; x = ofelia.presetList[k]
+// a.gridNumY + 1 \; y = ofelia.presetList[k] % a.gridNumY + 1 \; rectangle(x
+* 1 - 1 \, y * 1 - 1 \, 1 \, 1) \; end \; a.fboCells:endFbo() \; else
+\; a.Reset() \; end \; end \;;
+#X obj 106 115 ofelia d -k \$0-getPreset;
+#A __set local a = require("\$0-main") \; \; local rectangle \, color
+= ofDrawRectangle \, ofSetColor \; local x \, y \, k = 0 \, 0 \, 0
+\; \; function M.bang() \; a.fboCells:allocate(a.gridNumX \, a.gridNumY)
+\; a.fboCellsCopy:allocate(a.gridNumX \, a.gridNumY) \; if ofelia.presetList
+~= nil then \; if type(ofelia.presetList) ~= "table" then \; ofelia.presetList
+= {ofelia.presetList} \; end \; a.fboCells:beginFbo() \; ofClear(0)
+\; color(0 \, 0 \, 0 \, 255) \; for k = 1 \, #ofelia.presetList do
+\; x = ofelia.presetList[k] // a.gridNumY + 1 \; y = ofelia.presetList[k]
+% a.gridNumY + 1 \; rectangle(x * 1 - 1 \, y * 1 - 1 \, 1 \, 1) \;
+end \; a.fboCells:endFbo() \; else \; a.Reset() \; end \; end \;;
+#X obj 44 162 ofelia d -c11 -k \$0-setPreset;
+#A __set local a = require("\$0-main") \; \; function ofelia.bang()
+\; a.fboCells:readToPixels(a.pixels) \; local tab = {} \; tab[1] =
+a.gridNumX \; tab[2] = a.gridNumY \; for x = 1 \, a.gridNumX do \;
+for y = 1 \, a.gridNumY do \; if a.pixels:getColor(x - 1 \, y - 1).a
+== 255 then \; table.insert(tab \, a.gridNumY * x - a.gridNumY + y
+- 1) \; end \; end \; end \; return tab \; end \;;
+#X obj 259 95 ofelia d -c11 -k \$0-setPresetCopy;
+#A __set local a = require("\$0-main") \; \; function ofelia.bang()
+\; a.fboCells:readToPixels(a.pixels) \; local tab = {} \; tab[1] =
+a.gridNumX \; tab[2] = a.gridNumY \; for x = 1 \, a.gridNumX do \;
+for y = 1 \, a.gridNumY do \; if a.pixels:getColor(x - 1 \, y - 1).a
+== 255 then \; table.insert(tab \, a.gridNumY * x - a.gridNumY + y
+- 1) \; end \; end \; end \; return tab \; end \;;
+#X obj 44 225 text define \$0-presetCopy;
+#X obj 260 177 text get \$0-presetCopy;
+#X obj 259 115 text set \$0-presetCopy;
+#N canvas 341 611 410 341 routeList 0;
+#X obj 118 220 list prepend presetList;
+#X obj 145 262 list trim;
+#X obj 118 241 t b l;
+#X obj 118 73 list split 2;
+#X obj 145 136 spigot;
+#X obj 178 115 > 2;
+#X obj 178 94 list length;
+#X obj 145 157 unpack;
+#X obj 145 199 s \$0-gridNumXpreset;
+#X obj 178 178 s \$0-gridNumYpreset;
+#X obj 118 115 list;
+#X obj 118 52 t l l;
+#X obj 118 94 t b l;
+#X obj 118 288 outlet;
+#X obj 118 31 inlet;
+#X connect 0 0 2 0;
+#X connect 1 0 13 0;
+#X connect 2 0 13 0;
+#X connect 2 1 1 0;
+#X connect 3 0 12 0;
+#X connect 3 1 10 1;
+#X connect 4 0 7 0;
+#X connect 5 0 4 1;
+#X connect 6 0 5 0;
+#X connect 7 0 8 0;
+#X connect 7 1 9 0;
+#X connect 10 0 0 0;
+#X connect 11 0 3 0;
+#X connect 11 1 6 0;
+#X connect 12 0 10 0;
+#X connect 12 1 4 0;
+#X connect 14 0 11 0;
+#X restore 106 94 pd routeList;
+#X obj 466 220 text set \$0-preset 100;
+#N canvas 773 613 410 341 routeList 0;
+#X obj 118 220 list prepend presetList;
+#X obj 145 262 list trim;
+#X obj 118 241 t b l;
+#X obj 118 73 list split 2;
+#X obj 145 136 spigot;
+#X obj 178 115 > 2;
+#X obj 178 94 list length;
+#X obj 145 157 unpack;
+#X obj 145 199 s \$0-gridNumXpreset;
+#X obj 178 178 s \$0-gridNumYpreset;
+#X obj 118 115 list;
+#X obj 118 52 t l l;
+#X obj 118 94 t b l;
+#X obj 118 288 outlet;
+#X obj 118 31 inlet;
+#X connect 0 0 2 0;
+#X connect 1 0 13 0;
+#X connect 2 0 13 0;
+#X connect 2 1 1 0;
+#X connect 3 0 12 0;
+#X connect 3 1 10 1;
+#X connect 4 0 7 0;
+#X connect 5 0 4 1;
+#X connect 6 0 5 0;
+#X connect 7 0 8 0;
+#X connect 7 1 9 0;
+#X connect 10 0 0 0;
+#X connect 11 0 3 0;
+#X connect 11 1 6 0;
+#X connect 12 0 10 0;
+#X connect 12 1 4 0;
+#X connect 14 0 11 0;
+#X restore 260 198 pd routeList;
+#X connect 0 0 19 0;
+#X connect 1 0 8 0;
+#X connect 2 0 18 0;
+#X connect 3 0 6 0;
+#X connect 5 0 23 0;
+#X connect 6 0 7 1;
+#X connect 6 1 5 0;
+#X connect 8 0 21 0;
+#X connect 9 0 24 0;
+#X connect 11 0 9 0;
+#X connect 12 0 11 0;
+#X connect 13 0 12 0;
+#X connect 13 1 15 0;
+#X connect 14 0 13 0;
+#X connect 15 0 10 0;
+#X connect 18 0 7 0;
+#X connect 19 0 22 0;
+#X connect 21 0 25 0;
+#X connect 23 0 17 0;
+#X connect 25 0 16 0;
+#X restore 125 334 pd pattern;
+#N canvas 67 89 666 671 gui 0;
+#X obj 28 134 inlet;
+#X msg 193 556 symbol Reset;
+#X msg 193 472 symbol Save;
+#X msg 193 304 symbol Copy;
+#X msg 193 388 symbol Paste;
+#X msg 199 220 symbol Pattern;
+#X msg 493 102 symbol X;
+#X msg 493 207 symbol Y;
+#N canvas 690 270 558 633 toggle 0;
+#X obj 40 21 inlet;
+#X obj 268 579 outlet;
+#X obj 181 63 s \$0-Living_Cell_0;
+#X obj 181 125 s \$0-Living_Cell_1;
+#X obj 181 187 s \$0-Living_Cell_2;
+#X obj 181 249 s \$0-Living_Cell_3;
+#X obj 181 311 s \$0-Living_Cell_4;
+#X obj 181 373 s \$0-Living_Cell_5;
+#X obj 181 435 s \$0-Living_Cell_6;
+#X obj 181 497 s \$0-Living_Cell_7;
+#X obj 181 558 s \$0-Living_Cell_8;
+#X obj 409 63 s \$0-Dead_Cell_0;
+#X obj 409 125 s \$0-Dead_Cell_1;
+#X obj 409 187 s \$0-Dead_Cell_2;
+#X obj 409 249 s \$0-Dead_Cell_3;
+#X obj 409 311 s \$0-Dead_Cell_4;
+#X obj 409 373 s \$0-Dead_Cell_5;
+#X obj 409 435 s \$0-Dead_Cell_6;
+#X obj 409 497 s \$0-Dead_Cell_7;
+#X obj 409 558 s \$0-Dead_Cell_8;
+#X obj 181 22 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 409 84 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 181 84 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 409 22 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 181 146 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 409 208 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 181 208 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 409 146 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 181 270 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 409 332 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 181 332 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 409 270 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 181 394 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 409 456 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 181 456 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 409 394 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 409 518 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 181 518 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 40 42 ofelia_toggle 210 730 30;
+#X obj 40 104 ofelia_toggle 240 730 30;
+#X obj 40 166 ofelia_toggle 270 730 30;
+#X obj 40 228 ofelia_toggle 300 730 30;
+#X obj 40 290 ofelia_toggle 330 730 30;
+#X obj 40 352 ofelia_toggle 360 730 30;
+#X obj 40 414 ofelia_toggle 390 730 30;
+#X obj 40 476 ofelia_toggle 420 730 30;
+#X obj 40 538 ofelia_toggle 450 730 30;
+#X obj 268 42 ofelia_toggle 210 760 30;
+#X obj 268 104 ofelia_toggle 240 760 30;
+#X obj 268 166 ofelia_toggle 270 760 30;
+#X obj 268 228 ofelia_toggle 300 760 30;
+#X obj 268 290 ofelia_toggle 330 760 30;
+#X obj 268 352 ofelia_toggle 360 760 30;
+#X obj 268 414 ofelia_toggle 390 760 30;
+#X obj 268 476 ofelia_toggle 420 760 30;
+#X obj 268 538 ofelia_toggle 450 760 30;
+#X connect 0 0 38 0;
+#X connect 20 0 38 1;
+#X connect 21 0 48 1;
+#X connect 22 0 39 1;
+#X connect 23 0 47 1;
+#X connect 24 0 40 1;
+#X connect 25 0 50 1;
+#X connect 26 0 41 1;
+#X connect 27 0 49 1;
+#X connect 28 0 42 1;
+#X connect 29 0 52 1;
+#X connect 30 0 43 1;
+#X connect 31 0 51 1;
+#X connect 32 0 44 1;
+#X connect 33 0 54 1;
+#X connect 34 0 45 1;
+#X connect 35 0 53 1;
+#X connect 36 0 55 1;
+#X connect 37 0 46 1;
+#X connect 38 0 39 0;
+#X connect 38 1 2 0;
+#X connect 39 0 40 0;
+#X connect 39 1 3 0;
+#X connect 40 0 41 0;
+#X connect 40 1 4 0;
+#X connect 41 0 42 0;
+#X connect 41 1 5 0;
+#X connect 42 0 43 0;
+#X connect 42 1 6 0;
+#X connect 43 0 44 0;
+#X connect 43 1 7 0;
+#X connect 44 0 45 0;
+#X connect 44 1 8 0;
+#X connect 45 0 46 0;
+#X connect 45 1 9 0;
+#X connect 46 0 47 0;
+#X connect 46 1 10 0;
+#X connect 47 0 48 0;
+#X connect 47 1 11 0;
+#X connect 48 0 49 0;
+#X connect 48 1 12 0;
+#X connect 49 0 50 0;
+#X connect 49 1 13 0;
+#X connect 50 0 51 0;
+#X connect 50 1 14 0;
+#X connect 51 0 52 0;
+#X connect 51 1 15 0;
+#X connect 52 0 53 0;
+#X connect 52 1 16 0;
+#X connect 53 0 54 0;
+#X connect 53 1 17 0;
+#X connect 54 0 55 0;
+#X connect 54 1 18 0;
+#X connect 55 0 1 0;
+#X connect 55 1 19 0;
+#X restore 28 577 pd toggle;
+#X msg 199 598 symbol Cells;
+#X msg 487 519 symbol Iterate;
+#X msg 487 623 symbol Sequence;
+#X msg 487 311 symbol Grid;
+#X msg 493 414 symbol Interval;
+#X obj 487 602 loadbang;
+#X obj 487 498 loadbang;
+#X obj 493 393 loadbang;
+#X obj 487 290 loadbang;
+#X obj 493 81 loadbang;
+#X obj 199 577 loadbang;
+#X obj 193 535 loadbang;
+#X obj 193 367 loadbang;
+#X obj 193 283 loadbang;
+#X obj 199 199 loadbang;
+#X obj 193 451 loadbang;
+#X obj 151 262 s \$0-copy;
+#X obj 181 178 s \$0-pattern;
+#X obj 151 430 s \$0-save;
+#X obj 151 514 s \$0-reset;
+#X obj 151 346 s \$0-paste;
+#X obj 523 61 s \$0-gridNumX;
+#X obj 523 165 s \$0-gridNumY;
+#X obj 445 477 s \$0-iterate;
+#X obj 457 581 s \$0-sequence;
+#X obj 523 372 s \$0-interval;
+#X obj 523 123 r \$0-gridNumYpreset;
+#X obj 523 16 r \$0-gridNumXpreset;
+#X obj 523 332 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 50 256;
+#X obj 493 186 loadbang;
+#X obj 457 269 s \$0-raster;
+#X obj 457 228 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 457 540 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 445 436 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 28 157 ofelia_hRadio 50 600 16 30;
+#X obj 28 220 ofelia_label 535 600 120 30;
+#X obj 28 241 ofelia_bang 50 640 30;
+#X obj 28 304 ofelia_label 85 640 100 30;
+#X obj 28 325 ofelia_bang 50 680 30;
+#X obj 28 388 ofelia_label 85 680 100 30;
+#X obj 28 409 ofelia_bang 50 720 30;
+#X obj 28 472 ofelia_label 85 720 100 30;
+#X obj 28 493 ofelia_bang 50 760 30;
+#X obj 28 556 ofelia_label 85 760 100 30;
+#X obj 28 598 ofelia_label 485 730 100 60;
+#X obj 316 102 ofelia_label 315 640 100 30;
+#X obj 316 207 ofelia_label 315 680 100 30;
+#X obj 316 248 ofelia_toggle 620 640 30;
+#X obj 316 311 ofelia_label 655 640 120 30;
+#X obj 316 415 ofelia_label 655 680 120 30;
+#X obj 316 455 ofelia_bang 620 720 30;
+#X obj 316 519 ofelia_label 655 720 120 30;
+#X obj 316 560 ofelia_toggle 620 760 30;
+#X obj 316 623 ofelia_label 655 760 120 30;
+#X obj 316 351 ofelia_number 550 680 100 30 1 2000;
+#X obj 316 144 ofelia_number 210 680 100 30 1 2000;
+#X obj 316 39 ofelia_number 210 640 100 30 1 2000;
+#X obj 181 138 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 1 256;
+#X obj 181 92 ofSetup;
+#X msg 181 115 1;
+#X connect 0 0 43 0;
+#X connect 1 0 52 1;
+#X connect 2 0 50 1;
+#X connect 3 0 46 1;
+#X connect 4 0 48 1;
+#X connect 5 0 44 1;
+#X connect 6 0 54 1;
+#X connect 7 0 55 1;
+#X connect 8 0 53 0;
+#X connect 9 0 53 1;
+#X connect 10 0 60 1;
+#X connect 11 0 62 1;
+#X connect 12 0 57 1;
+#X connect 13 0 58 1;
+#X connect 14 0 11 0;
+#X connect 15 0 10 0;
+#X connect 16 0 13 0;
+#X connect 17 0 12 0;
+#X connect 18 0 6 0;
+#X connect 19 0 9 0;
+#X connect 20 0 1 0;
+#X connect 21 0 4 0;
+#X connect 22 0 3 0;
+#X connect 23 0 5 0;
+#X connect 24 0 2 0;
+#X connect 35 0 64 1;
+#X connect 36 0 65 1;
+#X connect 37 0 63 1;
+#X connect 38 0 7 0;
+#X connect 40 0 56 1;
+#X connect 41 0 61 1;
+#X connect 42 0 59 1;
+#X connect 43 0 44 0;
+#X connect 43 1 26 0;
+#X connect 44 0 45 0;
+#X connect 45 0 46 0;
+#X connect 45 1 25 0;
+#X connect 46 0 47 0;
+#X connect 47 0 48 0;
+#X connect 47 1 29 0;
+#X connect 48 0 49 0;
+#X connect 49 0 50 0;
+#X connect 49 1 27 0;
+#X connect 50 0 51 0;
+#X connect 51 0 52 0;
+#X connect 51 1 28 0;
+#X connect 52 0 8 0;
+#X connect 53 0 65 0;
+#X connect 54 0 64 0;
+#X connect 55 0 56 0;
+#X connect 56 0 57 0;
+#X connect 56 1 39 0;
+#X connect 57 0 63 0;
+#X connect 58 0 59 0;
+#X connect 59 0 60 0;
+#X connect 59 1 32 0;
+#X connect 60 0 61 0;
+#X connect 61 0 62 0;
+#X connect 61 1 33 0;
+#X connect 63 0 58 0;
+#X connect 63 1 34 0;
+#X connect 64 0 55 0;
+#X connect 64 1 31 0;
+#X connect 65 0 54 0;
+#X connect 65 1 30 0;
+#X connect 66 0 43 1;
+#X connect 67 0 68 0;
+#X connect 68 0 66 0;
+#X restore 125 311 pd gui;
+#X connect 0 0 15 0;
+#X connect 1 0 14 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 5 0 17 0;
+#X connect 6 0 16 0;
+#X connect 7 0 18 0;
+#X connect 8 0 21 0;
+#X connect 9 0 10 0;
+#X connect 9 1 10 1;
+#X connect 10 0 8 0;
+#X connect 11 0 13 0;
+#X connect 13 0 12 0;
+#X connect 14 0 9 0;
+#X connect 15 0 10 0;
+#X connect 16 0 12 0;
+#X connect 17 0 12 0;
+#X connect 18 0 12 0;
+#X connect 22 0 24 0;

@@ -1,0 +1,44 @@
+#N canvas 1299 89 431 207 10;
+#X obj 109 40 inlet;
+#X obj 109 124 outlet;
+#X obj 109 61 t b b;
+#X obj 136 103 outlet;
+#X obj 148 40 inlet;
+#X msg 148 61 value \$1;
+#X obj 136 82 ofelia d -k \$0-vSlider;
+#A __set local c = ofCanvas(this) \; local args = c:getArgs() \; local
+xpos \, ypos \, size \, minVal \, maxVal = args[1] \, args[2] \, args[3]
+\, args[4] \, args[5] \; local mouseState = 0 \; local value = 0 \;
+local fbo = ofFbo() \; \; function M.new() \; ofWindow.addListener("setup"
+\, this) \; ofWindow.addListener("mousePressed" \, this) \; ofWindow.addListener("mouseDragged"
+\, this) \; ofWindow.addListener("mouseReleased" \, this) \; if ofWindow.exists
+then \; M.setup() \; end \; end \; \; function M.free() \; ofWindow.removeListener("setup"
+\, this) \; ofWindow.removeListener("mousePressed" \, this) \; ofWindow.removeListener("mouseDragged"
+\, this) \; ofWindow.removeListener("mouseReleased" \, this) \; end
+\; \; function M.setup() \; fbo:allocate(size \, size) \; M.render()
+\; end \; \; function M.bang() \; ofSetColor(255) \; fbo:draw(xpos
+\, ypos) \; end \; \; function M.mousePressed(e) \; if ofGetMouseX()
+>= xpos + size / 10 and ofGetMouseX() <= xpos + size - size / 10 and
+ofGetMouseY() >= ypos + size / 10 and ofGetMouseY() <= ypos + size
+- size / 10 then \; mouseState = 1 \; value = ofNormalize((-ofGetMouseY()
++ size - size / 10 + ypos) * (maxVal - minVal) / (size - size / 5)
++ minVal \, minVal \, maxVal) \; M.render() \; return ofLerp(minVal
+\, maxVal \, value) \; end \; end \; \; function M.mouseDragged(e)
+\; if mouseState == 1 then \; value = ofNormalize((-ofGetMouseY() +
+size - size / 10 + ypos) * (maxVal - minVal) / (size - size / 5) +
+minVal \, minVal \, maxVal) \; M.render() \; return ofLerp(minVal \,
+maxVal \, value) \; end \; end \; \; function M.mouseReleased(e) \;
+mouseState = 0 \; end \; \; function M.value(float) \; value = ofNormalize(float
+\, minVal \, maxVal) \; M.render() \; return ofLerp(minVal \, maxVal
+\, value) \; end \; \; function M.render() \; fbo:beginFbo() \; ofClear(0)
+\; ofSetColor(0) \; ofDrawRectangle(0 \, 0 \, size \, size) \; ofSetColor(255)
+\; ofDrawRectangle(size / 10 \, size / 10 \, size - size / 5 \, size
+- size / 5) \; ofSetColor(0) \; ofDrawCircle(size / 2 \, size / 2 \,
+size / 3) \; ofSetColor(255) \; ofDrawCircle(size / 2 \, size / 2 \,
+size / 3.5) \; fbo:endFbo() \; end \;;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X connect 2 1 6 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 3 0;
