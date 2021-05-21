@@ -25,8 +25,6 @@ uniform float dCell_6;
 uniform float dCell_7;
 uniform float dCell_8;
 
-
-
 int get(int x, int y) {
 	return int(texture(Tex0, (gl_FragCoord.xy + vec2(x, y)) / resolution).a);
 }
