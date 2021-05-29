@@ -8,3 +8,5 @@ https://puredatagui.handmadeproductions.de/
 https://gameoflife.handmadeproductions.de/
 
 https://simplesequencer.handmadeproductions.de/
+
+https://videoplayer.handmadeproductions.de/
