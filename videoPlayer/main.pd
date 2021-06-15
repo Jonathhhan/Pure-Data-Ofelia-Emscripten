@@ -1,32 +1,21 @@
-#N canvas 933 125 675 686 10;
-#X msg 283 130 stop;
-#X obj 340 191 tgl 15 0 empty \$0-start start 17 7 0 10 -257985 -1
+#N canvas 745 301 675 662 10;
+#X obj 314 209 tgl 15 0 empty \$0-start start 17 7 0 10 -257985 -1
 -1 0 1;
-#X obj 36 153 f;
-#X obj 69 98 tgl 15 0 empty \$0-manualTempo manualTempo 17 7 0 10 -257985
--1 -1 0 1;
-#X msg 444 158 setVolume \$1;
-#X obj 263 572 hsl 128 15 0 1 0 0 \$0-positionSlider empty position
--2 -8 0 10 -257985 -1 -1 0 1;
-#X obj 39 252 hsl 128 15 0 1 0 0 empty \$0-setPosition setPosition
--2 -8 0 10 -257985 -1 -1 0 0;
-#X obj 93 133 hsl 128 15 -1000 1000 0 0 empty \$0-manualTempoSlider
-manualTempoSlider -2 -8 0 10 -257985 -1 -1 6985 1;
-#X obj 63 153 + 100;
-#X obj 283 110 bng 15 250 50 0 empty \$0-stop stop 17 7 0 10 -257985
+#X obj 69 111 tgl 15 0 empty \$0-manualTempo manualTempo 17 7 0 10
+-257985 -1 -1 0 1;
+#X msg 438 169 setVolume \$1;
+#X obj 39 475 hsl 128 15 0 1 0 0 empty empty setPosition -2 -8 0 10
+-257985 -1 -1 0 0;
+#X obj 184 150 hsl 128 15 -1 1 0 0 empty \$0-manualTempoSlider manualTempoSlider
+-2 -8 0 10 -257985 -1 -1 6985 1;
+#X obj 260 255 bng 15 250 50 0 empty \$0-stop stop 17 7 0 10 -257985
 -1 -1;
-#X obj 444 139 nbx 5 14 -1e+37 1e+37 0 0 empty \$0-setVolume setVolume
+#X obj 438 150 nbx 5 14 -1e+37 1e+37 0 0 empty \$0-setVolume setVolume
 0 -8 0 10 -257985 -1 -1 70 256;
 #X obj 535 150 nbx 5 14 -1e+37 1e+37 0 0 empty \$0-setTempo setTempo
 0 -8 0 10 -257985 -1 -1 100 256;
 #X msg 535 169 setTempo \$1;
-#X obj 294 511 nbx 5 14 -1e+37 1e+37 0 0 \$0-currentFrame empty currentFrame
-0 -8 0 10 -257985 -1 -1 -1 256;
-#X obj 260 543 nbx 5 14 -1e+37 1e+37 0 0 \$0-position empty position
-0 -8 0 10 -257985 -1 -1 -1 256;
-#X obj 329 475 nbx 5 14 -1e+37 1e+37 0 0 \$0-frameNumber empty frameNumber
-0 -8 0 10 -257985 -1 -1 0 256;
-#X obj 436 277 r \$0-video;
+#X obj 469 250 r \$0-video;
 #X msg 471 549 glsl \$1;
 #X obj 471 504 text get \$0-shaderList;
 #X obj 471 485 nbx 5 14 0 24 0 1 empty \$0-effectNumber1 empty 0 -8
@@ -44,13 +33,6 @@ Grain \; GreyScale \; HSBShift \; Invert \; Kaleidoscope \; Kaleidoscope2
 #X symbolatom 471 526 10 0 0 0 - - -;
 #X obj 516 456 mod 18;
 #X obj 471 456 mod 18;
-#X obj 471 345 sel 120 121 32;
-#X obj 260 438 unpack f f f;
-#X obj 102 153 mod 100000;
-#X obj 36 174 / 100000;
-#X msg 36 272 framePosition 1 \$1;
-#X obj 260 381 t l b b;
-#X obj 36 131 spigot;
 #X obj 516 391 r \$0-shaderMinuus;
 #X obj 471 368 r \$0-shaderPlus;
 #X obj 536 480 s \$0-subViewNum;
@@ -60,8 +42,8 @@ Grain \; GreyScale \; HSBShift \; Invert \; Kaleidoscope \; Kaleidoscope2
 \; end \; \; local canvas = ofCanvas(this) \; local clock = ofClock(this
 \, "setup") \; local shaderDir = canvas:getDir() .. "/data/" \; local
 videoPlayer = ofVideoPlayer() \; local shader1 = ofShader() \; local
-fbo = ofFbo() \; local fbo2 = ofFbo() \; local outputList = {} \; ofelia.framePosition
-= {0 \, 0} \; \; function ofelia.new() \; ofWindow.addListener("setup"
+fbo = ofFbo() \; local fbo2 = ofFbo() \; local outputList = {} \; local
+lastPosition = 0 \; \; function ofelia.new() \; ofWindow.addListener("setup"
 \, this) \; ofWindow.addListener("update" \, this) \; ofWindow.addListener("draw"
 \, this) \; ofWindow.addListener("exit" \, this) \; window:setPosition(30
 \, 100) \; window:setSize(840 \, 860) \; if ofWindow.exists then \;
@@ -69,26 +51,26 @@ clock:delay(0) \; else \; window:create() \; end \; end \; \; function
 ofelia.free() \; window:destroy() \; ofWindow.removeListener("setup"
 \, this) \; ofWindow.removeListener("update" \, this) \; ofWindow.removeListener("draw"
 \, this) \; ofWindow.removeListener("exit" \, this) \; end \; \; function
-ofelia.setup() \; ofSetWindowTitle("Video Player") \; ofBackground(0
-\, 0 \, 0 \, 255) \; --videoPlayer:load(shaderDir .. "puckette_K1.mp4")
-\; --videoPlayer:load("https://www.youtube.com/watch?v=hWUiLJnEYJI")
-\; videoPlayer:load("puckette_K1.mp4") \; videoPlayer:setLoopState(OF_LOOP_NORMAL)
-\; videoPlayer:setPaused(true) \; fbo:allocate(800 \, 600) \; fbo2:allocate(800
-\, 600) \; --ofSetFrameRate(30) \; --ofSetVerticalSync(false) \; end
-\; \; function ofelia.glsl(s) \; shader1:load(shaderDir .. s) \; end
-\; \; function ofelia.setTempo(f) \; videoPlayer:setSpeed(f / 100)
-\; end \; \; function ofelia.stop() \; videoPlayer:stop() \; videoPlayer:setPosition(0)
-\; end \; \; function ofelia.start(f) \; if f == 1 then \; videoPlayer:play()
-\; else \; videoPlayer:stop() \; end \; end \; \; function ofelia.setVolume(f)
-\; videoPlayer:setVolume(f / 100) \; end \; \; function ofelia.update()
-\; videoPlayer:update() \; if ofelia.framePosition[1] == 1 then \;
-videoPlayer:setPosition(ofelia.framePosition[2]) \; ofelia.framePosition[1]
-= 0 \; end \; end \; \; function ofelia.draw() \; fbo:beginFbo() \;
-ofClear(255 \, 255 \, 255 \, 0) \; videoPlayer:draw(0 \, 0 \, 800 \,
-600) \; fbo:endFbo() \; local mouseX = ofGetMouseX() \; local mouseY
-= ofGetMouseY() \; shader1:beginShader() \; shader1:setUniformTexture("Tex0"
-\, fbo:getTexture() \, 0) \; shader1:setUniform1f("time" \, ofGetElapsedTimeMillis())
-\; shader1:setUniform2f("resolution" \, 800 \, 600) \; shader1:setUniform2f("center"
+ofelia.setup() \; ofBackground(0) \; ofSetWindowTitle("Video Player")
+\; videoPlayer:setLoopState(OF_LOOP_NORMAL) \; videoPlayer:load("dummy")
+\; fbo:allocate(800 \, 600) \; fbo2:allocate(800 \, 600) \; ofSetFrameRate(25)
+\; end \; \; function ofelia.glsl(s) \; shader1:load(shaderDir .. s)
+\; end \; \; function ofelia.setPosition(f) \; videoPlayer:setPosition(f)
+\; end \; \; function ofelia.setTempo(f) \; videoPlayer:setSpeed(f
+/ 100) \; end \; \; function ofelia.stop() \; videoPlayer:stop() \;
+videoPlayer:setPosition(0) \; end \; \; function ofelia.start(f) \;
+if f == 1 then \; videoPlayer:play() \; else \; videoPlayer:stop()
+\; end \; end \; \; function ofelia.setVolume(f) \; videoPlayer:setVolume(f
+/ 100) \; end \; \; function ofelia.loadVideo() \; videoPlayer:load("dummy")
+\; end \; \; function ofelia.update() \; if videoPlayer:getPosition()
+~= lastPosition and videoPlayer:isLoaded() == true then \; lastPosition
+= videoPlayer:getPosition() \; videoPlayer:update() \; end \; end \;
+\; function ofelia.bang() \; fbo:beginFbo() \; ofClear(255 \, 255 \,
+255 \, 0) \; videoPlayer:draw(0 \, 0 \, 800 \, 600) \; fbo:endFbo()
+\; local mouseX = ofGetMouseX() \; local mouseY = ofGetMouseY() \;
+shader1:beginShader() \; shader1:setUniformTexture("Tex0" \, fbo:getTexture()
+\, 0) \; shader1:setUniform1f("time" \, ofGetElapsedTimeMillis()) \;
+shader1:setUniform2f("resolution" \, 800 \, 600) \; shader1:setUniform2f("center"
 \, 800 / 2 \, 600 / 2) \; shader1:setUniform2f("mouse" \, mouseX \,
 mouseY) \; \; shader1:setUniform1f("Bleach_Opacity" \, ofelia.Bleach_Opacity)
 \; shader1:setUniform1f("Bokeh_Bias" \, ofelia.Bokeh_Bias / 100) \;
@@ -125,60 +107,96 @@ shader1:setUniform1f("Contrast_Contrast" \, ofelia.Contrast_Contrast
 / 100) \; shader1:setUniform1f("VertlTiltShift_R" \, ofelia.VertlTiltShift_R
 / 100) \; fbo2:beginFbo() \; ofClear(255 \, 255 \, 255 \, 0) \; ofDrawRectangle(0
 \, 0 \, 800 \, 600) \; fbo2:endFbo() \; shader1:endShader() \; fbo2:draw(20
-\, 20 \, 800 \, 600) \; ofSetColor(20 \, 170 \, 150) \; ofDrawRectangle(20
-\, 640 \, 800 \, 200) \; ofSetColor(20 \, 130 \, 150) \; ofDrawRectangle(25
-\, 645 \, 390 \, 190) \; ofSetColor(20 \, 130 \, 150) \; ofDrawRectangle(425
-\, 645 \, 390 \, 190) \; outputList[1] = videoPlayer:getPosition()
-\; outputList[2] = videoPlayer:getCurrentFrame() \; outputList[3] =
-videoPlayer:getTotalNumFrames() \; return outputList \; end \; \; function
-ofelia.exit() \; videoPlayer:close() \; shader1:unload() \; end \;
-;
-#N canvas 471 187 1147 802 gui 0;
-#X obj 183 159 s \$0-stop;
-#X obj 261 275 s \$0-setVolume;
-#X obj 249 487 s \$0-setPosition;
-#X obj 273 675 s \$0-manualTempoSlider;
-#X obj 195 583 s \$0-manualTempo;
-#X obj 267 344 loadbang;
-#X obj 279 390 s \$0-setTempo;
-#X msg 249 252 70;
-#X obj 249 228 loadbang;
-#X obj 261 629 loadbang;
-#X msg 261 652 100;
-#X obj 42 136 ofelia_label 30 650 100 20;
-#X obj 42 67 ofelia_toggle 135 650 20;
-#X obj 195 90 loadbang;
-#X msg 195 113 symbol Start;
-#X obj 195 182 loadbang;
-#X msg 195 205 symbol Stop;
-#X obj 42 228 ofelia_label 30 675 100 20;
-#X obj 42 159 ofelia_bang 135 675 20;
-#X obj 195 298 loadbang;
-#X obj 42 275 ofelia_hSlider 135 700 100 20 0 100;
-#X obj 42 344 ofelia_label 30 700 100 20;
-#X obj 195 418 loadbang;
-#X msg 195 321 symbol Volume;
-#X obj 42 464 ofelia_label 30 725 100 20;
-#X msg 195 441 symbol Tempo;
-#X obj 195 514 loadbang;
-#X obj 42 487 ofelia_hSlider 135 750 100 20 0 1;
-#X obj 42 560 ofelia_label 30 750 100 20;
-#X msg 195 537 symbol Position;
-#X obj 42 44 inlet;
-#X obj 195 606 loadbang;
-#X msg 195 629 symbol MTempo;
-#X obj 195 698 loadbang;
-#X msg 195 721 symbol MTempo;
-#X obj 464 738 outlet;
-#X obj 42 675 ofelia_hSlider 135 800 100 20 -500 500;
-#X obj 42 583 ofelia_toggle 135 775 20;
-#X obj 42 744 ofelia_label 30 800 100 20;
-#X obj 42 652 ofelia_label 30 775 100 20;
-#X obj 464 209 ofelia_bang 500 650 20;
-#X obj 464 255 ofelia_label 525 650 150 20;
-#X obj 464 278 ofelia_bang 680 650 20;
-#X obj 607 278 s \$0-shaderPlus;
-#X obj 607 209 s \$0-shaderMinuus;
+\, 20 \, 800 \, 600) \; outputList[1] = videoPlayer:getPosition() \;
+outputList[2] = videoPlayer:getDuration() \; return outputList \; end
+\; \; function ofelia.exit() \; videoPlayer:close() \; shader1:unload()
+\; end \;;
+#X obj 165 115 random 100000;
+#X obj 165 93 metro 2000;
+#X obj 165 71 r \$0-randomStep;
+#X msg 314 229 start \$1;
+#X obj 326 614 s \$0-frameNumber;
+#X floatatom 287 544 10 0 0 0 - - -;
+#X obj 287 521 i;
+#X obj 287 452 *;
+#X obj 287 498 * 25;
+#X obj 287 427 unpack;
+#X obj 287 568 change;
+#X obj 248 499 f;
+#X obj 248 523 + 1;
+#X obj 36 131 spigot;
+#X obj 18 24 r \$0-setPosition;
+#X obj 471 345 sel 120 121;
+#X obj 248 568 sel 0;
+#X obj 248 545 mod 2;
+#X msg 36 495 setPosition \$1;
+#X obj 36 322 * 25;
+#X obj 36 345 i;
+#X obj 36 368 / 25;
+#X floatatom 36 300 10 0 0 0 - - -;
+#X obj 36 277 *;
+#X obj 36 414 /;
+#X obj 320 450 s \$0-videoDuration;
+#X obj 51 254 r \$0-videoDuration;
+#X obj 51 391 r \$0-videoDuration;
+#X obj 36 437 change;
+#X obj 181 216 /;
+#X obj 62 184 +;
+#X obj 196 193 r \$0-videoDuration;
+#X obj 18 51 * 1e+06;
+#X obj 103 184 mod 1e+06;
+#X obj 36 208 / 1e+06;
+#X obj 36 185 f;
+#X obj 181 170 * 1e+06;
+#X obj 320 498 s \$0-videoCurrentTime;
+#X obj 287 475 t f f;
+#X obj 287 591 moses 0;
+#X obj 510 216 r \$0-loadVideo;
+#X msg 510 280 loadVideo;
+#X obj 260 381 t b l;
+#N canvas 402 120 1226 917 gui 0;
+#X obj 184 245 s \$0-stop;
+#X obj 262 361 s \$0-setVolume;
+#X obj 250 573 s \$0-setPosition;
+#X obj 252 783 s \$0-manualTempoSlider;
+#X obj 196 669 s \$0-manualTempo;
+#X obj 268 430 loadbang;
+#X obj 280 476 s \$0-setTempo;
+#X obj 250 314 loadbang;
+#X obj 262 715 loadbang;
+#X obj 43 222 ofelia_label 30 650 100 20;
+#X obj 43 153 ofelia_toggle 135 650 20;
+#X obj 196 176 loadbang;
+#X msg 196 199 symbol Start;
+#X obj 196 268 loadbang;
+#X msg 196 291 symbol Stop;
+#X obj 43 314 ofelia_label 30 675 100 20;
+#X obj 43 245 ofelia_bang 135 675 20;
+#X obj 196 384 loadbang;
+#X obj 43 361 ofelia_hSlider 135 700 100 20 0 100;
+#X obj 43 430 ofelia_label 30 700 100 20;
+#X obj 196 504 loadbang;
+#X msg 196 407 symbol Volume;
+#X obj 43 550 ofelia_label 30 725 100 20;
+#X msg 196 527 symbol Tempo;
+#X obj 196 600 loadbang;
+#X obj 43 573 ofelia_hSlider 135 750 100 20 0 1;
+#X obj 43 646 ofelia_label 30 750 100 20;
+#X msg 196 623 symbol Position;
+#X obj 43 16 inlet;
+#X obj 196 692 loadbang;
+#X msg 196 715 symbol MTempo;
+#X obj 196 784 loadbang;
+#X msg 196 807 symbol MTempo;
+#X obj 796 869 outlet;
+#X obj 43 669 ofelia_toggle 135 775 20;
+#X obj 43 830 ofelia_label 30 800 100 20;
+#X obj 43 738 ofelia_label 30 775 100 20;
+#X obj 796 340 ofelia_bang 500 650 20;
+#X obj 796 386 ofelia_label 525 650 150 20;
+#X obj 796 409 ofelia_bang 680 650 20;
+#X obj 939 409 s \$0-shaderPlus;
+#X obj 939 340 s \$0-shaderMinuus;
 #N canvas 67 205 483 444 gui_positionShift 0;
 #X obj 212 143 loadbang;
 #X obj 212 325 loadbang;
@@ -229,7 +247,7 @@ ofelia.exit() \; videoPlayer:close() \; shader1:unload() \; end \;
 #X connect 19 0 11 1;
 #X connect 20 0 21 0;
 #X connect 23 0 22 0;
-#X restore 672 393 pd gui_positionShift;
+#X restore 1004 524 pd gui_positionShift;
 #N canvas 67 237 499 508 gui_Pixelate 0;
 #X obj 268 164 loadbang;
 #X obj 268 369 loadbang;
@@ -280,7 +298,7 @@ ofelia.exit() \; videoPlayer:close() \; shader1:unload() \; end \;
 #X connect 19 0 15 1;
 #X connect 20 0 21 0;
 #X connect 23 0 22 0;
-#X restore 659 416 pd gui_Pixelate;
+#X restore 991 547 pd gui_Pixelate;
 #N canvas 67 221 566 444 gui_rgbShift 0;
 #X obj 268 141 loadbang;
 #X obj 268 323 loadbang;
@@ -331,7 +349,7 @@ ofelia.exit() \; videoPlayer:close() \; shader1:unload() \; end \;
 #X connect 19 0 11 1;
 #X connect 20 0 22 0;
 #X connect 21 0 23 0;
-#X restore 685 370 pd gui_rgbShift;
+#X restore 1017 501 pd gui_rgbShift;
 #N canvas 67 229 566 432 gui_vTiltShift 0;
 #X obj 268 118 loadbang;
 #X obj 268 277 loadbang;
@@ -382,7 +400,7 @@ ofelia.exit() \; videoPlayer:close() \; shader1:unload() \; end \;
 #X connect 19 0 11 1;
 #X connect 20 0 21 0;
 #X connect 23 0 22 0;
-#X restore 698 347 pd gui_vTiltShift;
+#X restore 1030 478 pd gui_vTiltShift;
 #N canvas 1278 238 432 375 gui_bleach 0;
 #X obj 237 202 loadbang;
 #X msg 237 225 symbol Opacity;
@@ -410,7 +428,7 @@ ofelia.exit() \; videoPlayer:close() \; shader1:unload() \; end \;
 #X connect 9 0 10 0;
 #X connect 10 0 7 1;
 #X connect 12 0 11 0;
-#X restore 491 715 pd gui_bleach;
+#X restore 823 846 pd gui_bleach;
 #N canvas 649 251 499 495 gui_bokeh 0;
 #X obj 268 164 loadbang;
 #X msg 268 187 symbol Bias;
@@ -461,7 +479,7 @@ ofelia.exit() \; videoPlayer:close() \; shader1:unload() \; end \;
 #X connect 19 0 13 1;
 #X connect 20 0 21 0;
 #X connect 23 0 22 0;
-#X restore 503 692 pd gui_bokeh;
+#X restore 835 823 pd gui_bokeh;
 #N canvas 1308 325 499 523 gui_circleWarp 0;
 #X obj 268 164 loadbang;
 #X obj 268 369 loadbang;
@@ -512,7 +530,7 @@ ofelia.exit() \; videoPlayer:close() \; shader1:unload() \; end \;
 #X connect 19 0 13 1;
 #X connect 20 0 21 0;
 #X connect 23 0 22 0;
-#X restore 516 669 pd gui_circleWarp;
+#X restore 848 800 pd gui_circleWarp;
 #N canvas 280 239 499 701 gui_contrast 0;
 #X obj 268 164 loadbang;
 #X obj 268 369 loadbang;
@@ -586,7 +604,7 @@ ofelia.exit() \; videoPlayer:close() \; shader1:unload() \; end \;
 #X connect 29 0 30 0;
 #X connect 33 0 32 0;
 #X connect 34 0 31 0;
-#X restore 529 646 pd gui_contrast;
+#X restore 861 777 pd gui_contrast;
 #N canvas 390 418 482 332 gui_blur 0;
 #X obj 237 202 loadbang;
 #X obj 78 89 inlet;
@@ -614,7 +632,7 @@ ofelia.exit() \; videoPlayer:close() \; shader1:unload() \; end \;
 #X connect 9 0 10 0;
 #X connect 10 0 7 1;
 #X connect 11 0 12 0;
-#X restore 542 623 pd gui_blur;
+#X restore 874 754 pd gui_blur;
 #N canvas 557 387 486 383 gui_grain 0;
 #X obj 237 203 loadbang;
 #X obj 78 89 inlet;
@@ -642,7 +660,7 @@ ofelia.exit() \; videoPlayer:close() \; shader1:unload() \; end \;
 #X connect 9 0 10 0;
 #X connect 10 0 6 1;
 #X connect 11 0 12 0;
-#X restore 555 600 pd gui_grain;
+#X restore 887 731 pd gui_grain;
 #N canvas 469 254 486 364 gui_greyScale 0;
 #X obj 237 202 loadbang;
 #X obj 78 89 inlet;
@@ -670,7 +688,7 @@ ofelia.exit() \; videoPlayer:close() \; shader1:unload() \; end \;
 #X connect 9 0 10 0;
 #X connect 10 0 6 1;
 #X connect 11 0 12 0;
-#X restore 568 577 pd gui_greyScale;
+#X restore 900 708 pd gui_greyScale;
 #N canvas 381 193 499 703 gui_hsbShift 0;
 #X obj 268 164 loadbang;
 #X obj 268 369 loadbang;
@@ -744,7 +762,7 @@ ofelia.exit() \; videoPlayer:close() \; shader1:unload() \; end \;
 #X connect 29 0 30 0;
 #X connect 32 0 31 0;
 #X connect 34 0 33 0;
-#X restore 581 554 pd gui_hsbShift;
+#X restore 913 685 pd gui_hsbShift;
 #N canvas 273 270 486 319 gui_kaleidoscope 0;
 #X obj 237 202 loadbang;
 #X obj 78 89 inlet;
@@ -772,7 +790,7 @@ ofelia.exit() \; videoPlayer:close() \; shader1:unload() \; end \;
 #X connect 9 0 10 0;
 #X connect 10 0 6 1;
 #X connect 11 0 12 0;
-#X restore 594 531 pd gui_kaleidoscope;
+#X restore 926 662 pd gui_kaleidoscope;
 #N canvas 371 108 557 845 gui_kaleidoscope2 0;
 #X obj 268 171 loadbang;
 #X obj 268 353 loadbang;
@@ -869,7 +887,7 @@ ofelia.exit() \; videoPlayer:close() \; shader1:unload() \; end \;
 #X connect 44 0 45 0;
 #X connect 44 1 41 0;
 #X connect 45 0 19 0;
-#X restore 607 508 pd gui_kaleidoscope2;
+#X restore 939 639 pd gui_kaleidoscope2;
 #N canvas 232 277 499 498 gui_metaImage 0;
 #X obj 247 170 loadbang;
 #X obj 247 375 loadbang;
@@ -920,7 +938,7 @@ ofelia.exit() \; videoPlayer:close() \; shader1:unload() \; end \;
 #X connect 19 0 20 0;
 #X connect 22 0 21 0;
 #X connect 23 0 8 1;
-#X restore 620 485 pd gui_metaImage;
+#X restore 952 616 pd gui_metaImage;
 #N canvas 67 388 486 352 gui_mosaicColor 0;
 #X obj 237 203 loadbang;
 #X obj 78 89 inlet;
@@ -948,7 +966,7 @@ ofelia.exit() \; videoPlayer:close() \; shader1:unload() \; end \;
 #X connect 9 0 6 1;
 #X connect 10 0 11 0;
 #X connect 12 0 5 1;
-#X restore 633 462 pd gui_mosaicColor;
+#X restore 965 593 pd gui_mosaicColor;
 #N canvas 418 123 437 712 gui_noiseWarp 0;
 #X obj 208 168 loadbang;
 #X obj 208 373 loadbang;
@@ -1022,146 +1040,230 @@ ofelia.exit() \; videoPlayer:close() \; shader1:unload() \; end \;
 #X connect 29 0 30 0;
 #X connect 33 0 32 0;
 #X connect 34 0 31 0;
-#X restore 646 439 pd gui_noiseWarp;
-#X obj 491 324 t b b b b b b b b b b b b b b b b b;
-#X obj 464 301 t b b;
-#X obj 623 232 r \$0-shaderName;
-#X floatatom 295 434 5 0 0 0 - - -;
-#X msg 267 367 100;
-#X obj 42 389 ofelia_hSlider 135 725 100 20 10 200;
-#X obj 623 140 loadbang;
-#X obj 464 186 ofelia_label 305 800 100 20;
-#X msg 623 163 symbol RandomSteps, f 19;
-#X obj 464 116 ofelia_toggle 280 800 20;
-#X obj 617 116 s \$0-randomStep;
-#X obj 195 67 s \$0-start;
-#X connect 5 0 66 0;
-#X connect 7 0 20 1;
-#X connect 8 0 7 0;
-#X connect 9 0 10 0;
-#X connect 10 0 36 1;
-#X connect 11 0 18 0;
-#X connect 12 0 11 0;
-#X connect 12 1 73 0;
-#X connect 13 0 14 0;
-#X connect 14 0 11 1;
-#X connect 15 0 16 0;
-#X connect 16 0 17 1;
-#X connect 17 0 20 0;
-#X connect 18 0 17 0;
-#X connect 18 1 0 0;
-#X connect 18 1 12 1;
-#X connect 19 0 23 0;
-#X connect 20 0 21 0;
-#X connect 20 1 1 0;
-#X connect 21 0 67 0;
-#X connect 22 0 25 0;
-#X connect 23 0 21 1;
-#X connect 24 0 27 0;
-#X connect 25 0 24 1;
-#X connect 26 0 29 0;
-#X connect 27 0 28 0;
-#X connect 27 1 2 0;
-#X connect 28 0 37 0;
-#X connect 29 0 28 1;
-#X connect 30 0 12 0;
-#X connect 31 0 32 0;
-#X connect 32 0 39 1;
-#X connect 33 0 34 0;
-#X connect 34 0 38 1;
-#X connect 36 0 38 0;
-#X connect 36 1 3 0;
-#X connect 37 0 39 0;
-#X connect 37 1 4 0;
-#X connect 38 0 71 0;
-#X connect 39 0 36 0;
-#X connect 40 0 41 0;
-#X connect 40 1 44 0;
-#X connect 41 0 42 0;
-#X connect 42 0 63 0;
-#X connect 42 1 43 0;
-#X connect 62 0 49 0;
-#X connect 62 1 50 0;
-#X connect 62 2 51 0;
-#X connect 62 3 52 0;
-#X connect 62 4 53 0;
-#X connect 62 5 54 0;
-#X connect 62 6 55 0;
-#X connect 62 7 56 0;
-#X connect 62 8 57 0;
-#X connect 62 9 58 0;
-#X connect 62 10 59 0;
-#X connect 62 11 60 0;
-#X connect 62 12 61 0;
-#X connect 62 13 46 0;
-#X connect 62 14 45 0;
-#X connect 62 15 47 0;
-#X connect 62 16 48 0;
-#X connect 63 0 35 0;
-#X connect 63 1 62 0;
-#X connect 64 0 41 1;
-#X connect 66 0 67 1;
-#X connect 67 0 24 0;
-#X connect 67 1 6 0;
-#X connect 67 1 65 0;
-#X connect 68 0 70 0;
-#X connect 69 0 40 0;
-#X connect 70 0 69 1;
-#X connect 71 0 69 0;
-#X connect 71 1 72 0;
-#X restore 299 404 pd gui;
-#X obj 172 198 random 100000;
-#X obj 172 221 / 100000;
-#X obj 172 176 metro 2000;
-#X obj 172 153 r \$0-randomStep;
-#X msg 340 211 start \$1;
-#X connect 0 0 40 0;
-#X connect 1 0 46 0;
-#X connect 2 0 8 0;
-#X connect 2 0 32 0;
-#X connect 3 0 35 1;
-#X connect 4 0 40 0;
-#X connect 6 0 33 0;
-#X connect 7 0 8 1;
-#X connect 8 0 31 0;
-#X connect 9 0 0 0;
-#X connect 10 0 4 0;
+#X restore 978 570 pd gui_noiseWarp;
+#X obj 823 455 t b b b b b b b b b b b b b b b b b;
+#X obj 796 432 t b b;
+#X obj 955 363 r \$0-shaderName;
+#X floatatom 296 520 5 0 0 0 - - -;
+#X msg 268 453 100;
+#X obj 43 475 ofelia_hSlider 135 725 100 20 10 200;
+#X obj 955 271 loadbang;
+#X obj 796 317 ofelia_label 305 800 100 20;
+#X msg 955 294 symbol RandomSteps, f 19;
+#X obj 796 247 ofelia_toggle 280 800 20;
+#X obj 949 247 s \$0-randomStep;
+#X obj 196 153 s \$0-start;
+#X obj 956 193 makefilename Frame:%d;
+#X obj 956 170 r \$0-frameNumber;
+#X obj 43 39 ofelia f \; ofSetColor(20 \, 170 \, 150) \; ofDrawRectangle(20
+\, 640 \, 800 \, 200) \; ofSetColor(20 \, 130 \, 150) \; ofDrawRectangle(25
+\, 645 \, 390 \, 190) \; ofSetColor(20 \, 130 \, 150) \; ofDrawRectangle(425
+\, 645 \, 390 \, 190) \; return nil \;;
+#X msg 250 338 70;
+#X obj 43 761 ofelia_hSlider 135 800 100 20 -1 1;
+#X msg 262 738 0.1;
+#X obj 956 102 r \$0-videoCurrentTime;
+#X obj 797 148 ofelia_label 245 700 160 20;
+#X obj 797 216 ofelia_label 245 725 160 20;
+#X obj 797 79 ofelia_label 245 675 160 20;
+#X obj 956 33 r \$0-videoDuration;
+#N canvas 67 89 450 300 formatTime 0;
+#X obj 52 61 inlet;
+#X obj 52 224 outlet;
+#X obj 52 84 ofelia f \; if a >= 0 then \; local hours = math.floor(math.fmod(a
+\, 86400)/3600) \; local minutes = math.floor(math.fmod(a \, 3600)/60)
+\; local seconds = math.floor(math.fmod(a \, 60)) \; local ms = math.floor(math.fmod(a*1000
+\, 1000)) \; local string = string.format("Dur:%d:%02d:%02d:%02d" \,
+hours \, minutes \, seconds \, ms) \; return string \; end \;;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X restore 956 56 pd formatTime;
+#N canvas 67 89 450 300 formatTime 0;
+#X obj 52 84 ofelia f \; if a >= 0 then \; local hours = math.floor(math.fmod(a
+\, 86400)/3600) \; local minutes = math.floor(math.fmod(a \, 3600)/60)
+\; local seconds = math.floor(math.fmod(a \, 60)) \; local ms = math.floor(math.fmod(a*1000
+\, 1000)) \; local string = string.format("Time:%d:%02d:%02d:%02d"
+\, hours \, minutes \, seconds \, ms) \; return string \; end \;;
+#X obj 52 61 inlet;
+#X obj 52 224 outlet;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X restore 956 125 pd formatTime;
+#X obj 633 114 loadbang;
+#X obj 567 183 loadbang;
+#X msg 633 137 0.1;
+#X obj 414 229 ofelia_label 305 775 100 20;
+#X obj 414 160 ofelia_bang 280 775 20;
+#X msg 567 206 symbol LoadVideo;
+#X obj 606 375 s \$0-loadVideo;
+#X connect 5 0 63 0;
+#X connect 7 0 74 0;
+#X connect 8 0 76 0;
+#X connect 9 0 16 0;
+#X connect 10 0 9 0;
+#X connect 10 1 70 0;
 #X connect 11 0 12 0;
-#X connect 12 0 40 0;
-#X connect 16 0 40 0;
-#X connect 17 0 40 0;
-#X connect 18 0 26 0;
-#X connect 19 0 18 0;
-#X connect 19 0 21 1;
-#X connect 19 0 22 1;
-#X connect 19 0 38 0;
-#X connect 21 0 24 0;
-#X connect 22 0 23 0;
-#X connect 23 0 28 0;
+#X connect 12 0 9 1;
+#X connect 13 0 14 0;
+#X connect 14 0 15 1;
+#X connect 15 0 18 0;
+#X connect 16 0 15 0;
+#X connect 16 1 0 0;
+#X connect 16 1 10 1;
+#X connect 17 0 21 0;
+#X connect 18 0 19 0;
+#X connect 18 1 1 0;
+#X connect 19 0 64 0;
+#X connect 20 0 23 0;
+#X connect 21 0 19 1;
+#X connect 22 0 25 0;
+#X connect 23 0 22 1;
 #X connect 24 0 27 0;
-#X connect 25 0 29 0;
-#X connect 26 0 17 0;
-#X connect 26 0 39 0;
-#X connect 27 0 19 0;
-#X connect 28 0 19 0;
-#X connect 29 0 22 0;
-#X connect 29 1 21 0;
-#X connect 30 0 5 0;
-#X connect 30 0 14 0;
-#X connect 30 1 13 0;
-#X connect 30 2 15 0;
-#X connect 31 0 2 1;
-#X connect 32 0 6 0;
-#X connect 33 0 40 0;
-#X connect 34 0 30 0;
-#X connect 34 1 35 0;
-#X connect 34 2 41 0;
-#X connect 35 0 2 0;
-#X connect 36 0 21 0;
-#X connect 37 0 22 0;
-#X connect 40 0 34 0;
-#X connect 42 0 43 0;
-#X connect 43 0 6 0;
-#X connect 44 0 42 0;
-#X connect 45 0 44 0;
-#X connect 46 0 40 0;
+#X connect 25 0 26 0;
+#X connect 25 1 2 0;
+#X connect 26 0 34 0;
+#X connect 27 0 26 1;
+#X connect 28 0 73 0;
+#X connect 29 0 30 0;
+#X connect 30 0 36 1;
+#X connect 31 0 32 0;
+#X connect 32 0 35 1;
+#X connect 34 0 36 0;
+#X connect 34 1 4 0;
+#X connect 35 0 88 0;
+#X connect 36 0 75 0;
+#X connect 37 0 38 0;
+#X connect 37 1 41 0;
+#X connect 38 0 39 0;
+#X connect 39 0 60 0;
+#X connect 39 1 40 0;
+#X connect 59 0 46 0;
+#X connect 59 1 47 0;
+#X connect 59 2 48 0;
+#X connect 59 3 49 0;
+#X connect 59 4 50 0;
+#X connect 59 5 51 0;
+#X connect 59 6 52 0;
+#X connect 59 7 53 0;
+#X connect 59 8 54 0;
+#X connect 59 9 55 0;
+#X connect 59 10 56 0;
+#X connect 59 11 57 0;
+#X connect 59 12 58 0;
+#X connect 59 13 43 0;
+#X connect 59 14 42 0;
+#X connect 59 15 44 0;
+#X connect 59 16 45 0;
+#X connect 60 0 33 0;
+#X connect 60 1 59 0;
+#X connect 61 0 38 1;
+#X connect 63 0 64 1;
+#X connect 64 0 22 0;
+#X connect 64 1 6 0;
+#X connect 64 1 62 0;
+#X connect 65 0 67 0;
+#X connect 66 0 37 0;
+#X connect 67 0 66 1;
+#X connect 68 0 66 0;
+#X connect 68 1 69 0;
+#X connect 71 0 79 1;
+#X connect 72 0 71 0;
+#X connect 73 0 10 0;
+#X connect 74 0 18 1;
+#X connect 75 0 35 0;
+#X connect 75 1 3 0;
+#X connect 76 0 75 1;
+#X connect 77 0 83 0;
+#X connect 78 0 79 0;
+#X connect 79 0 68 0;
+#X connect 80 0 78 0;
+#X connect 81 0 82 0;
+#X connect 82 0 80 1;
+#X connect 83 0 78 1;
+#X connect 84 0 86 0;
+#X connect 85 0 89 0;
+#X connect 87 0 80 0;
+#X connect 88 0 87 0;
+#X connect 88 1 90 0;
+#X connect 89 0 87 1;
+#X restore 200 314 pd gui;
+#X obj 200 291 ofDraw;
+#X msg 260 275 stop;
+#X connect 0 0 30 0;
+#X connect 1 0 40 1;
+#X connect 2 0 26 0;
+#X connect 3 0 45 0;
+#X connect 4 0 63 0;
+#X connect 5 0 72 0;
+#X connect 6 0 2 0;
+#X connect 7 0 8 0;
+#X connect 8 0 26 0;
+#X connect 9 0 26 0;
+#X connect 10 0 26 0;
+#X connect 11 0 19 0;
+#X connect 12 0 11 0;
+#X connect 12 0 14 1;
+#X connect 12 0 15 1;
+#X connect 12 0 24 0;
+#X connect 14 0 17 0;
+#X connect 15 0 16 0;
+#X connect 16 0 21 0;
+#X connect 17 0 20 0;
+#X connect 18 0 42 0;
+#X connect 19 0 10 0;
+#X connect 19 0 25 0;
+#X connect 20 0 12 0;
+#X connect 21 0 12 0;
+#X connect 22 0 14 0;
+#X connect 23 0 15 0;
+#X connect 26 0 69 0;
+#X connect 27 0 62 0;
+#X connect 28 0 27 0;
+#X connect 29 0 28 0;
+#X connect 30 0 26 0;
+#X connect 32 0 37 0;
+#X connect 33 0 32 0;
+#X connect 34 0 65 0;
+#X connect 35 0 33 0;
+#X connect 36 0 34 0;
+#X connect 36 1 52 0;
+#X connect 36 1 34 1;
+#X connect 37 0 66 0;
+#X connect 38 0 39 0;
+#X connect 39 0 44 0;
+#X connect 40 0 62 0;
+#X connect 41 0 59 0;
+#X connect 42 0 15 0;
+#X connect 42 1 14 0;
+#X connect 43 0 40 0;
+#X connect 44 0 38 1;
+#X connect 44 0 43 0;
+#X connect 45 0 26 0;
+#X connect 46 0 47 0;
+#X connect 47 0 48 0;
+#X connect 48 0 51 0;
+#X connect 49 0 46 0;
+#X connect 50 0 49 0;
+#X connect 51 0 55 0;
+#X connect 53 0 50 1;
+#X connect 54 0 51 1;
+#X connect 55 0 3 0;
+#X connect 56 0 57 1;
+#X connect 57 0 60 0;
+#X connect 58 0 56 1;
+#X connect 59 0 62 0;
+#X connect 60 0 62 1;
+#X connect 61 0 50 0;
+#X connect 62 0 57 0;
+#X connect 62 0 61 0;
+#X connect 63 0 56 0;
+#X connect 65 0 35 0;
+#X connect 65 1 64 0;
+#X connect 66 1 31 0;
+#X connect 67 0 68 0;
+#X connect 68 0 26 0;
+#X connect 69 0 38 0;
+#X connect 69 1 36 0;
+#X connect 70 0 26 0;
+#X connect 71 0 70 0;
+#X connect 72 0 26 0;
