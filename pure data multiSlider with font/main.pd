@@ -1,0 +1,37 @@
+#N canvas 1027 61 698 315 10;
+#X declare -path ofelia/abs;
+#X obj 378 100 ofWindow;
+#X msg 378 146 bang;
+#X obj 378 33 declare -path ofelia/abs;
+#X msg 378 77 setPosition 30 100 \, setSize 640 360 \, create;
+#X obj 378 54 loadbang;
+#X obj 378 189 pdcontrol;
+#X msg 378 169 dir 0 data/DejaVuSansMono.ttf;
+#X obj 266 185 nbx 8 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 2.92929 256;
+#X obj 254 145 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 2.92929 256;
+#X obj 35 103 ofDraw;
+#X obj 378 210 ofelia f \; ofSetWindowTitle("Ofelia GUI Jona") \; ofSetBackgroundColor(55)
+\; font = ofTrueTypeFont() \; font:load(a \, 24) \;;
+#X obj 378 123 ofSetup;
+#X obj 265 92 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
+10 -262144 -1 -1 4 256;
+#X obj 35 164 ofelia_number 120 270 250 50 -1000 1000;
+#X obj 35 124 ofelia_vMSlider 120 50 10 200 0 10 40;
+#X msg 137 43 4 1 6 7 2 9 8 7 6 5 4 3 2 1 8 3 6;
+#X obj 137 19 loadbang;
+#X connect 1 0 6 0;
+#X connect 3 0 0 0;
+#X connect 4 0 3 0;
+#X connect 5 0 10 0;
+#X connect 6 0 5 0;
+#X connect 8 0 13 1;
+#X connect 9 0 14 0;
+#X connect 11 0 1 0;
+#X connect 12 0 14 1;
+#X connect 13 1 7 0;
+#X connect 14 0 13 0;
+#X connect 14 1 8 0;
+#X connect 15 0 14 1;
+#X connect 16 0 15 0;
