@@ -15,23 +15,23 @@ xpos \, ypos \, size \, minVal \, maxVal = args[1] \, args[2] \, args[3]
 \, this) \; ofWindow.removeListener("mousePressed" \, this) \; ofWindow.removeListener("mouseDragged"
 \, this) \; ofWindow.removeListener("mouseReleased" \, this) \; end
 \; \; function M.bang() \; ofPushMatrix() \; ofTranslate(xpos \, ypos)
-\; ofEnableSmoothing() \; ofSetCircleResolution(100) \; --ofClear(0)
-\; ofSetColor(0) \; ofDrawRectangle(0 \, 0 \, size \, size) \; ofSetColor(255)
-\; ofDrawRectangle(size / 40 \, size / 40 \, size - size / 20 \, size
-- size / 20) \; value2 = (value * 315 + 111.5) * math.pi / 180 \; ofSetLineWidth(size
-/ 20) \; ofSetColor(0) \; ofDrawCircle(size / 2 \, size / 2 \, size
-/ 2.5) \; ofSetColor(255) \; ofDrawCircle(size / 2 \, size / 2 \, size
-/ 2.7) \; ofSetColor(0) \; ofDrawCircle(size / 2 \, size / 2 \, size
-/ 20) \; ofSetColor(100 \, 200 \, 255) \; ofDrawLine(size / 2 + size
-/ 9 * math.cos(value2) \, size / 2 + size / 9 * math.sin(value2) \,
-size / 2 + size / 3 * math.cos(value2) \, size / 2 + size / 3 * math.sin(value2))
+\; ofEnableSmoothing() \; ofSetCircleResolution(100) \; ofSetColor(0)
+\; ofDrawRectangle(0 \, 0 \, size \, size) \; ofSetColor(255) \; ofDrawRectangle(size
+/ 40 \, size / 40 \, size - size / 20 \, size - size / 20) \; value2
+= (value * 315 + 111.5) * math.pi / 180 \; ofSetLineWidth(size / 20)
+\; ofSetColor(0) \; ofDrawCircle(size / 2 \, size / 2 \, size / 2.5)
+\; ofSetColor(255) \; ofDrawCircle(size / 2 \, size / 2 \, size / 2.7)
+\; ofSetColor(0) \; ofDrawCircle(size / 2 \, size / 2 \, size / 20)
+\; ofSetColor(100 \, 200 \, 255) \; ofDrawLine(size / 2 + size / 9
+* math.cos(value2) \, size / 2 + size / 9 * math.sin(value2) \, size
+/ 2 + size / 3 * math.cos(value2) \, size / 2 + size / 3 * math.sin(value2))
 \; ofPopMatrix() \; end \; \; function M.mousePressed(e) \; if ofDist(ofGetMouseX()
 \, ofGetMouseY() \, xpos + size / 2 \, ypos + size / 2) <= size / 2.5
 then \; mouseState = 1 \; value = ofNormalize(value + (-ofGetMouseY()
-+ ofGetPreviousMouseY() ) / (size) + minVal \, 0 \, 1) \; return ofLerp(minVal
++ ofGetPreviousMouseY() ) / size + minVal \, 0 \, 1) \; return ofLerp(minVal
 \, maxVal \, value) \; end \; end \; \; function M.mouseDragged(e)
 \; if mouseState == 1 then \; value = ofNormalize(value + (-ofGetMouseY()
-+ ofGetPreviousMouseY() ) / (size) + minVal \, 0 \, 1) \; return ofLerp(minVal
++ ofGetPreviousMouseY() ) / size + minVal \, 0 \, 1) \; return ofLerp(minVal
 \, maxVal \, value) \; end \; end \; \; function M.mouseReleased(e)
 \; mouseState = 0 \; end \; \; function M.value(float) \; value = ofNormalize(float
 \, minVal \, maxVal) \; return ofLerp(minVal \, maxVal \, value) \;
