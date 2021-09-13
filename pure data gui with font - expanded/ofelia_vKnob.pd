@@ -1,4 +1,4 @@
-#N canvas 1346 89 431 207 10;
+#N canvas 1232 96 431 207 10;
 #X obj 109 40 inlet;
 #X obj 109 124 outlet;
 #X obj 109 61 t b b;
@@ -21,20 +21,22 @@ xpos \, ypos \, size \, minVal \, maxVal = args[1] \, args[2] \, args[3]
 = (value * 315 + 111.5) * math.pi / 180 \; ofSetLineWidth(size / 20)
 \; ofSetColor(0) \; ofDrawCircle(size / 2 \, size / 2 \, size / 2.5)
 \; ofSetColor(255) \; ofDrawCircle(size / 2 \, size / 2 \, size / 2.7)
-\; ofSetColor(0) \; ofDrawCircle(size / 2 \, size / 2 \, size / 20)
-\; ofSetColor(100 \, 200 \, 255) \; ofDrawLine(size / 2 + size / 9
-* math.cos(value2) \, size / 2 + size / 9 * math.sin(value2) \, size
-/ 2 + size / 3 * math.cos(value2) \, size / 2 + size / 3 * math.sin(value2))
-\; ofPopMatrix() \; end \; \; function M.mousePressed(e) \; if ofDist(ofGetMouseX()
-\, ofGetMouseY() \, xpos + size / 2 \, ypos + size / 2) <= size / 2.5
-then \; mouseState = 1 \; value = ofNormalize(value + (ofGetPreviousMouseY()
+\; ofSetColor(100 \, 200 \, 255) \; ofPushMatrix() \; ofTranslate(size
+/ 2 \, size/2) \; ofRotateZDeg(value * 315 + 22.5) \; ofDrawRectangle(-size
+/ 40 \, 0 \, size / 20 \, size / 3) \; ofPopMatrix() \; ofSetColor(0)
+\; ofDrawCircle(size / 2 \, size / 2 \, size / 20) \; ofDrawCircle(size
+/ 2 + size / 3.5 * math.cos(value2) \, size / 2 + size / 3.5 * math.sin(value2)
+\, size / 20) \; ofPopMatrix() \; end \; \; function M.mousePressed(e)
+\; if ofDist(ofGetMouseX() \, ofGetMouseY() \, xpos + size / 2 \, ypos
++ size / 2) <= size / 2.5 then \; mouseState = 1 \; value = ofNormalize(value
++ (ofGetPreviousMouseY() - ofGetMouseY()) / 200 \, 0 \, 1) \; return
+ofLerp(minVal \, maxVal \, value) \; end \; end \; \; function M.mouseDragged(e)
+\; if mouseState == 1 then \; value = ofNormalize(value + (ofGetPreviousMouseY()
 - ofGetMouseY()) / 200 \, 0 \, 1) \; return ofLerp(minVal \, maxVal
-\, value) \; end \; end \; \; function M.mouseDragged(e) \; if mouseState
-== 1 then \; value = ofNormalize(value + (ofGetPreviousMouseY() - ofGetMouseY())
-/ 200 \, 0 \, 1) \; return ofLerp(minVal \, maxVal \, value) \; end
-\; end \; \; function M.mouseReleased(e) \; mouseState = 0 \; end \;
-\; function M.value(float) \; value = ofNormalize(float \, minVal \,
-maxVal) \; return ofLerp(minVal \, maxVal \, value) \; end \; \;;
+\, value) \; end \; end \; \; function M.mouseReleased(e) \; mouseState
+= 0 \; end \; \; function M.value(float) \; value = ofNormalize(float
+\, minVal \, maxVal) \; return ofLerp(minVal \, maxVal \, value) \;
+end \; \;;
 #X connect 0 0 2 0;
 #X connect 2 0 1 0;
 #X connect 2 1 6 0;

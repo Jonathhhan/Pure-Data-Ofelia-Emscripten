@@ -1,0 +1,57 @@
+#N canvas 1242 96 431 207 10;
+#X obj 109 40 inlet;
+#X obj 109 124 outlet;
+#X obj 109 61 t b b;
+#X obj 136 103 outlet;
+#X obj 148 40 inlet;
+#X msg 148 61 value \$1;
+#X obj 136 82 ofelia d -k \$0-vKnob;
+#A __set local c = ofCanvas(this) \; local args = c:getArgs() \; local
+xpos \, ypos \, size \, minVal \, maxVal = args[1] \, args[2] \, args[3]
+\, args[4] \, args[5] \; local mouseState = 0 \; local value = 0 \;
+\; function M.new() \; ofWindow.addListener("setup" \, this) \; ofWindow.addListener("mousePressed"
+\, this) \; ofWindow.addListener("mouseDragged" \, this) \; ofWindow.addListener("mouseReleased"
+\, this) \; end \; \; function M.free() \; ofWindow.removeListener("setup"
+\, this) \; ofWindow.removeListener("mousePressed" \, this) \; ofWindow.removeListener("mouseDragged"
+\, this) \; ofWindow.removeListener("mouseReleased" \, this) \; end
+\; \; function M.bang() \; ofPushMatrix() \; ofTranslate(xpos \, ypos)
+\; ofEnableSmoothing() \; ofSetCircleResolution(100) \; ofSetColor(0)
+\; ofDrawRectangle(0 \, 0 \, size \, size) \; ofSetColor(255) \; ofDrawRectangle(size
+/ 40 \, size / 40 \, size - size / 20 \, size - size / 20) \; value2
+= (value * 315 + 111.5) * math.pi / 180 \; ofSetLineWidth(size / 20)
+\; ofSetColor(0) \; ofDrawCircle(size / 2 \, size / 2 \, size / 2.5)
+\; ofSetColor(255) \; ofDrawCircle(size / 2 \, size / 2 \, size / 2.7)
+\; ofSetColor(0) \; ofDrawCircle(size / 2 \, size / 2 \, size / 20)
+\; ofSetColor(100 \, 200 \, 255) \; ofDrawLine(size / 2 + size / 9
+* math.cos(value2) \, size / 2 + size / 9 * math.sin(value2) \, size
+/ 2 + size / 3 * math.cos(value2) \, size / 2 + size / 3 * math.sin(value2))
+\; ofFill() \; ofSetColor(255 \, 0 \, 0) \; ofBeginShape() \; ofVertex(size
+/ 2 + size / 9 * math.cos(value2) \, size / 2 + size / 9 * math.sin(value2))
+\; ofVertex(size / 2 + size / 9 * math.cos(value2) \, size / 2 + size
+/ 9 * math.sin(value2)) \; ofVertex(size / 2 + size / 3 * math.cos(value2)
+\, size / 2 + size / 3 * math.sin(value2)) \; ofVertex(size / 2 + size
+/ 3 * math.cos(value2) \, size / 2 + size / 3 * math.sin(value2)) \;
+--ofVertex(size / 2 + size / 9 * math.cos(value2) \, size / 2 + size
+/ 9 * math.sin(value2)) \; --ofVertex(size / 2 + size / 9 * math.cos(value2)
+\, size / 2 + size / 9 * math.sin(value2)) \; --ofVertex(size / 2 +
+size / 3 * math.cos(value2)+2 \, size / 2 + size / 3 * math.sin(value2)+2)
+\; --ofVertex(size / 2 + size / 3 * math.cos(value2)-2 \, size / 2
++ size / 3 * math.sin(value2)-2) \; ofEndShape(true) \; ofTranslate(size
+/ 2 \, size/2) \; ofRotateZDeg(value * 315 + 22.5) \; ofDrawRectangle(-size
+/ 40 \, 0 \, size / 20 \, size / 3) \; ofPopMatrix() \; end \; \; function
+M.mousePressed(e) \; if ofDist(ofGetMouseX() \, ofGetMouseY() \, xpos
++ size / 2 \, ypos + size / 2) <= size / 2.5 then \; mouseState = 1
+\; value = ofNormalize(value + (ofGetPreviousMouseY() - ofGetMouseY())
+/ 200 \, 0 \, 1) \; return ofLerp(minVal \, maxVal \, value) \; end
+\; end \; \; function M.mouseDragged(e) \; if mouseState == 1 then
+\; value = ofNormalize(value + (ofGetPreviousMouseY() - ofGetMouseY())
+/ 200 \, 0 \, 1) \; return ofLerp(minVal \, maxVal \, value) \; end
+\; end \; \; function M.mouseReleased(e) \; mouseState = 0 \; end \;
+\; function M.value(float) \; value = ofNormalize(float \, minVal \,
+maxVal) \; return ofLerp(minVal \, maxVal \, value) \; end \; \;;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X connect 2 1 6 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 3 0;
