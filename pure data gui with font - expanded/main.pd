@@ -1,4 +1,4 @@
-#N canvas 864 22 825 835 10;
+#N canvas 802 96 825 835 10;
 #X declare -path ofelia/abs;
 #X obj 378 100 ofWindow;
 #X msg 378 146 bang;
@@ -27,7 +27,7 @@
 #X obj 174 148 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -262144 -1 -1 2 256;
 #X obj 246 704 nbx 8 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 0 256;
+10 -262144 -1 -1 50 256;
 #X obj 258 641 nbx 8 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -262144 -1 -1 7 256;
 #X obj 162 351 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
@@ -35,8 +35,8 @@
 #X msg 186 744 symbol GUI;
 #X obj 27 765 ofelia_label 160 100 150 70;
 #X obj 27 23 ofDraw;
-#X obj 180 87 s \$0-number2;
-#X obj 180 67 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+#X obj 174 87 s \$0-number2;
+#X obj 174 67 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -262144 -1 -1 7 256;
 #X obj 597 351 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
 10 -262144 -1 -1 7 256;
@@ -51,7 +51,7 @@
 #X obj 156 495 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 186 723 loadbang;
-#X obj 180 27 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
+#X obj 174 27 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
 10 -262144 -1 -1 7 256;
 #X obj 27 620 ofelia_number 150 180 250 50 -1000 1000;
 #X obj 27 683 ofelia_number 150 240 250 50 0 1e+006;
@@ -91,13 +91,13 @@
 #X obj 603 607 s \$0-number;
 #X obj 678 607 s \$0-number2;
 #X obj 27 289 ofelia_vSlider_pad 50 70 40 200 0 10;
-#X obj 549 691 s \$0-number2;
-#X obj 549 671 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 0 256;
-#X obj 549 631 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
-10 -262144 -1 -1 8 256;
+#X obj 555 691 s \$0-number2;
+#X obj 555 671 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 50 256;
+#X obj 555 631 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
+10 -262144 -1 -1 50 256;
 #X obj 27 46 ofelia_hRadio 50 300 9 40;
-#X obj 378 650 ofelia_vKnob 420 270 100 0 10;
+#X obj 378 650 ofelia_vKnob 420 270 100 1 100;
 #X connect 1 0 5 0;
 #X connect 3 0 8 0;
 #X connect 4 0 6 0;
