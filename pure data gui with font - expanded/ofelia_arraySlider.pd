@@ -1,0 +1,65 @@
+#N canvas 1346 90 431 443 10;
+#X obj 126 82 inlet;
+#X obj 126 166 outlet;
+#X obj 126 103 t b b;
+#X obj 153 145 outlet;
+#X obj 165 61 inlet;
+#X obj 165 82 list prepend value;
+#X obj 165 103 list trim;
+#X obj 153 123 ofelia d -k \$0-vMSlider;
+#A __set local c = ofCanvas(this) \; local args = c:getArgs() \; local
+xpos \, ypos \, width \, height \, minVal \, maxVal \, size = args[1]
+\, args[2] \, args[3] \, args[4] \, args[5] \, args[6] \, args[7] \;
+local mouseState = 0 \; local slider = 1 \; local value = 0 \; local
+oldSlider = 0 \; local oldValue = 0 \; local array = ofArray("\$0-arraySlider")
+\; \; function M.new() \; ofWindow.addListener("setup" \, this) \;
+ofWindow.addListener("mousePressed" \, this) \; ofWindow.addListener("mouseDragged"
+\, this) \; ofWindow.addListener("mouseReleased" \, this) \; end \;
+\; function M.free() \; ofWindow.removeListener("setup" \, this) \;
+ofWindow.removeListener("mousePressed" \, this) \; ofWindow.removeListener("mouseDragged"
+\, this) \; ofWindow.removeListener("mouseReleased" \, this) \; end
+\; \; function M.setup() \; array:setSize(size) \; end \; \; function
+M.bang() \; ofPushMatrix() \; ofTranslate(xpos \, ypos) \; ofSetColor(0)
+\; ofDrawRectangle(0 \, 0 \, width * size \, height) \; ofSetColor(255)
+\; ofDrawRectangle(width / 10 \, width / 10 \, width * size - width
+/ 5 \, height - width / 5) \; ofSetColor(100 \, 200 \, 255) \; for
+x = 0 \, size - 1 do \; ofDrawRectangle(width / 10 + width * x \, height
+- width / 10 \, width - width / 5 \, -array:getAt(x) * (height - width
+/ 5)) \; end \; ofPopMatrix() \; end \; \; function M.mousePressed(e)
+\; if ofGetMouseX() >= xpos + width / 10 and ofGetMouseX() <= xpos
++ width * size - width / 10 and ofGetMouseY() >= ypos + width / 10
+and ofGetMouseY() <= ypos + height - width / 10 then \; mouseState
+= 1 \; slider = math.floor((ofGetMouseX() - xpos) / width) - 1 \; value
+= ofNormalize((-ofGetMouseY() + height - width / 10 + ypos) * (maxVal
+- minVal) / (height - width / 5) + minVal \, minVal \, maxVal) \; array:setAt(slider
+\, value) \; return {slider \, ofLerp(minVal \, maxVal \, array:getAt(slider))}
+\; end \; end \; \; function M.mouseDragged(e) \; if mouseState ==
+1 then \; oldSlider = slider \; oldValue = array:getAt(slider) \; slider
+= ofClamp(math.floor((ofGetMouseX() - xpos) / width) \, 0 \, size -
+1) \; if oldSlider - slider >= 0 then countDir = 1 \; else \; countDir
+= -1 \; end \; for x = 0 \, oldSlider - slider \, countDir do \; value
+= ofNormalize((-ofGetMouseY() + height - width / 10 + ypos ) * (maxVal
+- minVal) / (height - width / 5) + minVal \, minVal \, maxVal) \; array:setAt(slider
++ x \, ofLerp(oldValue \, value \, 1 - math.abs(x) / (math.abs(oldSlider
+- slider) + 1))) \; end \; return {slider \, ofLerp(minVal \, maxVal
+\, array:getAt(slider))} \; end \; end \; \; function M.mouseReleased(e)
+\; mouseState = 0 \; end \; \; function M.value(float) \; if type(float)
+== "number" then \; array:setAt(0 \, ofNormalize(float \, minVal \,
+maxVal)) \; else \; for x = 0 \, #float - 1 do \; array:setAt(x \,
+ofNormalize(float[x + 1] \, minVal \, maxVal)) \; end \; end \; --return
+ofLerp(minVal \, maxVal \, value[1]) \; end \; \;;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array \$0-arraySlider 30 float 3;
+#A 0 0.459596 0.454545 0.441919 0.429293 0.424242 0.424242 0.421717
+0.419192 0.414141 0.409091 0.39899 0.391414 0.371212 0.368687 0.378788
+0.383838 0.391414 0.402357 0.410774 0.427609 0.436027 0.452862 0.461279
+0.473064 0.476431 0.488636 0.497475 0.506313 0.525253 0.535354;
+#X coords 0 1 30 -1 200 140 1;
+#X restore 126 223 graph;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X connect 2 1 7 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 7 0 3 0;
