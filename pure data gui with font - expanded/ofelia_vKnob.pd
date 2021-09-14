@@ -28,13 +28,11 @@ xpos \, ypos \, size \, minVal \, maxVal = args[1] \, args[2] \, args[3]
 / 2 + size / 3.5 * math.cos(value2) \, size / 2 + size / 3.5 * math.sin(value2)
 \, size / 20) \; ofPopMatrix() \; end \; \; function M.mousePressed(e)
 \; if ofDist(ofGetMouseX() \, ofGetMouseY() \, xpos + size / 2 \, ypos
-+ size / 2) <= size / 2.5 then \; mouseState = 1 \; value = ofNormalize(value
++ size / 2) <= size / 2.5 then \; mouseState = 1 \; end \; end \; \;
+function M.mouseDragged(e) \; if mouseState == 1 then \; value = ofNormalize(value
 + (ofGetPreviousMouseY() - ofGetMouseY()) / 200 \, 0 \, 1) \; return
-ofLerp(minVal \, maxVal \, value) \; end \; end \; \; function M.mouseDragged(e)
-\; if mouseState == 1 then \; value = ofNormalize(value + (ofGetPreviousMouseY()
-- ofGetMouseY()) / 200 \, 0 \, 1) \; return ofLerp(minVal \, maxVal
-\, value) \; end \; end \; \; function M.mouseReleased(e) \; mouseState
-= 0 \; end \; \; function M.value(float) \; value = ofNormalize(float
+ofLerp(minVal \, maxVal \, value) \; end \; end \; \; function M.mouseReleased(e)
+\; mouseState = 0 \; end \; \; function M.value(float) \; value = ofNormalize(float
 \, minVal \, maxVal) \; return ofLerp(minVal \, maxVal \, value) \;
 end \; \;;
 #X connect 0 0 2 0;
