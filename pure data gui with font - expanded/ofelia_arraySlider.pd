@@ -6,7 +6,15 @@
 #X obj 165 61 inlet;
 #X obj 165 82 list prepend value;
 #X obj 165 103 list trim;
-#X obj 153 123 ofelia d -k \$0-vMSlider;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array \$0-arraySlider 30 float 3;
+#A 0 0.397306 0.405724 0.424242 0.434343 0.444444 0.462963 0.527778
+0.565657 0.641414 0.694444 0.507576 0.508418 0.511784 0.517172 0.519192
+0.521212 0.523232 0.525253 0.525253 0.525253 0.52399 0.522727 0.521465
+0.520202 0.520202 0.517677 0.512626 0.506734 0.503367 0.469697;
+#X coords 0 1 30 0 200 140 1 0 0;
+#X restore 126 223 graph;
+#X obj 153 123 ofelia d -k \$0-arraySlider;
 #A __set local c = ofCanvas(this) \; local args = c:getArgs() \; local
 xpos \, ypos \, width \, height \, minVal \, maxVal \, size = args[1]
 \, args[2] \, args[3] \, args[4] \, args[5] \, args[6] \, args[7] \;
@@ -48,18 +56,10 @@ and ofGetMouseY() <= ypos + height - width / 10 then \; mouseState
 maxVal)) \; else \; for x = 0 \, #float - 1 do \; array:setAt(x \,
 ofNormalize(float[x + 1] \, minVal \, maxVal)) \; end \; end \; --return
 ofLerp(minVal \, maxVal \, value[1]) \; end \; \;;
-#N canvas 0 50 450 250 (subpatch) 0;
-#X array \$0-arraySlider 30 float 3;
-#A 0 0.550001 0.528572 0.478573 0.414288 0.371431 0.371431 0.39286
-0.414288 0.478573 0.52143 0.550001 0.557144 0.571429 0.585715 0.6 0.621429
-0.621429 0.614286 0.6 0.564286 0.528572 0.514287 0.514287 0.52143 0.535715
-0.360717 0.350003 0.335717 0.321432 0.307146;
-#X coords 0 1 30 0 200 140 1 0 0;
-#X restore 126 223 graph;
 #X connect 0 0 2 0;
 #X connect 2 0 1 0;
-#X connect 2 1 7 0;
+#X connect 2 1 8 0;
 #X connect 4 0 5 0;
 #X connect 5 0 6 0;
-#X connect 6 0 7 0;
-#X connect 7 0 3 0;
+#X connect 6 0 8 0;
+#X connect 8 0 3 0;
