@@ -1,4 +1,4 @@
-#N canvas 494 106 1289 793 10;
+#N canvas 629 87 1289 793 10;
 #X declare -path ofelia/abs;
 #X obj 388 578 ofWindow;
 #X msg 388 624 bang;
@@ -10,25 +10,25 @@
 \; font = ofTrueTypeFont() \; font:load(a \, 24) \;;
 #X obj 388 601 ofSetup;
 #X obj 65 18 ofDraw;
-#X obj 296 140 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
-10 -262144 -1 -1 0.2 256;
-#X obj 296 201 unpack f f;
-#X obj 296 222 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 0.0891667 256;
-#X obj 371 222 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 333.333 256;
-#X obj 296 159 pack f f;
-#X obj 296 100 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
-10 -262144 -1 -1 400 256;
-#X obj 296 119 t b f;
+#X obj 326 140 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
+10 -262144 -1 -1 0.075 256;
+#X obj 326 201 unpack f f;
+#X obj 326 222 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0.075 256;
+#X obj 401 222 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 350 256;
+#X obj 326 159 pack f f;
+#X obj 326 100 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
+10 -262144 -1 -1 350 256;
+#X obj 326 119 t b f;
 #X obj 230 60 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 38.5 256;
+10 -262144 -1 -1 0 256;
 #X obj 230 20 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
-10 -262144 -1 -1 40 256;
+10 -262144 -1 -1 0 256;
 #X text 835 179 envelope sample;
 #X obj 230 79 s \$0-feedback;
-#X obj 296 241 s \$0-circleFrequency;
-#X obj 430 242 s \$0-circleDepth;
+#X obj 326 241 s \$0-circleFrequency;
+#X obj 460 242 s \$0-circleDepth;
 #X obj 551 377 *~;
 #X obj 588 439 hip~ 5;
 #X obj 595 155 wrap~;
