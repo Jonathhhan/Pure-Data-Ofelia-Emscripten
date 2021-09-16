@@ -1,4 +1,4 @@
-#N canvas 114 593 431 247 10;
+#N canvas 114 593 470 247 10;
 #X obj 156 82 inlet;
 #X obj 52 125 outlet;
 #X obj 156 103 t b b;
@@ -49,7 +49,7 @@ M.mousePressed(e) \; if ofGetMouseX() >= xpos + width / 10 and ofGetMouseX()
 maxVal)) \; else \; for x = 0 \, #float - 1 do \; array:setAt(x \,
 ofNormalize(float[x + 1] \, minVal \, maxVal)) \; end \; end \; --return
 ofLerp(minVal \, maxVal \, value[1]) \; end \; \;;
-#X obj 228 145 array d \$0-arraySlider;
+#X obj 228 145 array d -yrange 0 1 \$0-arraySlider;
 #X connect 0 0 2 0;
 #X connect 2 0 1 0;
 #X connect 2 1 10 0;
