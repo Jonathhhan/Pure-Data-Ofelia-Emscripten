@@ -27,9 +27,9 @@
 #X obj 174 148 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -262144 -1 -1 2 256;
 #X obj 246 704 nbx 8 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 6.76768 256;
+10 -262144 -1 -1 50 256;
 #X obj 258 641 nbx 8 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 1 256;
+10 -262144 -1 -1 7 256;
 #X obj 162 351 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -262144 -1 -1 1 256;
 #X msg 186 744 symbol GUI;
@@ -77,16 +77,16 @@
 10 -262144 -1 -1 1 256;
 #X msg 603 497 4 1 6 7 2 9 8 7 6 5 4 3 2 1 8 3 6;
 #X obj 603 473 loadbang;
-#X obj 216 330 s \$0-number2;
-#X obj 216 310 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+#X obj 240 330 s \$0-number2;
+#X obj 240 310 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
 10 -262144 -1 -1 8 256;
-#X obj 216 270 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
+#X obj 240 270 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
 10 -262144 -1 -1 8 256;
 #X obj 621 567 unpack f f;
 #X obj 621 588 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 1 256;
+10 -262144 -1 -1 0 256;
 #X obj 696 588 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 6.76768 256;
+10 -262144 -1 -1 0 256;
 #X obj 621 607 s \$0-number;
 #X obj 696 607 s \$0-number2;
 #X obj 27 289 ofelia_vSlider_pad 50 70 40 200 0 10;
