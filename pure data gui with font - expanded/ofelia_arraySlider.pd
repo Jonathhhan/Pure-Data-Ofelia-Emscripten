@@ -36,19 +36,19 @@ M.mousePressed(e) \; if ofGetMouseX() >= xpos + width / 10 and ofGetMouseX()
 \, pressedValue) \; return {slider \, ofLerp(minVal \, maxVal \, array:getAt(slider))}
 \; end \; end \; \; function M.mouseDragged(e) \; if mouseState ==
 1 then \; oldSlider = slider \; oldValue = array:getAt(slider) \; slider
-= math.floor((ofGetMouseX() - xpos) / width) \; if oldSlider - slider
-> 0 then countDir = 1 \; else \; countDir = -1 \; end \; for x = 0
-\, oldSlider - slider \, countDir do \; draggedValue = ofNormalize((-ofGetMouseY()
-+ height - width / 10 + ypos ) * (maxVal - minVal) / (height - width
-/ 5) + minVal \, minVal \, maxVal) \; array:setAt(slider + x \, ofLerp(oldValue
-\, draggedValue \, 1 - math.abs(x) / (math.abs(oldSlider - slider)
-+ 1))) \; end \; return {slider \, ofLerp(minVal \, maxVal \, array:getAt(slider))}
-\; end \; end \; \; function M.mouseReleased(e) \; mouseState = 0 \;
-end \; \; function M.value(float) \; if type(float) == "number" then
-\; array:setAt(0 \, ofNormalize(float \, minVal \, maxVal)) \; else
-\; for x = 0 \, #float - 1 do \; array:setAt(x \, ofNormalize(float[x
-+ 1] \, minVal \, maxVal)) \; end \; end \; --return ofLerp(minVal
-\, maxVal \, value[1]) \; end \; \;;
+= ofClamp(math.floor((ofGetMouseX() - xpos) / width) \, 0 \, size -
+1) \; if oldSlider - slider > 0 then countDir = 1 \; else \; countDir
+= -1 \; end \; for x = 0 \, oldSlider - slider \, countDir do \; draggedValue
+= ofNormalize((-ofGetMouseY() + height - width / 10 + ypos ) * (maxVal
+- minVal) / (height - width / 5) + minVal \, minVal \, maxVal) \; array:setAt(slider
++ x \, ofLerp(oldValue \, draggedValue \, 1 - math.abs(x) / (math.abs(oldSlider
+- slider) + 1))) \; end \; return {slider \, ofLerp(minVal \, maxVal
+\, array:getAt(slider))} \; end \; end \; \; function M.mouseReleased(e)
+\; mouseState = 0 \; end \; \; function M.value(float) \; if type(float)
+== "number" then \; array:setAt(0 \, ofNormalize(float \, minVal \,
+maxVal)) \; else \; for x = 0 \, #float - 1 do \; array:setAt(x \,
+ofNormalize(float[x + 1] \, minVal \, maxVal)) \; end \; end \; --return
+ofLerp(minVal \, maxVal \, value[1]) \; end \; \;;
 #X obj 228 145 array d \$0-arraySlider;
 #X connect 0 0 2 0;
 #X connect 2 0 1 0;

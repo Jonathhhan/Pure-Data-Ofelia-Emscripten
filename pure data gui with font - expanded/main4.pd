@@ -1,4 +1,4 @@
-#N canvas 397 236 1095 793 10;
+#N canvas 666 144 1000 793 10;
 #X declare -path ofelia/abs;
 #X obj 388 578 ofWindow;
 #X msg 388 624 bang;
@@ -10,21 +10,21 @@
 \; font = ofTrueTypeFont() \; font:load(a \, 24) \;;
 #X obj 388 601 ofSetup;
 #X obj 65 18 ofDraw;
-#X obj 326 140 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
--262144 -1 -1 0.075 256;
+#X obj 326 140 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
+10 -262144 -1 -1 0.075 256;
 #X obj 326 201 unpack f f;
-#X obj 326 222 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0.075 256;
-#X obj 401 222 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 350 256;
+#X obj 326 222 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0.075 256;
+#X obj 401 222 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 350 256;
 #X obj 326 159 pack f f;
-#X obj 326 100 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
--262144 -1 -1 350 256;
+#X obj 326 100 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
+10 -262144 -1 -1 350 256;
 #X obj 326 119 t b f;
-#X obj 230 60 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0 256;
-#X obj 230 20 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
--262144 -1 -1 0 256;
+#X obj 230 60 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0 256;
+#X obj 230 20 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
+10 -262144 -1 -1 0 256;
 #X text 835 179 envelope sample;
 #X obj 230 79 s \$0-feedback;
 #X obj 326 241 s \$0-circleFrequency;
@@ -40,8 +40,8 @@
 #X text 613 253 multiply envelope by audio-frequency sawtooth;
 #X text 636 284 adjust amplitude and center for wavetable;
 #X text 607 352 multiply by raised-cosine smoothing function;
-#X msg 536 37 set \$1-arraySlider;
-#X obj 536 16 r \$0-sequence;
+#X msg 536 29 set \$1-arraySlider;
+#X obj 536 8 r \$0-sequence;
 #X msg 666 224 set \$1-arraySlider;
 #X msg 647 325 set \$1-arraySlider;
 #X obj 647 304 r \$0-sample;
@@ -51,8 +51,8 @@
 #X obj 750 477 * 0.01;
 #X text 791 451 <= feedback (hundredths);
 #X obj 749 431 r \$0-feedback;
-#X obj 716 31 r \$0-circleFrequency;
-#X obj 325 44 r \$0-circleDepth;
+#X obj 595 50 r \$0-circleFrequency;
+#X obj 485 62 r \$0-circleDepth;
 #X obj 704 625 dac~;
 #X obj 595 226 tabread4~;
 #X obj 577 324 tabread4~;
@@ -96,7 +96,7 @@
 #X obj 200 531 +~ 0.25;
 #X obj 670 594 *~ 0.5;
 #X obj 731 594 *~ 0.5;
-#X obj 596 64 phasor~ 0.1;
+#X obj 595 71 phasor~ 0.1;
 #X obj 693 540 *~;
 #X obj 416 388 *~;
 #X obj 417 264 random 5000;
