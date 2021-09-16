@@ -1,15 +1,15 @@
-#N canvas 72 670 431 382 10;
-#X obj 126 82 inlet;
-#X obj 22 125 outlet;
-#X obj 126 103 t b b;
-#X obj 153 145 outlet;
-#X obj 165 61 inlet;
-#X obj 165 82 list prepend value;
-#X obj 165 103 list trim;
-#X obj 69 103 \$0;
-#X obj 69 124 outlet;
-#X obj 69 82 loadbang;
-#X obj 153 123 ofelia d -k \$0-arraySlider;
+#N canvas 114 593 431 247 10;
+#X obj 156 82 inlet;
+#X obj 52 125 outlet;
+#X obj 156 103 t b b;
+#X obj 183 145 outlet;
+#X obj 195 61 inlet;
+#X obj 195 82 list prepend value;
+#X obj 195 103 list trim;
+#X obj 99 103 \$0;
+#X obj 99 124 outlet;
+#X obj 99 82 loadbang;
+#X obj 183 123 ofelia d -k \$0-arraySlider;
 #A __set local c = ofCanvas(this) \; local args = c:getArgs() \; local
 xpos \, ypos \, width \, height \, minVal \, maxVal \, size = args[1]
 \, args[2] \, args[3] \, args[4] \, args[5] \, args[6] \, args[7] \;
@@ -49,7 +49,7 @@ end \; \; function M.value(float) \; if type(float) == "number" then
 \; for x = 0 \, #float - 1 do \; array:setAt(x \, ofNormalize(float[x
 + 1] \, minVal \, maxVal)) \; end \; end \; --return ofLerp(minVal
 \, maxVal \, value[1]) \; end \; \;;
-#X obj 204 230 array d \$0-arraySlider;
+#X obj 228 145 array d \$0-arraySlider;
 #X connect 0 0 2 0;
 #X connect 2 0 1 0;
 #X connect 2 1 10 0;
