@@ -37,11 +37,11 @@
 #X msg 666 244 set \$1-arraySlider;
 #X msg 647 345 set \$1-arraySlider;
 #X obj 647 324 r \$0-sample;
-#X floatatom 737 493 0 0 0 0 - - -;
+#X floatatom 737 495 0 0 0 0 - - -;
 #X obj 737 562 line~;
 #X obj 737 539 pack 0 100;
 #X obj 737 516 * 0.01;
-#X text 778 490 <= feedback (hundredths);
+#X text 778 492 <= feedback (hundredths);
 #X obj 682 658 dac~;
 #X obj 595 246 tabread4~;
 #X obj 577 344 tabread4~;
@@ -114,7 +114,7 @@
 #X obj 681 602 hip~ 3;
 #X obj 388 624 ofelia f \; ofSetWindowTitle("Arrays") \; ofSetBackgroundColor(55)
 \;;
-#X obj 736 470 r \$0-volume;
+#X obj 737 474 r \$0-volume;
 #X obj 220 96 s \$0-volume;
 #X obj 316 181 s \$0-tempo;
 #X obj 385 181 s \$0-pitch;
