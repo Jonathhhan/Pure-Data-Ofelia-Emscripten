@@ -1,25 +1,25 @@
-#N canvas 510 144 970 731 10;
+#N canvas 838 136 970 731 10;
 #X declare -path ofelia/abs;
 #X obj 388 578 ofWindow;
 #X obj 388 511 declare -path ofelia/abs;
 #X obj 388 532 loadbang;
 #X obj 388 601 ofSetup;
 #X obj 55 35 ofDraw;
-#X obj 316 80 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
--262144 -1 -1 0.075 256;
+#X obj 316 80 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
+10 -262144 -1 -1 0.075 256;
 #X obj 316 141 unpack f f;
-#X obj 316 162 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0.075 256;
-#X obj 391 162 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 350 256;
+#X obj 316 162 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0.075 256;
+#X obj 385 161 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 350 256;
 #X obj 316 99 pack f f;
-#X obj 316 40 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
--262144 -1 -1 350 256;
+#X obj 316 40 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
+10 -262144 -1 -1 350 256;
 #X obj 316 59 t b f;
-#X obj 220 77 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0 256;
-#X obj 220 37 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
--262144 -1 -1 0 256;
+#X obj 220 77 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0 256;
+#X obj 220 37 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
+10 -262144 -1 -1 0 256;
 #X text 835 199 envelope sample;
 #X obj 535 449 *~;
 #X obj 595 175 wrap~;
@@ -117,7 +117,7 @@
 #X obj 736 470 r \$0-volume;
 #X obj 220 96 s \$0-volume;
 #X obj 316 181 s \$0-tempo;
-#X obj 450 182 s \$0-pitch;
+#X obj 385 181 s \$0-pitch;
 #X obj 485 82 r \$0-pitch;
 #X obj 595 70 r \$0-tempo;
 #X connect 2 0 102 0;
