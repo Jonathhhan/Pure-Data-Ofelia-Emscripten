@@ -71,38 +71,25 @@ var LibraryHTML5Video = {
     },
 
     html5video_player_create: function(){
-        var video = document.createElement('video');
-        video.loop = true;
-        video.pixelFormat = "RGB";
-        //video.crossOrigin = 'anonymous';
-        var player_id = VIDEO.getNewPlayerId();
-        VIDEO.players[player_id] = video;
-        var texId = GL.getNewId(GL.textures);
-        var texture = GLctx.createTexture();
-        texture.name = texId;
-        GL.textures[texId] = texture;
-        GLctx.bindTexture(GLctx.TEXTURE_2D, texture);
-        GLctx.texParameteri(GLctx.TEXTURE_2D, GLctx.TEXTURE_MAG_FILTER, GLctx.LINEAR);
-        GLctx.texParameteri(GLctx.TEXTURE_2D, GLctx.TEXTURE_MIN_FILTER, GLctx.LINEAR);
-        GLctx.texParameteri(GLctx.TEXTURE_2D, GLctx.TEXTURE_WRAP_S, GLctx.CLAMP_TO_EDGE);
-        GLctx.texParameteri(GLctx.TEXTURE_2D, GLctx.TEXTURE_WRAP_T, GLctx.CLAMP_TO_EDGE);
-        VIDEO.players[player_id].textureId = texId;
-	VIDEO.players[player_id].width = 800;
-	VIDEO.players[player_id].height = 600;
-	var videoImage = document.createElement( 'canvas' );
-	videoImage.width = 800;
-	videoImage.height = 600;
-	var videoImageContext = videoImage.getContext( '2d' );
-	// background color if no video present
-	videoImageContext.fillStyle = '#000000';
-	videoImageContext.fillRect( 0, 0, 800, 600 );
-	VIDEO.playersContexts[player_id] = videoImageContext;
-		
-	window.ondragover = function(e) {
-	e.preventDefault();
-        }
-	window.ondrop = function(e) {
-	e.preventDefault();
+    var video = document.createElement("video");
+    var player_id = VIDEO.getNewPlayerId();
+    VIDEO.players[player_id] = video;
+    var texId = GL.getNewId(GL.textures);
+    var texture = GLctx.createTexture();
+    texture.name = texId;
+    GL.textures[texId] = texture;
+    GLctx.bindTexture(GLctx.TEXTURE_2D, texture);
+    GLctx.texParameteri(GLctx.TEXTURE_2D, GLctx.TEXTURE_MAG_FILTER, GLctx.LINEAR);
+    GLctx.texParameteri(GLctx.TEXTURE_2D, GLctx.TEXTURE_MIN_FILTER, GLctx.LINEAR);
+    GLctx.texParameteri(GLctx.TEXTURE_2D, GLctx.TEXTURE_WRAP_S, GLctx.CLAMP_TO_EDGE);
+    GLctx.texParameteri(GLctx.TEXTURE_2D, GLctx.TEXTURE_WRAP_T, GLctx.CLAMP_TO_EDGE);
+    VIDEO.players[player_id].textureId = texId;
+    window.ondragover = function (e) {
+        e.preventDefault()
+    }
+        ;
+    window.ondrop = function (e) {
+        e.preventDefault();
         console.log("Reading...");
         var length = e.dataTransfer.items.length;
         if (length > 1) {
@@ -111,21 +98,33 @@ var LibraryHTML5Video = {
             upload(e.dataTransfer.files[0])
         }
     }
+        ;
     function upload(file) {
         if (file.type.match(/video\/*/)) {
-            URL.revokeObjectURL(VIDEO.players[player_id].src)
+            URL.revokeObjectURL(VIDEO.players[player_id].src);
             VIDEO.players[player_id].src = URL.createObjectURL(file);
             console.log("This file seems to be a video.")
-            } else {
-                console.log("This file does not seem to be a video.")
-            }
+        } else {
+            console.log("This file does not seem to be a video.")
         }
-        video.onloadedmetadata = function (e){
-        	console.log(this.videoWidth + 'x' + this.videoHeight, "Video loaded!");
-		VIDEO.players[player_id].play();
-		}
+    }
+    video.onloadedmetadata = function (e) {
+        console.log(this.videoWidth + "x" + this.videoHeight);
+        VIDEO.players[player_id].returnWidth = this.videoWidth;
+        VIDEO.players[player_id].returnHeight = this.videoHeight;
+        VIDEO.players[player_id].width = 800;
+        VIDEO.players[player_id].height = 600;
+        var videoImage = document.createElement("canvas");
+        videoImage.width = 800;
+        videoImage.height = 600;
+        var videoImageContext = videoImage.getContext("2d");
+        videoImageContext.fillStyle = "#000000";
+        videoImageContext.fillRect(0, 0, videoImage.width, videoImage.height);
+        VIDEO.playersContexts[player_id] = videoImageContext;
+        VIDEO.players[player_id].currentTime = 0
+    }
 
-	return player_id;
+    return player_id;
     },
 
     html5video_player_delete: function(id){
