@@ -1,0 +1,220 @@
+#N canvas 364 297 481 498 10;
+#N canvas 1074 401 474 418 gui 0;
+#N canvas 1138 294 490 485 pa 0;
+#X obj 321 50 loadbang;
+#X obj 279 134 makefilename %s;
+#X obj 321 113 s \$0-Delay;
+#X msg 321 71 5;
+#X obj 327 155 loadbang;
+#X obj 279 239 makefilename %s;
+#X obj 327 272 loadbang;
+#X obj 279 356 makefilename %s;
+#X obj 327 335 s \$0-Volume;
+#X obj 327 218 s \$0-Lowpass;
+#X msg 327 176 70;
+#X msg 327 293 80;
+#X obj 120 402 outlet;
+#X obj 120 69 inlet;
+#X obj 120 92 ofelia_hSlider 50 150 100 20 0 20;
+#X obj 120 155 ofelia_label 155 175 100 20;
+#X obj 120 197 ofelia_hSlider 50 200 100 20 0 100;
+#X obj 120 262 ofelia_label 155 225 100 20;
+#X obj 120 314 ofelia_hSlider 50 250 100 20 0 100;
+#X obj 120 378 ofelia_label 155 275 100 20;
+#X connect 0 0 3 0;
+#X connect 1 0 15 1;
+#X connect 3 0 14 1;
+#X connect 4 0 10 0;
+#X connect 5 0 17 1;
+#X connect 6 0 11 0;
+#X connect 7 0 19 1;
+#X connect 10 0 16 1;
+#X connect 11 0 18 1;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 14 1 1 0;
+#X connect 14 1 2 0;
+#X connect 15 0 16 0;
+#X connect 16 0 17 0;
+#X connect 16 1 5 0;
+#X connect 16 1 9 0;
+#X connect 17 0 18 0;
+#X connect 18 0 19 0;
+#X connect 18 1 7 0;
+#X connect 18 1 8 0;
+#X connect 19 0 12 0;
+#X restore 39 59 pd pa;
+#N canvas 743 669 482 253 label 0;
+#X obj 270 57 loadbang;
+#X obj 270 99 loadbang;
+#X obj 270 141 loadbang;
+#X msg 270 120 symbol Lowpass;
+#X msg 270 162 symbol Volume;
+#X msg 270 78 symbol Reverb;
+#X obj 99 32 inlet;
+#X obj 99 183 outlet;
+#X obj 99 162 ofelia_label 155 250 100 20;
+#X obj 99 120 ofelia_label 155 200 100 20;
+#X obj 99 78 ofelia_label 155 150 100 20;
+#X obj 99 55 ofelia_label 50 50 205 75;
+#X connect 0 0 5 0;
+#X connect 1 0 3 0;
+#X connect 2 0 4 0;
+#X connect 3 0 9 1;
+#X connect 4 0 8 1;
+#X connect 5 0 10 1;
+#X connect 6 0 11 0;
+#X connect 8 0 7 0;
+#X connect 9 0 8 0;
+#X connect 10 0 9 0;
+#X connect 11 0 10 0;
+#X restore 39 246 pd label;
+#X obj 16 67 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 39 38 inlet;
+#X obj 39 125 ofSetup;
+#X obj 39 145 ofelia f \; local a = require("\$0-main") \; a.labelFbo:beginFbo()
+\; ofClear(0) \; ofSetColor(240 \, 220 \, 100) \; ofDrawRectangle(20
+\, 20 \, 270 \, 300) \; return a \;;
+#X obj 39 269 ofelia f \; local a = require("\$0-main") \; ofDrawBitmapString("Drop
+an audio file" \, 60 \, 70) \; ofDrawBitmapString("or" \, 60 \, 90)
+\; ofDrawBitmapString("use some audio input" \, 60 \, 110) \; a.labelFbo:endFbo()
+\;;
+#X connect 1 0 6 0;
+#X connect 2 0 5 0;
+#X connect 3 0 0 0;
+#X connect 4 0 5 0;
+#X connect 5 0 1 0;
+#X restore 177 81 pd gui;
+#X obj 177 58 ofelia d -k \$0-main;
+#A __set if type(window) ~= "userdata" then \; window = ofWindow()
+\; end \; \; local a = ofelia \; local canvas = ofCanvas(this) \; local
+clock = ofClock(this \, "setup") \; local platform = ofGetTargetPlatform()
+\; a.labelFbo = ofFbo() \; \; function a.new() \; ofWindow.addListener("setup"
+\, this) \; ofWindow.addListener("draw" \, this) \; window:setPosition(30
+\, 100) \; window:setSize(310 \, 340) \; if ofWindow.exists then \;
+clock:delay(0) \; elseif ofGetTargetPlatform() ~= OF_TARGET_EMSCRIPTEN
+then \; window:create() \; end \; end \; \; function a.free() \; window:destroy()
+\; ofWindow.removeListener("setup" \, this) \; ofWindow.removeListener("draw"
+\, this) \; end \; \; function a.setup() \; ofSetWindowTitle("Emscripten
+Pd Effect") \; ofSetBackgroundColor(100 \, 200 \, 255) \; a.width \,
+a.height = ofGetWidth() - 40 \, (ofGetHeight() - 60)/1.5 \; a.labelFbo:allocate(840
+\, 860) \; end \; \; function a.draw() \; a.labelFbo:draw(0 \, 0) \;
+return bang \; end \; \;;
+#X obj 121 253 dbtorms;
+#X obj 121 299 line~;
+#X obj 169 407 *~;
+#X obj 121 276 pack 0 50;
+#X obj 184 276 hip~ 3;
+#X obj 121 188 nbx 5 14 0 1000 0 0 empty \$0-Volume Volume 0 -8 0 10
+-257985 -1 -1 80 256;
+#X obj 121 207 / 2;
+#X obj 121 230 + 50;
+#X obj 235 211 nbx 5 14 0 1000 0 0 empty \$0-Lowpass Lowpass 0 -8 0
+10 -257985 -1 -1 70 256;
+#X obj 235 230 * 10;
+#X obj 184 253 lop~ 1000;
+#X obj 283 180 nbx 5 14 0 1000 0 0 empty \$0-Delay Delay 0 -8 0 10
+-257985 -1 -1 5 256;
+#X obj 169 430 dac~;
+#X obj 222 81 adc~;
+#X obj 268 276 hip~ 3;
+#X obj 319 211 nbx 5 14 0 1000 0 0 empty \$0-Lowpass Lowpass 0 -8 0
+10 -257985 -1 -1 70 256;
+#X obj 319 230 * 10;
+#X obj 268 253 lop~ 1000;
+#X obj 184 228 fft;
+#X obj 268 230 fft;
+#X obj 222 127 *~ 0.5;
+#X obj 267 127 *~ 0.5;
+#X obj 196 407 *~;
+#X obj 199 180 nbx 5 14 0 1000 0 0 empty \$0-Delay Delay 0 -8 0 10
+-257985 -1 -1 5 256;
+#N canvas 761 308 602 538 hann-window 0;
+#X obj 365 185 osc~;
+#X obj 365 210 *~ -0.5;
+#X obj 365 234 +~ 0.5;
+#X obj 124 114 r window-size;
+#X obj 195 238 /;
+#X obj 213 206 samplerate~;
+#X obj 195 316 s window-sec;
+#X obj 105 252 swap;
+#X obj 105 276 /;
+#X obj 105 300 s window-hz;
+#X obj 206 266 * 1000;
+#X obj 206 293 s window-msec;
+#X obj 124 149 t f b f;
+#X msg 213 156 resize \$1;
+#X obj 317 123 r window-hz;
+#X msg 390 155 0;
+#X obj 317 151 t f b;
+#X text 94 21 calculate Hann window table (variable window size) and
+constants window-hz (fundamental frequency of analysis) \, window-sec
+and window-msec (analysis window size in seconds and msec)., f 56
+;
+#X obj 29 369 array define hann 4096;
+#X obj 348 277 tabwrite~ hann;
+#X obj 213 180 s hann;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 19 0;
+#X connect 3 0 12 0;
+#X connect 4 0 6 0;
+#X connect 4 0 10 0;
+#X connect 5 0 4 1;
+#X connect 5 0 7 1;
+#X connect 7 0 8 0;
+#X connect 7 1 8 1;
+#X connect 8 0 9 0;
+#X connect 10 0 11 0;
+#X connect 12 0 4 0;
+#X connect 12 0 7 0;
+#X connect 12 1 5 0;
+#X connect 12 2 13 0;
+#X connect 13 0 20 0;
+#X connect 14 0 16 0;
+#X connect 15 0 0 1;
+#X connect 16 0 0 0;
+#X connect 16 1 15 0;
+#X connect 16 1 19 0;
+#X restore 255 81 pd hann-window;
+#N canvas 79 558 450 300 switch~ 0;
+#X obj 141 141 inlet~;
+#X obj 148 172 outlet~;
+#X obj 168 65 tgl 15 1 empty empty empty 0 -6 0 8 -257985 -1 -1 1 1
+;
+#X obj 168 90 switch~ 128 1 1;
+#X obj 233 139 inlet~;
+#X obj 240 170 outlet~;
+#X connect 0 0 1 0;
+#X connect 2 0 3 0;
+#X connect 4 0 5 0;
+#X restore 222 104 pd switch~;
+#X connect 1 0 0 0;
+#X connect 2 0 5 0;
+#X connect 3 0 4 0;
+#X connect 3 0 24 0;
+#X connect 4 0 14 0;
+#X connect 5 0 3 0;
+#X connect 6 0 4 1;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 9 0 2 0;
+#X connect 10 0 11 0;
+#X connect 11 0 12 1;
+#X connect 12 0 6 0;
+#X connect 13 0 21 1;
+#X connect 15 0 27 0;
+#X connect 15 1 27 1;
+#X connect 16 0 24 1;
+#X connect 17 0 18 0;
+#X connect 18 0 19 1;
+#X connect 19 0 16 0;
+#X connect 20 0 12 0;
+#X connect 21 0 19 0;
+#X connect 22 0 20 0;
+#X connect 23 0 21 0;
+#X connect 24 0 14 1;
+#X connect 25 0 20 1;
+#X connect 27 0 22 0;
+#X connect 27 1 23 0;
