@@ -146,7 +146,7 @@ void ofApp::mousePressed(int x, int y, int button){
 	int array[3] = {outChannel, outPitch, outVelocity};
 	size_t lengthOfArray = sizeof array / sizeof array[0];
 	EM_ASM_(
-	var data = new Uint32Array(HEAPU32.buffer, $0, $1);
+	var data = new Uint32Array(Module.HEAPU32.subarray, $0, $1);
 	window["setMidiOut"] = data, array, lengthOfArray);
 	}
 
@@ -158,7 +158,7 @@ void ofApp::mouseReleased(int x, int y, int button){
 	int array[3] = {outChannel, outPitch, outVelocity};
 	size_t lengthOfArray = sizeof array / sizeof array[0];
 	EM_ASM_(
-	var data = new Uint32Array(HEAPU32.buffer, $0, $1);
+	var data = new Uint32Array(Module.HEAPU32.subarray, $0, $1);
 	window["setMidiOut"] = data, array, lengthOfArray);
 	}
 
