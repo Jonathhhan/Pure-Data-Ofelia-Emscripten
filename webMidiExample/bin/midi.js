@@ -1,9 +1,9 @@
-function midiMessageReceived( ev ) {
-  var channel = ev.data[0];
+function midiMessageReceived(ev) {
+  var channel = ev.data[0] & 0xf;
   var pitch = ev.data[1];
   var velocity = ev.data[2];
   console.log( "MIDI in: " + ev.data[0] + " " + ev.data[1] + " " + ev.data[2])
-  Module.midiIn(ev.data[0] , ev.data[1] , ev.data[2]);
+  Module.midiIn(ev.data);
   }
   
   Object.defineProperty(window, "setMidiOut", { 
@@ -24,7 +24,7 @@ var midiAccess = null;
 var midiIn = null;
 var midiOut = null;
 
-function selectMIDIIn( ev ) {
+function selectMIDIIn(ev) {
   if (midiIn)
     midiIn.onmidimessage = null;
     var id = ev.target[ev.target.selectedIndex].value;
