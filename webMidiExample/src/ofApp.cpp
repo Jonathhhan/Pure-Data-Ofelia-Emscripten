@@ -13,10 +13,11 @@ using namespace emscripten;
 	int outPitch;
 	int outVelocity;
 	
-void midiIn(int channel, int pitch, int velocity) {
-	inChannel = channel;
-	inPitch = pitch;
-	inVelocity = velocity;
+void midiIn(std::string ev) {
+	unsigned char* uEv = (unsigned char*)ev.c_str();
+	inChannel= uEv[0];
+	inPitch= uEv[1];
+	inVelocity= uEv[2];
 }
 
 EMSCRIPTEN_BINDINGS(Module) {
@@ -142,16 +143,24 @@ void ofApp::mousePressed(int x, int y, int button){
 	outChannel = 144;
 	outPitch = 52;
 	outVelocity = 32;
-	EM_ASM_(window["setMidiOut"] = ([144, 52, 32]));
-}
+	int array[3] = {outChannel, outPitch, outVelocity};
+	size_t lengthOfArray = sizeof array / sizeof array[0];
+	EM_ASM_(
+	var data = new Uint32Array(HEAPU32.buffer, $0, $1);
+	window["setMidiOut"] = data, array, lengthOfArray);
+	}
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
 	outChannel = 128;
 	outPitch = 52;
 	outVelocity = 32;
-	EM_ASM_(window["setMidiOut"] = ([128, 52, 32]));
-}
+	int array[3] = {outChannel, outPitch, outVelocity};
+	size_t lengthOfArray = sizeof array / sizeof array[0];
+	EM_ASM_(
+	var data = new Uint32Array(HEAPU32.buffer, $0, $1);
+	window["setMidiOut"] = data, array, lengthOfArray);
+	}
 
 //--------------------------------------------------------------
 void ofApp::mouseEntered(int x, int y){
