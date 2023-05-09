@@ -1,0 +1,177 @@
+#N canvas 1027 145 404 546 10;
+#N canvas 818 182 924 505 delay 0;
+#X obj 592 69 openpanel;
+#X obj 592 48 bng 15 250 50 0 empty \$0-openVideo openVideo 17 7 0
+10 -257985 -1 -1;
+#X msg 592 90 moviefile \$1;
+#X msg 525 51 play;
+#X msg 542 113 stop;
+#X obj 596 115 tgl 15 0 empty \$0-pause pause 17 7 0 10 -257985 -1
+-1 0 1;
+#X obj 301 90 metro 40;
+#X obj 301 112 f;
+#X obj 301 70 tgl 15 0 empty empty empty 17 7 0 10 -257985 -1 -1 0
+1;
+#X msg 709 117 setVolume \$1;
+#X obj 527 454 hsl 128 15 0 1 0 0 empty empty position -2 -8 0 10 -260097
+-1 -1 0 1;
+#X msg 301 231 setPosition \$1;
+#X obj 304 211 hsl 128 15 0 1 0 0 empty \$0-setPosition setPosition
+-2 -8 0 10 -257985 -1 -1 0 1;
+#X obj 524 386 unpack f f f, f 24;
+#X obj 301 175 /;
+#X obj 358 50 hsl 128 15 -1000 1000 0 1 empty empty speed -2 -8 0 10
+-257985 -1 -1 8300 1;
+#X obj 328 112 + 100;
+#X obj 301 133 / 100;
+#X obj 382 91 * 100;
+#X obj 367 112 mod;
+#X msg 800 128 setSpeed \$1;
+#X msg 596 135 setPaused \$1;
+#X msg 436 140 setFrame \$1;
+#X msg 750 221 delay \$1;
+#X msg 751 285 delayNumber \$1;
+#X obj 750 202 nbx 5 14 1 36 0 0 empty \$0-delayTime delayTime 0 -8
+0 10 -257985 -1 -1 5 256;
+#X obj 542 93 bng 15 250 50 0 empty \$0-stop stop 17 7 0 10 -257985
+-1 -1;
+#X obj 751 265 hradio 15 1 0 9 empty \$0-delayNumber delayNumber 0
+-8 0 10 -257985 -1 -1 3;
+#X obj 525 31 bng 15 250 50 0 empty \$0-play play 17 7 0 10 -257985
+-1 -1;
+#X obj 665 423 nbx 5 14 -1e+037 1e+037 0 0 \$0-totalFrames empty totalFrames
+0 -8 0 10 -260097 -1 -1 0 256;
+#X obj 316 154 r \$0-totalFrames;
+#X obj 382 70 r \$0-totalFrames;
+#X obj 524 423 nbx 5 14 -1e+037 1e+037 0 0 \$0-position empty position
+0 -8 0 10 -260097 -1 -1 0 256;
+#X obj 594 423 nbx 5 14 -1e+037 1e+037 0 0 \$0-frame empty frame 0
+-8 0 10 -260097 -1 -1 0 256;
+#X obj 800 109 nbx 5 14 -200 200 0 0 empty \$0-speed speed 0 -8 0 10
+-257985 -1 -1 100 256;
+#X obj 709 98 nbx 5 14 0 100 0 0 empty \$0-volume volume 0 -8 0 10
+-257985 -1 -1 100 256;
+#X obj 20 20 cnv 15 250 460 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 30 30 cnv 15 230 440 empty empty videoDelay 70 12 0 14 -4032
+-66577 0;
+#X obj 42 60 bng 15 250 50 0 \$0-openVideo empty openVideo 17 7 0 10
+-257985 -1 -1;
+#X obj 42 158 bng 15 250 50 0 \$0-stop empty stop 17 7 0 10 -257985
+-1 -1;
+#X obj 42 106 bng 15 250 50 0 \$0-play empty play 17 7 0 10 -257985
+-1 -1;
+#X obj 45 204 hsl 200 15 0 1 0 0 \$0-setPosition empty setPosition
+-2 -8 0 10 -257985 -1 -1 0 0;
+#X obj 42 132 tgl 15 0 \$0-pause empty pause 17 7 0 10 -257985 -1 -1
+0 1;
+#X obj 45 301 hsl 200 15 0 1 0 0 empty \$0-position position -2 -8
+0 10 -260097 -1 -1 0 1;
+#X obj 183 270 nbx 5 14 -1e+037 1e+037 0 0 empty \$0-totalFrames totalFrames
+0 -8 0 10 -260097 -1 -1 0 256;
+#X obj 42 270 nbx 5 14 -1e+037 1e+037 0 0 empty \$0-position position
+0 -8 0 10 -260097 -1 -1 0 256;
+#X obj 112 270 nbx 5 14 -1e+037 1e+037 0 0 empty \$0-frame frame 0
+-8 0 10 -260097 -1 -1 0 256;
+#X obj 42 337 cnv 15 205 120 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 72 370 nbx 5 14 1 36 0 1 \$0-delayTime empty delayTime 0 -8
+0 10 -257985 -1 -1 5 256;
+#X obj 72 415 hradio 15 1 1 9 \$0-delayNumber empty delayNumber 0 -8
+0 10 -257985 -1 -1 3;
+#X obj 112 159 nbx 5 14 -200 200 0 1 \$0-speed empty speed 0 -8 0 10
+-257985 -1 -1 100 256;
+#X obj 112 107 nbx 5 14 0 100 0 1 \$0-volume empty volume 0 -8 0 10
+-257985 -1 -1 100 256;
+#X obj 436 121 nbx 5 14 -1e+037 1e+037 0 0 empty empty setFrame 0 -8
+0 10 -257985 -1 -1 0 256;
+#X obj 524 365 ofelia define -k \$0-videoDelay;
+#A __set \; if type(window) ~= "userdata" then \; window = ofWindow()
+\; end \; \; local canvas = ofCanvas(this) \; local clock = ofClock(this
+\, "setup") \; local videoPlayer = ofVideoPlayer() \; local shaderDir
+= canvas:getDir() .. "/data/" \; local shader = ofShader() \; local
+outputList = {} \; local frames = {} \; local images = {} \; local
+N = 300 \; for i = 1 \, N do \; images[i] = ofImage() \; end \; \;
+function ofelia.new() \; ofWindow.addListener("setup" \, this) \; ofWindow.addListener("update"
+\, this) \; ofWindow.addListener("draw" \, this) \; ofWindow.addListener("exit"
+\, this) \; window:setPosition(50 \, 100) \; window:setSize(800 + 40
+\, 600 + 40) \; if type(window) ~= "userdata" then \; window = ofWindow()
+\; end \; \; window:create() \; if ofWindow.exists then \; clock:delay(0)
+\; end \; end \; \; function ofelia.free() \; window:destroy() \; ofWindow.removeListener("setup"
+\, this) \; ofWindow.removeListener("update" \, this) \; ofWindow.removeListener("draw"
+\, this) \; ofWindow.removeListener("exit" \, this) \; end \; \; function
+ofelia.setup() \; ofSetWindowTitle("Video Player") \; ofBackground(0
+\, 0 \, 0 \, 255) \; shader:load(shaderDir .. "videoDelayWeighted")
+\; end \; \; function ofelia.moviefile(path) \; videoPlayer:load(path)
+\; videoPlayer:setLoopState(OF_LOOP_NORMAL) \; videoPlayer:setPaused(true)
+\; end \; \; function ofelia.setSpeed(f) \; videoPlayer:setSpeed(f
+/ 100) \; end \; \; function ofelia.play() \; videoPlayer:play() \;
+end \; \; function ofelia.stop() \; videoPlayer:setFrame(0) \; videoPlayer:setPaused(true)
+\; end \; \; function ofelia.setPaused(f) \; if f == 1 then pause =
+true \; else pause = false \; end \; videoPlayer:setPaused(pause) \;
+end \; \; function ofelia.setFrame(f) \; videoPlayer:setFrame(f) \;
+end \; \; function ofelia.setPosition(f) \; videoPlayer:setPosition(f)
+\; end \; \; function ofelia.setVolume(f) \; videoPlayer:setVolume(f
+/ 100) \; end \; \; local number = 0 \; function ofelia.update() \;
+videoPlayer:update() \; if videoPlayer:isFrameNew() then \; number
+= (number + 1) % N \; print(number + 1) \; images[number + 1]:setFromPixels(videoPlayer:getPixels())
+\; table.insert(frames \, 1 \, images[number + 1]) \; if #frames >
+N then \; table.remove(frames) \; end \; end \; outputList[1] = videoPlayer:getPosition()
+\; outputList[2] = videoPlayer:getCurrentFrame() \; outputList[3] =
+videoPlayer:getTotalNumFrames() \; return outputList \; end \; \; function
+ofelia.draw() \; if #frames == N then \; shader:beginShader() \; ofSetColor(255)
+\; shader:setUniformTexture("Texture0" \, videoPlayer:getTexture()
+\, 0) \; shader:setUniformTexture("Texture1" \, frames[1 * ofelia.delay]:getTexture()
+\, 1) \; shader:setUniformTexture("Texture2" \, frames[2 * ofelia.delay]:getTexture()
+\, 2) \; shader:setUniformTexture("Texture3" \, frames[3 * ofelia.delay]:getTexture()
+\, 3) \; shader:setUniformTexture("Texture4" \, frames[4 * ofelia.delay]:getTexture()
+\, 4) \; shader:setUniformTexture("Texture5" \, frames[5 * ofelia.delay]:getTexture()
+\, 5) \; shader:setUniformTexture("Texture6" \, frames[6 * ofelia.delay]:getTexture()
+\, 6) \; shader:setUniformTexture("Texture7" \, frames[7 * ofelia.delay]:getTexture()
+\, 7) \; shader:setUniformTexture("Texture8" \, frames[8 * ofelia.delay]:getTexture()
+\, 8) \; shader:setUniform1f("delayNumber" \, ofelia.delayNumber) \;
+videoPlayer:draw(20 \, 20 \, 800 \, 600) \; shader:endShader() \; end
+\; end \; \; function ofelia.exit() \; videoPlayer:close() \; for i
+= 1 \, N do \; images[i]:clear() \; end \; shader:unload() \; end \;
+\;;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 2 0 53 0;
+#X connect 3 0 53 0;
+#X connect 4 0 53 0;
+#X connect 5 0 21 0;
+#X connect 6 0 7 0;
+#X connect 7 0 16 0;
+#X connect 7 0 17 0;
+#X connect 8 0 6 0;
+#X connect 9 0 53 0;
+#X connect 11 0 53 0;
+#X connect 12 0 11 0;
+#X connect 13 0 32 0;
+#X connect 13 1 33 0;
+#X connect 13 2 29 0;
+#X connect 14 0 12 0;
+#X connect 15 0 16 1;
+#X connect 16 0 19 0;
+#X connect 17 0 14 0;
+#X connect 18 0 19 1;
+#X connect 19 0 7 1;
+#X connect 20 0 53 0;
+#X connect 21 0 53 0;
+#X connect 22 0 53 0;
+#X connect 23 0 53 0;
+#X connect 24 0 53 0;
+#X connect 25 0 23 0;
+#X connect 26 0 4 0;
+#X connect 27 0 24 0;
+#X connect 28 0 3 0;
+#X connect 30 0 14 1;
+#X connect 31 0 18 0;
+#X connect 32 0 10 0;
+#X connect 34 0 20 0;
+#X connect 35 0 9 0;
+#X connect 52 0 22 0;
+#X connect 53 0 13 0;
+#X coords 0 -1 1 1 250 460 1 20 20;
+#X restore 79 48 pd delay;
+#X coords 0 546 1 545 250 460 0;
