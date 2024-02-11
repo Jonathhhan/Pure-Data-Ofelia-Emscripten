@@ -1,0 +1,56 @@
+#N canvas 893 90 669 324 10;
+#X obj 98 262 ofelia define -k \$0-addImage;
+#A __set if type(window) ~= "userdata" then \; window = ofWindow() \;
+end \; \; local canvas = pdCanvas(this) \; local clock = pdClock(this
+\, "setup") \; local shaderDir = canvas:getDir() .. "/data/" \; local
+shader = ofShader() \; local imageDir = canvas:getDir() .. "/data/"
+\; local image1 = ofImage() \; local image2 = ofImage() \; \; function
+ofelia.new() \; ofWindow.addListener("setup" \, this) \; ofWindow.addListener("draw"
+\, this) \; ofWindow.addListener("exit" \, this) \; window:setPosition(30
+\, 100) \; window:setSize(800 + 40 \, 600 + 40) \; window:setGLVersion(2
+\, 1) \; window:create() \; if ofWindow.exists then \; clock:delay(0)
+\; end \; end \; \; function ofelia.free() \; window:destroy() \; ofWindow.removeListener("setup"
+\, this) \; ofWindow.removeListener("draw" \, this) \; ofWindow.removeListener("exit"
+\, this) \; end \; \; function ofelia.setup() \; ofSetWindowTitle("Add
+Image") \; ofBackground(0 \, 0 \, 0 \, 255) \; image1:load(imageDir
+.. "image1.jpg") \; image2:load(imageDir .. "image2.jpg") \; shader:load(shaderDir
+.. "textureInterpolateMultiply") \; end \; \; function ofelia.glsl(s)
+\; shader:load(shaderDir .. s) \; end \; \; function ofelia.draw()
+\; shader:beginShader() \; ofSetColor(255) \; shader:setUniformTexture("Texture0"
+\, image1:getTexture() \, 1) \; shader:setUniformTexture("Texture1"
+\, image2:getTexture() \, 2) \; shader:setUniform1f("BlendFactor" \,
+ofelia.BlendFactor / 100) \; local color = ofFloatColor(ofelia.ColorFactor)
+\; shader:setUniform4f("ColorFactor" \, color / 100) \; image1:draw(20
+\, 20 \, 800 \, 600) \; image2:draw(20 \, 20 \, 800 \, 600) \; shader:endShader()
+\; end \; \; function ofelia.exit() \; image1:clear() \; image2:clear()
+\; shader:unload() \; end \;;
+#X msg 98 194 glsl \$1;
+#X obj 98 173 symbol;
+#X obj 98 152 r \$0-shader;
+#X obj 404 265 s \$0-shader;
+#X msg 404 133 textureAdd;
+#X msg 356 101 textureMultiply;
+#X msg 311 64 textureBlendAlpha;
+#X msg 432 163 textureBlend;
+#X msg 71 112 BlendFactor \$1;
+#X floatatom 71 88 5 -255 255 0 - - -;
+#X floatatom 168 91 5 0 100 0 - - -;
+#X msg 168 112 ColorFactor \$1;
+#X msg 454 196 textureInterpolateMultiply;
+#X msg 71 64 50;
+#X obj 71 43 loadbang;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 0;
+#X connect 5 0 4 0;
+#X connect 6 0 4 0;
+#X connect 7 0 4 0;
+#X connect 8 0 4 0;
+#X connect 9 0 0 0;
+#X connect 10 0 9 0;
+#X connect 11 0 12 0;
+#X connect 12 0 0 0;
+#X connect 13 0 4 0;
+#X connect 14 0 10 0;
+#X connect 14 0 11 0;
+#X connect 15 0 14 0;
