@@ -1,0 +1,172 @@
+#N canvas 980 175 404 546 10;
+#N canvas 2182 416 917 664 delay 1;
+#X obj 592 69 openpanel;
+#X obj 592 48 bng 15 250 50 0 empty \$0-openVideo openVideo 17 7 0
+10 -257985 -1 -1;
+#X msg 592 90 moviefile \$1;
+#X msg 525 51 play;
+#X msg 542 113 stop;
+#X obj 596 115 tgl 15 0 empty \$0-pause pause 17 7 0 10 -257985 -1
+-1 0 1;
+#X obj 301 90 metro 40;
+#X obj 301 112 f;
+#X obj 301 70 tgl 15 0 empty empty empty 17 7 0 10 -257985 -1 -1 0
+1;
+#X msg 709 117 setVolume \$1;
+#X obj 527 454 hsl 128 15 0 1 0 0 empty empty position -2 -8 0 10 -260097
+-1 -1 0 1;
+#X msg 301 231 setPosition \$1;
+#X obj 304 211 hsl 128 15 0 1 0 0 empty \$0-setPosition setPosition
+-2 -8 0 10 -257985 -1 -1 0 1;
+#X obj 524 386 unpack f f f, f 24;
+#X obj 301 175 /;
+#X obj 358 50 hsl 128 15 -1000 1000 0 1 empty empty speed -2 -8 0 10
+-257985 -1 -1 6400 1;
+#X obj 328 112 + 100;
+#X obj 301 133 / 100;
+#X obj 382 91 * 100;
+#X obj 367 112 mod;
+#X msg 800 128 setSpeed \$1;
+#X msg 596 135 setPaused \$1;
+#X msg 436 140 setFrame \$1;
+#X msg 750 221 delay \$1;
+#X msg 751 285 delayNumber \$1;
+#X obj 750 202 nbx 5 14 1 36 0 0 empty \$0-delayTime delayTime 0 -8
+0 10 -257985 -1 -1 1 256;
+#X obj 542 93 bng 15 250 50 0 empty \$0-stop stop 17 7 0 10 -257985
+-1 -1;
+#X obj 751 265 hradio 15 1 0 9 empty \$0-delayNumber delayNumber 0
+-8 0 10 -257985 -1 -1 3;
+#X obj 525 31 bng 15 250 50 0 empty \$0-play play 17 7 0 10 -257985
+-1 -1;
+#X obj 665 423 nbx 5 14 -1e+37 1e+37 0 0 \$0-totalFrames empty totalFrames
+0 -8 0 10 -260097 -1 -1 0 256;
+#X obj 316 154 r \$0-totalFrames;
+#X obj 382 70 r \$0-totalFrames;
+#X obj 524 423 nbx 5 14 -1e+37 1e+37 0 0 \$0-position empty position
+0 -8 0 10 -260097 -1 -1 0 256;
+#X obj 594 423 nbx 5 14 -1e+37 1e+37 0 0 \$0-frame empty frame 0 -8
+0 10 -260097 -1 -1 0 256;
+#X obj 800 109 nbx 5 14 -200 200 0 0 empty \$0-speed speed 0 -8 0 10
+-257985 -1 -1 100 256;
+#X obj 709 98 nbx 5 14 0 100 0 0 empty \$0-volume volume 0 -8 0 10
+-257985 -1 -1 19 256;
+#X obj 20 20 cnv 15 250 460 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 30 30 cnv 15 230 440 empty empty slitScan 70 12 0 14 -4032 -66577
+0;
+#X obj 42 60 bng 15 250 50 0 \$0-openVideo empty openVideo 17 7 0 10
+-257985 -1 -1;
+#X obj 42 158 bng 15 250 50 0 \$0-stop empty stop 17 7 0 10 -257985
+-1 -1;
+#X obj 42 106 bng 15 250 50 0 \$0-play empty play 17 7 0 10 -257985
+-1 -1;
+#X obj 45 204 hsl 200 15 0 1 0 0 \$0-setPosition empty setPosition
+-2 -8 0 10 -257985 -1 -1 0 0;
+#X obj 42 132 tgl 15 0 \$0-pause empty pause 17 7 0 10 -257985 -1 -1
+0 1;
+#X obj 45 301 hsl 200 15 0 1 0 0 empty \$0-position position -2 -8
+0 10 -260097 -1 -1 0 1;
+#X obj 183 270 nbx 5 14 -1e+37 1e+37 0 0 empty \$0-totalFrames totalFrames
+0 -8 0 10 -260097 -1 -1 0 256;
+#X obj 42 270 nbx 5 14 -1e+37 1e+37 0 0 empty \$0-position position
+0 -8 0 10 -260097 -1 -1 0 256;
+#X obj 112 270 nbx 5 14 -1e+37 1e+37 0 0 empty \$0-frame frame 0 -8
+0 10 -260097 -1 -1 0 256;
+#X obj 42 337 cnv 15 205 120 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 112 159 nbx 5 14 -200 200 0 1 \$0-speed empty speed 0 -8 0 10
+-257985 -1 -1 100 256;
+#X obj 112 107 nbx 5 14 0 100 0 1 \$0-volume empty volume 0 -8 0 10
+-257985 -1 -1 19 256;
+#X obj 436 121 nbx 5 14 -1e+37 1e+37 0 0 empty empty setFrame 0 -8
+0 10 -257985 -1 -1 0 256;
+#X obj 524 365 ofelia define -k \$0-videoDelay;
+#A __set;
+#X msg 374 613 slit \$1;
+#X obj 374 530 t b f;
+#X obj 374 511 nbx 5 14 1 800 0 0 empty \$0-slitScan setFrame 0 -8
+0 10 -257985 -1 -1 147 256;
+#X floatatom 374 593 5 0 0 0 - - -;
+#X obj 374 572 /;
+#X msg 374 551 799;
+#X obj 83 396 nbx 5 14 1 800 0 1 \$0-slitScan empty slitScan 0 -8 0
+10 -257985 -1 -1 147 256;
+#X obj 374 455 pow;
+#X msg 374 425 2;
+#X floatatom 401 425 5 0 0 0 - - -;
+#X floatatom 374 476 5 0 0 0 - - -;
+#X obj 374 404 t b f;
+#X obj 313 382 f;
+#X obj 344 382 + 1;
+#X obj 313 275 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 374 383 mod 10;
+#X obj 313 361 metro 5000;
+#X obj 313 295 t f f;
+#X obj 340 318 sel 0;
+#X msg 340 340 0;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 2 0 51 0;
+#X connect 3 0 51 0;
+#X connect 4 0 51 0;
+#X connect 5 0 21 0;
+#X connect 6 0 7 0;
+#X connect 7 0 16 0;
+#X connect 7 0 17 0;
+#X connect 8 0 6 0;
+#X connect 9 0 51 0;
+#X connect 11 0 51 0;
+#X connect 12 0 11 0;
+#X connect 13 0 32 0;
+#X connect 13 1 33 0;
+#X connect 13 2 29 0;
+#X connect 14 0 12 0;
+#X connect 15 0 16 1;
+#X connect 16 0 19 0;
+#X connect 17 0 14 0;
+#X connect 18 0 19 1;
+#X connect 19 0 7 1;
+#X connect 20 0 51 0;
+#X connect 21 0 51 0;
+#X connect 22 0 51 0;
+#X connect 23 0 51 0;
+#X connect 24 0 51 0;
+#X connect 25 0 23 0;
+#X connect 26 0 4 0;
+#X connect 27 0 24 0;
+#X connect 28 0 3 0;
+#X connect 30 0 14 1;
+#X connect 31 0 18 0;
+#X connect 32 0 10 0;
+#X connect 34 0 20 0;
+#X connect 35 0 9 0;
+#X connect 50 0 22 0;
+#X connect 51 0 13 0;
+#X connect 52 0 51 0;
+#X connect 53 0 57 0;
+#X connect 53 1 56 1;
+#X connect 54 0 53 0;
+#X connect 55 0 52 0;
+#X connect 56 0 55 0;
+#X connect 57 0 56 0;
+#X connect 59 0 62 0;
+#X connect 60 0 59 0;
+#X connect 61 0 59 1;
+#X connect 62 0 54 0;
+#X connect 63 0 60 0;
+#X connect 63 1 61 0;
+#X connect 64 0 67 0;
+#X connect 65 0 64 1;
+#X connect 66 0 69 0;
+#X connect 67 0 65 0;
+#X connect 67 0 63 0;
+#X connect 68 0 64 0;
+#X connect 69 0 68 0;
+#X connect 69 1 70 0;
+#X connect 70 0 71 0;
+#X connect 71 0 64 1;
+#X coords 0 -1 1 1 250 460 1 20 20;
+#X restore 79 48 pd delay;
+#X coords 0 546 1 545 250 460 0;
