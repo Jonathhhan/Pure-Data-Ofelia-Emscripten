@@ -1,0 +1,36 @@
+#N canvas 1140 344 450 300 10;
+#X obj 97 75 r soundImage;
+#X obj 97 96 list prepend soundImage;
+#X obj 97 117 list trim;
+#X msg 235 223 \; pd dsp 0;
+#X obj 235 167 loadbang;
+#X obj 97 197 stdout;
+#X obj 114 170 loadbang;
+#X msg 235 188 \; pd dsp 1;
+#X obj 97 139 ofelia define -k \$0-vectorscope;
+#A __set if type(window) ~= "userdata" then \; window = ofWindow()
+\; end \; \; local canvas = ofCanvas(this) \; local clock = ofClock(this
+\, "setup") \; local shaderDir = canvas:getDir() .. "/data/" \; local
+shader = ofShader() \; local image = ofImage() \; local array1 = ofArray("\$0-magnitude2")
+\; local array2 = ofArray("\$0-waveform2") \; \; function ofelia.new()
+\; ofWindow.addListener("setup" \, this) \; ofWindow.addListener("draw"
+\, this) \; ofWindow.addListener("exit" \, this) \; window:setPosition(30
+\, 100) \; window:setSize(800 \, 600) \; window:create() \; if ofWindow.exists
+then \; clock:delay(0) \; end \; end \; \; function ofelia.free() \;
+window:destroy() \; ofWindow.removeListener("setup" \, this) \; ofWindow.removeListener("draw"
+\, this) \; ofWindow.removeListener("exit" \, this) \; end \; \; function
+ofelia.setup() \; image:allocate(256 \, 1 \, OF_IMAGE_COLOR) \; ofSetWindowTitle("?")
+\; ofBackground(0 \, 0 \, 0 \, 255) \; shader:load(shaderDir .. "a")
+\; end \; \; function ofelia.draw() \; for i = 0 \, 255 do \; image:setColor(i
+\, 0 \, ofColor(ofelia.soundImage[i+1])) \; end \; image:update() \;
+shader:beginShader() \; shader:setUniform1f("time" \, ofGetElapsedTimeMillis())
+\; shader:setUniform2f("resolution" \, 800 \, 600) \; shader:setUniformTexture("spectrum"
+\, image:getTexture() \, 1) \; ofDrawRectangle(0 \, 0 \, 800 \, 600)
+\; shader:endShader() \; return bang \; end \; \; function ofelia.exit()
+\; image:clear() \; shader:unload() \; end \; \;;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 8 0;
+#X connect 4 0 7 0;
+#X connect 6 0 5 0;
+#X connect 8 0 5 0;

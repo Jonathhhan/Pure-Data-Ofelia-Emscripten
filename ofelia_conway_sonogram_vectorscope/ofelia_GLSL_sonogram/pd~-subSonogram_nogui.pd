@@ -1,0 +1,49 @@
+#N canvas 580 465 383 261 10;
+#X msg 212 183 \; pd dsp 0;
+#X obj 212 130 loadbang;
+#X obj 74 160 stdout;
+#X obj 74 48 list prepend soundImage;
+#X obj 74 69 list trim;
+#X obj 91 133 loadbang;
+#X msg 212 151 \; pd dsp 1;
+#X obj 74 109 ofelia define -k \$0-audioVisual;
+#A __set if type(window) ~= "userdata" then \; window = ofWindow() \;
+end \; \; local canvas = ofCanvas(this) \; local clock = ofClock(this
+\, "setup") \; local shaderDir = canvas:getDir() .. "/data/" \; local
+shader = ofShader() \; local image = ofImage() \; local fbo = ofFbo()
+\; \; function ofelia.new() \; ofWindow.addListener("setup" \, this)
+\; ofWindow.addListener("draw" \, this) \; ofWindow.addListener("exit"
+\, this) \; window:setPosition(50 \, 100) \; window:setSize(1024 \,
+512) \; window:create() \; if ofWindow.exists then \; clock:delay(0)
+\; end \; end \; \; function ofelia.free() \; window:destroy() \; ofWindow.removeListener("setup"
+\, this) \; ofWindow.removeListener("draw" \, this) \; ofWindow.removeListener("exit"
+\, this) \; end \; \; function ofelia.setup() \; ofSetFrameRate(60)
+\; fbo:allocate(1024 \, 512) \; fbo:beginFbo() \; ofClear(0 \, 0 \,
+0 \, 0) \; fbo:endFbo() \; image:allocate(512 \, 2 \, OF_IMAGE_COLOR)
+\; ofSetWindowTitle("?") \; ofBackground(0 \, 0 \, 0 \, 255) \; shader:load(shaderDir
+.. "a") \; ofelia.mix = 20 \; ofelia.soundImage = {} \; for i = 1 \,
+1024 do \; ofelia.soundImage[i] = 0 \; end \; end \; \; function ofelia.draw()
+\; for i = 0 \, 511 do \; image:setColor(i \, 0 \, ofColor(ofelia.soundImage[i+1]))
+\; image:setColor(i \, 1 \, ofColor(ofelia.soundImage[i+513])) \; end
+\; image:update() \; shader:beginShader() \; shader:setUniform1f("time"
+\, ofGetElapsedTimef()) \; shader:setUniform1f("mix" \, (ofelia.mix
+/ 800) + (1/4)) \; shader:setUniform2f("resolution" \, 1024 \, 512)
+\; shader:setUniformTexture("spectrum" \, image:getTexture() \, 1)
+\; shader:setUniformTexture("fbo1" \, fbo:getTexture() \, 2) \; ofDrawRectangle(0
+\, 0 \, 1024 \, 512) \; fbo:beginFbo() \; image:draw(0 \, 0 \, 1024
+\, 512) \; fbo:endFbo() \; shader:endShader() \; return bang \; end
+\; \; function ofelia.exit() \; image:clear() \; shader:unload() \;
+end \; \;;
+#X obj 221 27 r mix;
+#X obj 221 48 list prepend mix;
+#X obj 221 69 list trim;
+#X obj 74 27 r soundImage;
+#X connect 1 0 6 0;
+#X connect 3 0 4 0;
+#X connect 4 0 7 0;
+#X connect 5 0 2 0;
+#X connect 7 0 2 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 7 0;
+#X connect 11 0 3 0;
