@@ -1,0 +1,1910 @@
+#N struct 1012-square float x float y float number;
+#N canvas 524 85 859 849 10;
+#X declare -path ofelia/libs/of;
+#N canvas 420 69 1026 848 interface 0;
+#X obj 21 21 cnv 15 568 798 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 42 41 cnv 15 530 760 empty empty VideoPlayer 20 12 0 14 -204800
+-66577 0;
+#X obj 65 71 bng 15 250 50 0 \$0-openVideo empty OpenVideo 17 7 0 10
+-257985 -1 -1;
+#X obj 65 129 tgl 15 0 \$0-pause \$0-spacePause Pause 17 7 0 10 -257985
+-1 -1 0 1;
+#X obj 62 257 tgl 15 0 \$0-manualTempo empty ManualTempo 17 7 0 10
+-257985 -1 -1 0 1;
+#X obj 65 411 hsl 300 15 0 1 0 0 empty \$0-positionSlider Position
+-2 -8 0 10 -101872 -1 -1 0 1;
+#X obj 65 313 hsl 300 15 0 1 0 0 \$0-setPosition empty SetPosition
+-2 -8 0 10 -257985 -1 -1 0 0;
+#X obj 65 277 hsl 300 15 -1000 1000 0 1 \$0-manualTempoSlider empty
+empty -2 -8 0 10 -257985 -1 -1 13800 1;
+#X obj 65 109 bng 15 250 50 0 \$0-play empty Play 17 7 0 10 -257985
+-1 -1;
+#X obj 65 149 bng 15 250 50 0 \$0-stop empty Stop 17 7 0 10 -257985
+-1 -1;
+#X obj 292 202 nbx 7 14 0 100 0 1 \$0-setVolume empty SetVolume 0 -8
+0 10 -257985 -1 -1 0 256;
+#X obj 177 202 nbx 7 14 0 500 0 1 \$0-setTempo empty SetTempo 0 -8
+0 10 -257985 -1 -1 100 256;
+#X obj 62 202 nbx 7 14 -1e+037 1e+037 0 0 \$0-setFrame empty SetFrame
+0 -8 0 10 -257985 -1 -1 0 256;
+#X obj 178 376 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-currentFrame CurrentFrame
+0 -8 0 10 -101872 -1 -1 0 256;
+#X obj 63 376 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-position Position
+0 -8 0 10 -101872 -1 -1 0 256;
+#X obj 293 376 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-frameNumber FrameNumber
+0 -8 0 10 -101872 -1 -1 0 256;
+#X obj 388 21 cnv 15 20 798 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 42 468 cnv 15 345 333 empty empty GLSLVideoEffects 20 60 0 30
+-101872 -66577 0;
+#X obj 85 569 cnv 15 302 40 empty \$0-effect1Canvas E1:MetaImage 10
+20 0 20 -204800 -66577 0;
+#X obj 42 568 bng 42 250 50 1 \$0-effect1Bang \$0-effect1BangKey1 empty
+17 7 0 10 -257985 -204800 -1;
+#X obj 85 650 cnv 15 302 40 empty \$0-effect2Canvas E2:RGBShift 10
+20 0 20 -257985 -66577 0;
+#X obj 42 649 bng 42 250 50 0 \$0-effect2Bang \$0-effect2BangKey2 empty
+17 7 0 10 -257985 -204800 -1;
+#X obj 85 731 cnv 15 302 40 empty \$0-effect3Canvas E3:Empty 10 20
+0 20 -257985 -66577 0;
+#X obj 42 730 bng 42 250 50 0 \$0-effect3Bang \$0-effect3BangKey3 empty
+17 7 0 10 -257985 -204800 -1;
+#N canvas 550 181 728 472 \$0-effect 0;
+#X obj 21 20 cnv 15 162 415 empty empty Effect1 20 12 0 14 -204800
+-66577 0;
+#X obj 58 50 cnv 15 100 15 empty empty Empty 5 7 0 10 -204800 -66577
+0;
+#X obj 58 230 cnv 15 100 15 empty empty Halftone 5 7 0 10 -204800 -66577
+0;
+#X obj 58 320 cnv 15 100 15 empty empty MetaImage 5 7 0 10 -204800
+-66577 0;
+#X obj 58 290 cnv 15 100 15 empty empty Kaleidoscope2 5 7 0 10 -204800
+-66577 0;
+#X obj 58 200 cnv 15 100 15 empty empty Grain 5 7 0 10 -204800 -66577
+0;
+#X obj 58 350 cnv 15 100 15 empty empty NoiseWarp 5 7 0 10 -204800
+-66577 0;
+#X obj 58 335 cnv 15 100 15 empty empty MosaicColor 5 7 0 10 -204800
+-66577 0;
+#X obj 58 215 cnv 15 100 15 empty empty GreyScale 5 7 0 10 -204800
+-66577 0;
+#X obj 58 245 cnv 15 100 15 empty empty HSBShift 5 7 0 10 -204800 -66577
+0;
+#X obj 58 410 cnv 15 100 15 empty empty VertTiltShift 5 7 0 10 -204800
+-66577 0;
+#X obj 58 110 cnv 15 100 15 empty empty Bokeh 5 7 0 10 -204800 -66577
+0;
+#X obj 58 185 cnv 15 100 15 empty empty GLSLdplctpix 5 7 0 10 -204800
+-66577 0;
+#X obj 58 80 cnv 15 100 15 empty empty AsciiArt 5 7 0 10 -204800 -66577
+0;
+#X obj 58 125 cnv 15 100 15 empty empty Contrast 5 7 0 10 -204800 -66577
+0;
+#X obj 58 65 cnv 15 100 15 empty empty Angle 5 7 0 10 -204800 -66577
+0;
+#X obj 58 305 cnv 15 100 15 empty empty MagnifyingGlass 5 7 0 10 -204800
+-66577 0;
+#X obj 58 365 cnv 15 100 15 empty empty Pixelate 5 7 0 10 -204800 -66577
+0;
+#X obj 58 170 cnv 15 100 15 empty empty GaussianBlur 5 7 0 10 -204800
+-66577 0;
+#X obj 58 380 cnv 15 100 15 empty empty PositionShift 5 7 0 10 -204800
+-66577 0;
+#X obj 58 395 cnv 15 100 15 empty empty RGBShift 5 7 0 10 -204800 -66577
+0;
+#X obj 58 95 cnv 15 100 15 empty empty Bleach 5 7 0 10 -204800 -66577
+0;
+#X obj 58 260 cnv 15 100 15 empty empty Invert 5 7 0 10 -204800 -66577
+0;
+#X obj 58 155 cnv 15 100 15 empty empty FractTexture 5 7 0 10 -204800
+-66577 0;
+#X obj 58 140 cnv 15 100 15 empty empty CircleWarp 5 7 0 10 -204800
+-66577 0;
+#X obj 58 275 cnv 15 100 15 empty empty Kaleidoscope 5 7 0 10 -204800
+-66577 0;
+#X obj 204 20 cnv 15 162 415 empty empty Effect2 20 12 0 14 -204800
+-66577 0;
+#X obj 387 20 cnv 15 162 415 empty empty Effect3 20 12 0 14 -204800
+-66577 0;
+#X obj 241 50 cnv 15 100 15 empty empty Empty 5 7 0 10 -204800 -66577
+0;
+#X obj 241 230 cnv 15 100 15 empty empty Halftone 5 7 0 10 -204800
+-66577 0;
+#X obj 241 320 cnv 15 100 15 empty empty MetaImage 5 7 0 10 -204800
+-66577 0;
+#X obj 241 290 cnv 15 100 15 empty empty Kaleidoscope2 5 7 0 10 -204800
+-66577 0;
+#X obj 241 200 cnv 15 100 15 empty empty Grain 5 7 0 10 -204800 -66577
+0;
+#X obj 241 350 cnv 15 100 15 empty empty NoiseWarp 5 7 0 10 -204800
+-66577 0;
+#X obj 241 335 cnv 15 100 15 empty empty MosaicColor 5 7 0 10 -204800
+-66577 0;
+#X obj 241 215 cnv 15 100 15 empty empty GreyScale 5 7 0 10 -204800
+-66577 0;
+#X obj 241 245 cnv 15 100 15 empty empty HSBShift 5 7 0 10 -204800
+-66577 0;
+#X obj 241 410 cnv 15 100 15 empty empty VertTiltShift 5 7 0 10 -204800
+-66577 0;
+#X obj 241 110 cnv 15 100 15 empty empty Bokeh 5 7 0 10 -204800 -66577
+0;
+#X obj 241 185 cnv 15 100 15 empty empty GLSLdplctpix 5 7 0 10 -204800
+-66577 0;
+#X obj 241 80 cnv 15 100 15 empty empty AsciiArt 5 7 0 10 -204800 -66577
+0;
+#X obj 241 125 cnv 15 100 15 empty empty Contrast 5 7 0 10 -204800
+-66577 0;
+#X obj 241 65 cnv 15 100 15 empty empty Angle 5 7 0 10 -204800 -66577
+0;
+#X obj 241 305 cnv 15 100 15 empty empty MagnifyingGlass 5 7 0 10 -204800
+-66577 0;
+#X obj 241 365 cnv 15 100 15 empty empty Pixelate 5 7 0 10 -204800
+-66577 0;
+#X obj 241 170 cnv 15 100 15 empty empty GaussianBlur 5 7 0 10 -204800
+-66577 0;
+#X obj 241 380 cnv 15 100 15 empty empty PositionShift 5 7 0 10 -204800
+-66577 0;
+#X obj 241 395 cnv 15 100 15 empty empty RGBShift 5 7 0 10 -204800
+-66577 0;
+#X obj 241 95 cnv 15 100 15 empty empty Bleach 5 7 0 10 -204800 -66577
+0;
+#X obj 241 260 cnv 15 100 15 empty empty Invert 5 7 0 10 -204800 -66577
+0;
+#X obj 241 155 cnv 15 100 15 empty empty FractTexture 5 7 0 10 -204800
+-66577 0;
+#X obj 241 140 cnv 15 100 15 empty empty CircleWarp 5 7 0 10 -204800
+-66577 0;
+#X obj 241 275 cnv 15 100 15 empty empty Kaleidoscope 5 7 0 10 -204800
+-66577 0;
+#X obj 424 50 cnv 15 100 15 empty empty Empty 5 7 0 10 -204800 -66577
+0;
+#X obj 424 230 cnv 15 100 15 empty empty Halftone 5 7 0 10 -204800
+-66577 0;
+#X obj 424 320 cnv 15 100 15 empty empty MetaImage 5 7 0 10 -204800
+-66577 0;
+#X obj 424 290 cnv 15 100 15 empty empty Kaleidoscope2 5 7 0 10 -204800
+-66577 0;
+#X obj 424 200 cnv 15 100 15 empty empty Grain 5 7 0 10 -204800 -66577
+0;
+#X obj 424 350 cnv 15 100 15 empty empty NoiseWarp 5 7 0 10 -204800
+-66577 0;
+#X obj 424 335 cnv 15 100 15 empty empty MosaicColor 5 7 0 10 -204800
+-66577 0;
+#X obj 424 215 cnv 15 100 15 empty empty GreyScale 5 7 0 10 -204800
+-66577 0;
+#X obj 424 245 cnv 15 100 15 empty empty HSBShift 5 7 0 10 -204800
+-66577 0;
+#X obj 424 410 cnv 15 100 15 empty empty VertTiltShift 5 7 0 10 -204800
+-66577 0;
+#X obj 424 110 cnv 15 100 15 empty empty Bokeh 5 7 0 10 -204800 -66577
+0;
+#X obj 424 185 cnv 15 100 15 empty empty GLSLdplctpix 5 7 0 10 -204800
+-66577 0;
+#X obj 424 80 cnv 15 100 15 empty empty AsciiArt 5 7 0 10 -204800 -66577
+0;
+#X obj 424 125 cnv 15 100 15 empty empty Contrast 5 7 0 10 -204800
+-66577 0;
+#X obj 424 65 cnv 15 100 15 empty empty Angle 5 7 0 10 -204800 -66577
+0;
+#X obj 424 305 cnv 15 100 15 empty empty MagnifyingGlass 5 7 0 10 -204800
+-66577 0;
+#X obj 424 365 cnv 15 100 15 empty empty Pixelate 5 7 0 10 -204800
+-66577 0;
+#X obj 424 170 cnv 15 100 15 empty empty GaussianBlur 5 7 0 10 -204800
+-66577 0;
+#X obj 424 380 cnv 15 100 15 empty empty PositionShift 5 7 0 10 -204800
+-66577 0;
+#X obj 424 395 cnv 15 100 15 empty empty RGBShift 5 7 0 10 -204800
+-66577 0;
+#X obj 424 95 cnv 15 100 15 empty empty Bleach 5 7 0 10 -204800 -66577
+0;
+#X obj 424 260 cnv 15 100 15 empty empty Invert 5 7 0 10 -204800 -66577
+0;
+#X obj 424 155 cnv 15 100 15 empty empty FractTexture 5 7 0 10 -204800
+-66577 0;
+#X obj 424 140 cnv 15 100 15 empty empty CircleWarp 5 7 0 10 -204800
+-66577 0;
+#X obj 424 275 cnv 15 100 15 empty empty Kaleidoscope 5 7 0 10 -204800
+-66577 0;
+#X obj 42 50 vradio 15 1 1 25 \$0-effectNumber1 \$0-effectNumber1Bang
+empty 0 -8 0 10 -257985 -1 -1 18;
+#X obj 225 50 vradio 15 1 1 25 \$0-effectNumber2 \$0-effectNumber2Bang
+empty 0 -8 0 10 -257985 -1 -1 23;
+#X obj 408 50 vradio 15 1 1 25 \$0-effectNumber3 empty empty 0 -8 0
+10 -257985 -1 -1 0;
+#X obj 408 -1 r \$0-effectNumber3Bang;
+#X obj 225 -1 r \$0-effectNumber2Bang;
+#X obj 42 -1 r \$0-effectNumber1Bang;
+#X connect 81 0 80 0;
+#X connect 82 0 79 0;
+#X connect 83 0 78 0;
+#X coords 0 0 160 414 161 415 2 21 20;
+#X restore 409 41 pd \$0-effect;
+#X obj 21 457 cnv 15 568 20 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 606 653 declare -path ofelia/libs/of;
+#X text 606 674 Jonathan Frank 2019;
+#N canvas 252 492 1488 381 \$0-effectParameter 0;
+#X obj 2204 20 cnv 15 162 322 empty empty Halftone 20 12 0 14 -204800
+-66577 0;
+#X obj 2932 20 cnv 15 162 322 empty empty Kaleidoscope2 20 12 0 14
+-204800 -66577 0;
+#X obj 2225 61 nbx 7 14 -1e+037 1e+037 0 1 \$0-Halftone_Sharpness empty
+Sharpness 0 -8 0 10 -257985 -1 -1 -32.22 256;
+#X obj 2225 131 nbx 7 14 -1e+037 1e+037 0 1 \$0-Halftone_Scale empty
+Scale 0 -8 0 10 -257985 -1 -1 63.12 256;
+#X obj 2225 96 nbx 7 14 -1e+037 1e+037 0 1 \$0-Halftone_Angle empty
+Angle 0 -8 0 10 -257985 -1 -1 -40.58 256;
+#X obj 2225 166 nbx 5 14 -1e+037 1e+037 0 1 \$0-Halftone_Colorize empty
+Colorize 0 -8 0 10 -257985 -1 -1 147.61 256;
+#X obj 2225 201 nbx 7 14 -1e+037 1e+037 0 1 \$0-Halftone_Divs empty
+Divs 0 -8 0 10 -257985 -1 -1 94.27 256;
+#X obj 2225 236 hradio 15 1 1 3 \$0-Halftone_PatternType empty PatternType
+0 -8 0 10 -257985 -1 -1 1;
+#X obj 2953 61 nbx 7 14 1 500 0 1 \$0-Kaleidoscope2_Sides empty Sides
+0 -8 0 10 -257985 -1 -1 23 256;
+#X obj 2953 131 nbx 7 14 -1e+037 1e+037 0 1 \$0-Kaleidoscope2_SlideX
+empty SlideX 0 -8 0 10 -257985 -1 -1 -30.21 256;
+#X obj 2953 96 nbx 7 14 -1e+037 1e+037 0 1 \$0-Kaleidoscope2_Angle
+empty Angle 0 -8 0 10 -257985 -1 -1 43.7 256;
+#X obj 2953 166 nbx 7 14 -1e+037 1e+037 0 1 \$0-Kaleidoscope2_SlideY
+empty SlideY 0 -8 0 10 -257985 -1 -1 15.13 256;
+#X obj 202 20 cnv 15 162 322 empty empty Angle 20 12 0 14 -204800 -66577
+0;
+#X obj 223 61 nbx 7 14 -500 500 0 1 \$0-Angle_K empty K 0 -8 0 10 -257985
+-1 -1 148 256;
+#X obj 3478 20 cnv 15 162 322 empty empty MosaicColor 20 12 0 14 -204800
+-66577 0;
+#X obj 3499 61 nbx 7 14 1 200 0 1 \$0-MosaicColor_MosaicNumber empty
+MosaicNumber 0 -8 0 10 -257985 -1 -1 10 256;
+#X obj 1476 20 cnv 15 162 322 empty empty GaussianBlur 20 12 0 14 -204800
+-66577 0;
+#X obj 1497 61 nbx 7 14 0 200 0 1 \$0-GaussianBlur_Radius empty Radius
+0 -8 0 10 -257985 -1 -1 14.77 256;
+#X obj 1840 20 cnv 15 162 322 empty empty Grain 20 12 0 14 -204800
+-66577 0;
+#X obj 1861 61 nbx 7 14 1 200 0 1 \$0-Grain_Intensity empty Intensity
+0 -8 0 10 -257985 -1 -1 29 256;
+#X obj 2022 20 cnv 15 162 322 empty empty GreyScale 20 12 0 14 -204800
+-66577 0;
+#X obj 2043 61 nbx 7 14 0 200 0 1 \$0-GreyScale_Factor empty Factor
+0 -8 0 10 -257985 -1 -1 0 256;
+#X obj 566 20 cnv 15 162 322 \$0-Bleach empty Bleach 20 12 0 14 -204800
+-66577 0;
+#X obj 587 61 nbx 7 14 1 100 0 1 \$0-Bleach_Opacity empty Opacity 0
+-8 0 10 -257985 -1 -1 23 256;
+#X obj 3660 20 cnv 15 162 322 empty empty NoiseWarp 20 12 0 14 -204800
+-66577 0;
+#X obj 3681 61 nbx 7 14 0 100 0 1 \$0-NoiseWarp_Frequency empty Frequency
+0 -8 0 10 -257985 -1 -1 29 256;
+#X obj 3681 131 nbx 7 14 0 100 0 1 \$0-NoiseWarp_Speed empty Speed
+0 -8 0 10 -257985 -1 -1 32 256;
+#X obj 3681 96 nbx 7 14 0 100 0 1 \$0-NoiseWarp_Amplitude empty Amplitude
+0 -8 0 10 -257985 -1 -1 4.18 256;
+#X obj 748 20 cnv 15 162 322 empty empty Bokeh 20 12 0 14 -204800 -66577
+0;
+#X obj 769 61 nbx 7 14 0 200 0 1 \$0-Bokeh_Bias empty Bias 0 -8 0 10
+-257985 -1 -1 181 256;
+#X obj 769 96 nbx 7 14 0 200 0 1 \$0-Bokeh_Focus empty Fokus 0 -8 0
+10 -257985 -1 -1 125 256;
+#X obj 3114 20 cnv 15 162 322 empty empty MagnifyingGlass 20 12 0 14
+-204800 -66577 0;
+#X obj 3135 61 nbx 7 14 10 300 0 1 \$0-MagnifyingGlass_R empty R 0
+-8 0 10 -257985 -1 -1 196 256;
+#X obj 3135 96 nbx 7 14 10 300 0 1 \$0-MagnifyingGlass_H empty H 0
+-8 0 10 -257985 -1 -1 126 256;
+#X obj 930 20 cnv 15 162 322 empty empty Contrast 20 12 0 14 -204800
+-66577 0;
+#X obj 951 61 nbx 7 14 0 200 0 1 \$0-Contrast_Contrast empty Contrast
+0 -8 0 10 -257985 -1 -1 107 256;
+#X obj 951 131 nbx 7 14 0 200 0 1 \$0-Contrast_Multiple empty Multiple
+0 -8 0 10 -257985 -1 -1 75 256;
+#X obj 951 96 nbx 7 14 0 200 0 1 \$0-Contrast_Brightness empty Brightness
+0 -8 0 10 -257985 -1 -1 200 256;
+#X obj 2750 20 cnv 15 162 322 empty empty Kaleidoscope 20 12 0 14 -204800
+-66577 0;
+#X obj 2771 61 nbx 7 14 0 200 0 1 \$0-Kaleidoscope_Segments empty Segments
+0 -8 0 10 -257985 -1 -1 5 256;
+#X obj 4024 20 cnv 15 162 322 empty empty PositionShift 20 12 0 14
+-204800 -66577 0;
+#X obj 4045 61 nbx 7 14 -1e+037 1e+037 0 1 \$0-PositionShift_RateX
+empty RateX 0 -8 0 10 -257985 -1 -1 139 256;
+#X obj 4045 96 nbx 7 14 -1e+037 1e+037 0 1 \$0-PositionShift_RateY
+empty RateY 0 -8 0 10 -257985 -1 -1 39.7 256;
+#X obj 3842 20 cnv 15 162 322 empty empty Pixelate 20 12 0 14 -204800
+-66577 0;
+#X obj 3863 61 nbx 7 14 1 200 0 1 \$0-Pixelate_YPixels empty YPixels
+0 -8 0 10 -257985 -1 -1 100 256;
+#X obj 3863 96 nbx 7 14 1 200 0 1 \$0-Pixelate_XPixels empty XPixels
+0 -8 0 10 -257985 -1 -1 100 256;
+#X obj 1658 20 cnv 15 162 322 empty empty GLSLdplctpix 20 12 0 14 -204800
+-66577 0;
+#X obj 1679 61 nbx 7 14 -200 200 0 1 \$0-GLSLdplctpix_XDEForm empty
+XDEForm 0 -8 0 10 -257985 -1 -1 107 256;
+#X obj 384 20 cnv 15 162 322 empty empty AsciiArt 20 12 0 14 -204800
+-66577 0;
+#X obj 405 61 nbx 7 14 1 200 0 1 \$0-AsciiArt_Letters empty Letters
+0 -8 0 10 -257985 -1 -1 19 256;
+#X obj 1112 20 cnv 15 162 322 empty empty CircleWarp 20 12 0 14 -204800
+-66577 0;
+#X obj 1133 61 nbx 7 14 -1e+037 1e+037 0 1 \$0-CircleWarp_Rotation
+empty Rotation 0 -8 0 10 -257985 -1 -1 444 256;
+#X obj 1133 96 nbx 7 14 1 90 0 1 \$0-CircleWarp_Radius empty Radius
+0 -8 0 10 -257985 -1 -1 23 256;
+#X obj 3296 20 cnv 15 162 322 empty empty MetaImage 20 12 0 14 -204800
+-66577 0;
+#X obj 3317 61 nbx 7 14 1 200 0 1 \$0-MetaImage_MosaicNumber empty
+MosaicNumber 0 -8 0 10 -257985 -1 -1 5 256;
+#X obj 3317 96 nbx 7 14 0 200 0 1 \$0-MetaImage_ColorFade empty ColorFade
+0 -8 0 10 -257985 -1 -1 100 256;
+#X obj 4388 20 cnv 15 162 322 empty empty VertlTiltShift 20 12 0 14
+-204800 -66577 0;
+#X obj 4409 61 nbx 7 14 -1e+037 1e+037 0 1 \$0-VertlTiltShift_V empty
+V 0 -8 0 10 -257985 -1 -1 6.25 256;
+#X obj 4409 96 nbx 7 14 -1e+037 1e+037 0 1 \$0-VertlTiltShiftR empty
+R 0 -8 0 10 -257985 -1 -1 141.54 256;
+#X obj 4206 20 cnv 15 162 322 empty empty RGBShift 20 12 0 14 -204800
+-66577 0;
+#X obj 4227 61 nbx 7 14 -1e+037 1e+037 0 1 \$0-RGBShift_Angle empty
+Angle 0 -8 0 10 -257985 -1 -1 -98.79 256;
+#X obj 4227 96 nbx 7 14 -1e+037 1e+037 0 1 \$0-RGBShift_Amount empty
+Amount 0 -8 0 10 -257985 -1 -1 -2.3 256;
+#X obj 2386 20 cnv 15 162 322 empty empty HSBShift 20 12 0 14 -204800
+-66577 0;
+#X obj 2407 61 nbx 7 14 0 100 0 1 \$0-HSBShift_Hue empty Hue 0 -8 0
+10 -257985 -1 -1 56 256;
+#X obj 2407 131 nbx 7 14 0 100 0 1 \$0-HSBShift_Brightness empty Brightness
+0 -8 0 10 -257985 -1 -1 40 256;
+#X obj 2407 96 nbx 7 14 0 100 0 1 \$0-HSBShift_Saturation empty Saturation
+0 -8 0 10 -257985 -1 -1 87 256;
+#X obj 20 20 cnv 15 162 322 empty empty Empty 20 12 0 14 -204800 -66577
+0;
+#X obj 1294 20 cnv 15 162 322 empty empty FractTexture 20 12 0 14 -204800
+-66577 0;
+#X obj 2568 20 cnv 15 162 322 empty empty Invert 20 12 0 14 -204800
+-66577 0;
+#X coords 0 0 161 321 162 322 2 3296 20;
+#X restore 409 478 pd \$0-effectParameter;
+#X obj 606 512 cnv 15 400 120 empty empty empty 20 12 0 14 -261682
+-66577 0;
+#N canvas 459 409 884 507 \$0-paint 0;
+#X scalar 1012-square 0 0 688 \;;
+#X scalar 1012-square 20 0 840 \;;
+#X scalar 1012-square 40 0 376 \;;
+#X scalar 1012-square 60 0 688 \;;
+#X scalar 1012-square 80 0 840 \;;
+#X scalar 1012-square 100 0 840 \;;
+#X scalar 1012-square 120 0 376 \;;
+#X scalar 1012-square 140 0 880 \;;
+#X scalar 1012-square 160 0 688 \;;
+#X scalar 1012-square 180 0 880 \;;
+#X scalar 1012-square 0 20 840 \;;
+#X scalar 1012-square 20 20 840 \;;
+#X scalar 1012-square 40 20 688 \;;
+#X scalar 1012-square 60 20 880 \;;
+#X scalar 1012-square 80 20 688 \;;
+#X scalar 1012-square 100 20 840 \;;
+#X scalar 1012-square 120 20 880 \;;
+#X scalar 1012-square 140 20 688 \;;
+#X scalar 1012-square 160 20 688 \;;
+#X scalar 1012-square 180 20 688 \;;
+#X scalar 1012-square 0 40 376 \;;
+#X scalar 1012-square 20 40 840 \;;
+#X scalar 1012-square 40 40 688 \;;
+#X scalar 1012-square 60 40 840 \;;
+#X scalar 1012-square 80 40 376 \;;
+#X scalar 1012-square 100 40 688 \;;
+#X scalar 1012-square 120 40 688 \;;
+#X scalar 1012-square 140 40 376 \;;
+#X scalar 1012-square 160 40 840 \;;
+#X scalar 1012-square 180 40 840 \;;
+#X scalar 1012-square 0 60 688 \;;
+#X scalar 1012-square 20 60 880 \;;
+#X scalar 1012-square 40 60 376 \;;
+#X scalar 1012-square 60 60 688 \;;
+#X scalar 1012-square 80 60 688 \;;
+#X scalar 1012-square 100 60 688 \;;
+#X scalar 1012-square 120 60 880 \;;
+#X scalar 1012-square 140 60 880 \;;
+#X scalar 1012-square 160 60 688 \;;
+#X scalar 1012-square 180 60 840 \;;
+#X scalar 1012-square 0 80 376 \;;
+#X scalar 1012-square 20 80 880 \;;
+#X scalar 1012-square 40 80 840 \;;
+#X scalar 1012-square 60 80 376 \;;
+#X scalar 1012-square 80 80 688 \;;
+#X scalar 1012-square 100 80 880 \;;
+#X scalar 1012-square 120 80 688 \;;
+#X scalar 1012-square 140 80 376 \;;
+#X scalar 1012-square 160 80 688 \;;
+#X scalar 1012-square 180 80 840 \;;
+#X coords 0 0 199 99 200 100 2 0 0;
+#X restore 166 61 pd \$0-paint;
+#X text 625 532 Select effect channel with number keys. Select effect
+from selected channel with arrow keys. Select pause video with space
+bar. Select data structure fun with key d.;
+#N canvas 659 208 417 655 Keys 0;
+#X obj 158 320 s \$0-effect1BangKey1;
+#X obj 179 299 s \$0-effect2BangKey2;
+#X obj 200 278 s \$0-effect3BangKey3;
+#X obj 176 383 r \$0-effectNumber3;
+#X obj 161 407 f;
+#X obj 161 449 mod 25;
+#X obj 77 50 keyname;
+#X obj 77 71 == 0;
+#X obj 116 71 list fromsymbol;
+#X obj 116 405 f;
+#X obj 116 449 mod 25;
+#X obj 116 598 send;
+#X obj 137 534 \$0;
+#X obj 137 556 pack;
+#X obj 137 513 t b f;
+#X obj 137 470 r \$0-effectSelectColor;
+#X obj 137 492 + 1;
+#X obj 116 427 + 1;
+#X obj 161 428 - 1;
+#X msg 137 577 symbol \$1-effectNumber\$2Bang;
+#X obj 176 362 r \$0-effectNumber2;
+#X obj 176 341 r \$0-effectNumber1;
+#X obj 221 194 f;
+#X obj 221 215 + 1;
+#X obj 221 257 s \$0-spacePause;
+#X obj 236 172 r \$0-pause;
+#X obj 221 236 mod 2;
+#X obj 116 109 spigot 1;
+#X obj 116 130 sel 68 85 49 50 51 83 100;
+#X obj 242 151 s \$0-newStructColors;
+#X connect 3 0 4 1;
+#X connect 3 0 9 1;
+#X connect 4 0 18 0;
+#X connect 5 0 11 0;
+#X connect 6 0 7 0;
+#X connect 6 1 8 0;
+#X connect 7 0 27 1;
+#X connect 8 0 27 0;
+#X connect 9 0 17 0;
+#X connect 10 0 11 0;
+#X connect 12 0 13 0;
+#X connect 13 0 19 0;
+#X connect 14 0 12 0;
+#X connect 14 1 13 1;
+#X connect 15 0 16 0;
+#X connect 16 0 14 0;
+#X connect 17 0 10 0;
+#X connect 18 0 5 0;
+#X connect 19 0 11 1;
+#X connect 20 0 4 1;
+#X connect 20 0 9 1;
+#X connect 21 0 4 1;
+#X connect 21 0 9 1;
+#X connect 22 0 23 0;
+#X connect 23 0 26 0;
+#X connect 25 0 22 1;
+#X connect 26 0 24 0;
+#X connect 27 0 28 0;
+#X connect 28 0 9 0;
+#X connect 28 1 4 0;
+#X connect 28 2 0 0;
+#X connect 28 3 1 0;
+#X connect 28 4 2 0;
+#X connect 28 5 22 0;
+#X connect 28 6 29 0;
+#X restore 606 763 pd Keys;
+#N canvas 625 257 419 581 DataStructureFun 0;
+#N canvas 1073 435 481 227 \$0-square 0;
+#X obj 95 139 filledpolygon number 0 1 0 0 0 20 20 20 20 0;
+#X obj 96 76 struct \$0-square float x float y float number;
+#X obj 96 118 s \$0-newStructColors;
+#X obj 96 97 bang;
+#X connect 1 0 3 0;
+#X connect 3 0 2 0;
+#X restore 278 287 pd \$0-square;
+#N canvas 1072 307 406 493 \$0-grid 0;
+#X obj 220 142 symbol pd-\$0-paint;
+#X obj 220 184 pointer;
+#X obj 173 23 loadbang;
+#X obj 34 108 until;
+#X obj 34 150 f;
+#X msg 188 66 0;
+#X obj 34 129 t b b;
+#X obj 128 32 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 173 45 t b b b b b;
+#X obj 261 59 symbol pd-\$0-paint;
+#X msg 261 81 \; \$1 clear \;;
+#X msg 220 163 traverse \$1 \, bang;
+#X obj 236 122 s \$0-memreset;
+#X obj 61 150 + 20;
+#X obj 114 328 sel 0;
+#X obj 114 349 f;
+#X obj 114 307 mod 200;
+#X msg 34 87 50;
+#X obj 61 192 mod 200;
+#X obj 143 349 + 20;
+#X obj 114 370 - 20;
+#X obj 61 391 append \$0-square x y number;
+#X obj 34 433 sel 980;
+#X obj 34 454 outlet;
+#X obj 34 171 t f f;
+#X msg 182 349 688;
+#X msg 167 370 880;
+#X obj 167 286 sel 0 1 2 3;
+#X obj 167 265 random 4;
+#X msg 214 307 376;
+#X msg 198 328 840;
+#X obj 61 213 t f f;
+#X obj 61 412 outlet;
+#X connect 0 0 11 0;
+#X connect 1 0 21 3;
+#X connect 2 0 8 0;
+#X connect 3 0 6 0;
+#X connect 4 0 13 0;
+#X connect 4 0 24 0;
+#X connect 5 0 4 1;
+#X connect 5 0 15 0;
+#X connect 6 0 4 0;
+#X connect 6 1 28 0;
+#X connect 7 0 8 0;
+#X connect 8 0 17 0;
+#X connect 8 1 5 0;
+#X connect 8 3 0 0;
+#X connect 8 4 9 0;
+#X connect 8 4 12 0;
+#X connect 9 0 10 0;
+#X connect 11 0 1 0;
+#X connect 13 0 4 1;
+#X connect 14 0 15 0;
+#X connect 15 0 19 0;
+#X connect 15 0 20 0;
+#X connect 16 0 14 0;
+#X connect 17 0 3 0;
+#X connect 18 0 31 0;
+#X connect 19 0 15 1;
+#X connect 20 0 21 1;
+#X connect 21 0 32 0;
+#X connect 22 0 23 0;
+#X connect 24 0 22 0;
+#X connect 24 1 18 0;
+#X connect 25 0 21 2;
+#X connect 26 0 21 2;
+#X connect 27 0 26 0;
+#X connect 27 1 25 0;
+#X connect 27 2 30 0;
+#X connect 27 3 29 0;
+#X connect 28 0 27 0;
+#X connect 29 0 21 2;
+#X connect 30 0 21 2;
+#X connect 31 0 21 0;
+#X connect 31 1 16 0;
+#X restore 209 287 pd \$0-grid;
+#X obj 158 287 until;
+#X obj 158 308 f;
+#X obj 185 308 + 1;
+#X obj 158 245 t b b;
+#X obj 174 217 bng 15 250 50 0 empty empty new_colors 17 7 0 10 -258113
+-1 -1;
+#X obj 131 132 tgl 15 0 empty empty new_colors 17 7 0 10 -258113 -1
+-1 0 1;
+#X obj 88 518 set \$0-square number;
+#X obj 177 392 list split;
+#X obj 158 350 t b b f;
+#X msg 187 266 0;
+#X obj 266 329 r \$0-memreset;
+#X obj 158 329 + 0;
+#X obj 205 413 list split 1;
+#X obj 177 371 list;
+#X obj 209 350 list store;
+#X msg 266 308 prepend \$1;
+#X msg 158 266 50;
+#X obj 131 194 f;
+#X obj 158 194 + 1;
+#X obj 131 70 loadbang;
+#X msg 158 112 0;
+#X obj 131 173 t b b;
+#X msg 108 236 0;
+#X obj 131 49 r \$0-newStructColors;
+#X obj 131 152 metro 100;
+#X obj 108 215 sel 10;
+#X msg 103 476 688;
+#X msg 88 497 880;
+#X obj 88 413 sel 0 1 2 3;
+#X obj 88 392 random 4;
+#X msg 135 434 376;
+#X msg 119 455 840;
+#X obj 131 91 t b b;
+#X connect 1 0 16 0;
+#X connect 1 1 17 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 3 0 13 0;
+#X connect 4 0 3 1;
+#X connect 5 0 18 0;
+#X connect 5 1 11 0;
+#X connect 6 0 5 0;
+#X connect 7 0 26 0;
+#X connect 9 1 14 0;
+#X connect 10 0 31 0;
+#X connect 10 1 15 0;
+#X connect 10 2 9 1;
+#X connect 11 0 3 1;
+#X connect 12 0 16 1;
+#X connect 13 0 10 0;
+#X connect 14 0 8 1;
+#X connect 15 0 9 0;
+#X connect 16 0 15 1;
+#X connect 17 0 16 0;
+#X connect 18 0 2 0;
+#X connect 19 0 20 0;
+#X connect 19 0 27 0;
+#X connect 20 0 19 1;
+#X connect 21 0 34 0;
+#X connect 22 0 19 1;
+#X connect 23 0 19 0;
+#X connect 23 1 5 0;
+#X connect 24 0 7 0;
+#X connect 25 0 34 0;
+#X connect 26 0 23 0;
+#X connect 27 0 24 0;
+#X connect 28 0 8 0;
+#X connect 29 0 8 0;
+#X connect 30 0 29 0;
+#X connect 30 1 28 0;
+#X connect 30 2 33 0;
+#X connect 30 3 32 0;
+#X connect 31 0 30 0;
+#X connect 32 0 8 0;
+#X connect 33 0 8 0;
+#X connect 34 0 7 0;
+#X connect 34 1 22 0;
+#X restore 606 784 pd DataStructureFun;
+#N canvas 585 198 694 583 VideoPlayer 0;
+#X obj 360 66 openpanel;
+#X obj 360 46 bng 15 250 50 0 empty \$0-openVideo openVideo 17 7 0
+10 -257985 -1 -1;
+#X msg 360 87 moviefile \$1;
+#X msg 280 77 play;
+#X msg 303 118 stop;
+#X obj 368 125 tgl 15 0 empty \$0-pause pause 17 7 0 10 -257985 -1
+-1 0 1;
+#X obj 56 119 metro 40;
+#X obj 56 141 f;
+#X obj 56 99 tgl 15 0 empty \$0-manualTempo manualTempo 17 7 0 10 -257985
+-1 -1 0 1;
+#X msg 464 146 setVolume \$1;
+#X obj 283 532 hsl 128 15 0 1 0 0 \$0-positionSlider empty position
+-2 -8 0 10 -257985 -1 -1 0 1;
+#X msg 56 260 setPosition \$1;
+#X obj 59 240 hsl 128 15 0 1 0 0 empty \$0-setPosition setPosition
+-2 -8 0 10 -257985 -1 -1 0 0;
+#X obj 280 398 unpack f f f;
+#X obj 56 204 /;
+#X obj 113 79 hsl 128 15 -1000 1000 0 0 empty \$0-manualTempoSlider
+manualTempoSlider -2 -8 0 10 -257985 -1 -1 5862 1;
+#X obj 83 141 + 100;
+#X obj 56 162 / 100;
+#X obj 137 120 * 100;
+#X obj 122 141 mod;
+#X msg 368 145 setPaused \$1;
+#X msg 191 169 setFrame \$1;
+#X obj 280 346 ofelia define -k \$0-video1;
+#A set if type(window) ~= "userdata" then \; window = ofWindow() \;
+end \; \; local canvas = pdCanvas(this) \; local clock = pdClock(this
+\, "setup") \; local shaderDir = canvas:getDir() .. "/data/" \; local
+shader = ofShader() \; local videoPlayer = ofVideoPlayer() \; M.fbo1
+= ofFbo() \; M.fbo2 = ofFbo() \; M.fbo3 = ofFbo() \; M.fbo4 = ofFbo()
+\; \; function ofelia.new() \; ofWindow.addListener("setup" \, this)
+\; ofWindow.addListener("update" \, this) \; ofWindow.addListener("exit"
+\, this) \; window:setPosition(30 \, 100) \; window:setSize(800 \,
+600 ) \; if type(window) ~= "userdata" then \; window = ofWindow()
+\; end \; \; window:create() \; if ofWindow.exists then \; clock:delay(0)
+\; end \; end \; \; function ofelia.free() \; window:destroy() \; ofWindow.removeListener("setup"
+\, this) \; ofWindow.removeListener("update" \, this) \; ofWindow.removeListener("draw"
+\, this) \; ofWindow.removeListener("exit" \, this) \; end \; \; function
+ofelia.setup() \; ofSetWindowTitle("GLSL Video Effects") \; ofBackground(0
+\, 0 \, 0 \, 255) \; M.fbo1:allocate(800 \, 600) \; M.fbo1:beginFbo()
+\; ofClear(255 \, 255 \, 255 \, 0) \; M.fbo1:endFbo() \; M.fbo2:allocate(800
+\, 600) \; M.fbo2:beginFbo() \; ofClear(255 \, 255 \, 255 \, 0) \;
+M.fbo2:endFbo() \; M.fbo3:allocate(800 \, 600) \; M.fbo3:beginFbo()
+\; ofClear(255 \, 255 \, 255 \, 0) \; M.fbo3:endFbo() \; M.fbo4:allocate(800
+\, 600) \; M.fbo4:beginFbo() \; ofClear(255 \, 255 \, 255 \, 0) \;
+M.fbo4:endFbo() \; end \; \; function ofelia.moviefile(path) \; videoPlayer:load(path)
+\; ofWindow.addListener("draw" \, this) \; videoPlayer:setLoopState(OF_LOOP_NORMAL)
+\; videoPlayer:setPaused(true) \; end \; \; function ofelia.setTempo(f)
+\; videoPlayer:setSpeed(f / 100) \; end \; \; function ofelia.play()
+\; videoPlayer:play() \; end \; \; function ofelia.stop() \; videoPlayer:setFrame(0)
+\; videoPlayer:setPaused(true) \; end \; \; function ofelia.setPaused(f)
+\; if f == 1 then pause = true \; else pause = false \; end \; videoPlayer:setPaused(pause)
+\; end \; \; function ofelia.setFrame(f) \; videoPlayer:setFrame(f)
+\; end \; \; function ofelia.setPosition(f) \; videoPlayer:setPosition(f)
+\; end \; \; function ofelia.setVolume(f) \; videoPlayer:setVolume(f
+/ 100) \; end \; \; function ofelia.update() \; videoPlayer:update()
+\; end \; \; function ofelia.draw() \; M.fbo1:beginFbo() \; videoPlayer:draw(0
+\, 0 \, 800 \, 600) \; M.fbo1:endFbo() \; \; local outputList = {}
+\; outputList[1] = videoPlayer:getPosition() \; outputList[2] = videoPlayer:getCurrentFrame()
+\; outputList[3] = videoPlayer:getTotalNumFrames() \; return outputList
+\; end \; \; function ofelia.exit() \; videoPlayer:close() \; end \;
+;
+#X obj 280 57 bng 15 250 50 0 empty \$0-play play 17 7 0 10 -257985
+-1 -1;
+#X obj 303 98 bng 15 250 50 0 empty \$0-stop stop 17 7 0 10 -257985
+-1 -1;
+#X obj 464 127 nbx 5 14 -1e+037 1e+037 0 0 empty \$0-setVolume setVolume
+0 -8 0 10 -257985 -1 -1 0 256;
+#X obj 555 138 nbx 5 14 -1e+037 1e+037 0 0 empty \$0-setTempo setTempo
+0 -8 0 10 -257985 -1 -1 100 256;
+#X msg 555 157 setTempo \$1;
+#X obj 191 150 nbx 5 14 -1e+037 1e+037 0 0 empty \$0-setFrame setFrame
+0 -8 0 10 -257985 -1 -1 0 256;
+#X obj 314 471 nbx 5 14 -1e+037 1e+037 0 0 \$0-currentFrame empty currentFrame
+0 -8 0 10 -257985 -1 -1 0 256;
+#X obj 280 503 nbx 5 14 -1e+037 1e+037 0 0 \$0-position empty position
+0 -8 0 10 -257985 -1 -1 0 256;
+#X obj 349 435 nbx 5 14 -1e+037 1e+037 0 0 \$0-frameNumber empty frameNumber
+0 -8 0 10 -257985 -1 -1 0 256;
+#X obj 137 99 r \$0-frameNumber;
+#X obj 71 183 r \$0-frameNumber;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 2 0 22 0;
+#X connect 3 0 22 0;
+#X connect 4 0 22 0;
+#X connect 5 0 20 0;
+#X connect 6 0 7 0;
+#X connect 7 0 16 0;
+#X connect 7 0 17 0;
+#X connect 8 0 6 0;
+#X connect 9 0 22 0;
+#X connect 11 0 22 0;
+#X connect 12 0 11 0;
+#X connect 13 0 10 0;
+#X connect 13 0 30 0;
+#X connect 13 1 29 0;
+#X connect 13 2 31 0;
+#X connect 14 0 12 0;
+#X connect 15 0 16 1;
+#X connect 16 0 19 0;
+#X connect 17 0 14 0;
+#X connect 18 0 19 1;
+#X connect 19 0 7 1;
+#X connect 20 0 22 0;
+#X connect 21 0 22 0;
+#X connect 22 0 13 0;
+#X connect 23 0 3 0;
+#X connect 24 0 4 0;
+#X connect 25 0 9 0;
+#X connect 26 0 27 0;
+#X connect 27 0 22 0;
+#X connect 28 0 21 0;
+#X connect 32 0 18 0;
+#X connect 33 0 14 1;
+#X restore 606 700 pd VideoPlayer;
+#N canvas 292 170 1272 673 EffectParameter 0;
+#N canvas 360 186 1243 650 effectParameter 0;
+#X obj 20 20 cnv 15 1200 600 empty empty empty 20 12 0 14 -204800 -66577
+0;
+#N canvas 1458 308 431 559 Halftone 0;
+#X obj 21 71 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-Halftone_Sharpness
+Sharpness 0 -8 0 10 -257985 -1 -1 -32.22 256;
+#X obj 21 225 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-Halftone_Scale
+Scale 0 -8 0 10 -257985 -1 -1 63.12 256;
+#X obj 21 148 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-Halftone_Angle
+Angle 0 -8 0 10 -257985 -1 -1 -40.58 256;
+#X obj 21 265 s \$0-video;
+#X obj 21 188 s \$0-video;
+#X obj 21 111 s \$0-video;
+#X obj 21 302 nbx 5 14 -1e+037 1e+037 0 0 empty \$0-Halftone_Colorize
+Colorize 0 -8 0 10 -257985 -1 -1 147.61 256;
+#X obj 21 342 s \$0-video;
+#X obj 21 379 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-Halftone_Divs Divs
+0 -8 0 10 -257985 -1 -1 94.27 256;
+#X obj 21 419 s \$0-video;
+#X obj 21 497 s \$0-video;
+#X obj 21 456 hradio 15 1 0 3 empty \$0-Halftone_PatternType PatternType
+0 -8 0 10 -257985 -1 -1 1;
+#X msg 21 90 Halftone_Sharpness \$1;
+#X msg 21 167 Halftone_Angle \$1;
+#X msg 21 244 Halftone_Scale \$1;
+#X msg 21 321 Halftone_Colorize \$1;
+#X msg 21 398 Halftone_Divs \$1;
+#X msg 21 476 Halftone_PatternType \$1;
+#X connect 0 0 12 0;
+#X connect 1 0 14 0;
+#X connect 2 0 13 0;
+#X connect 6 0 15 0;
+#X connect 8 0 16 0;
+#X connect 11 0 17 0;
+#X connect 12 0 5 0;
+#X connect 13 0 4 0;
+#X connect 14 0 3 0;
+#X connect 15 0 7 0;
+#X connect 16 0 9 0;
+#X connect 17 0 10 0;
+#X coords 0 -1 1 1 150 452 1 20 20;
+#X restore 28 33 pd Halftone;
+#N canvas 497 171 431 280 MetaImage 0;
+#X obj 21 111 s \$0-video;
+#X obj 21 71 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-MetaImage_MosaicNumber
+MosaicNumber 0 -8 0 10 -257985 -1 -1 5 256;
+#X obj 21 188 s \$0-video;
+#X obj 21 148 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-MetaImage_ColorFade
+ColorFade 0 -8 0 10 -257985 -1 -1 100 256;
+#X msg 21 90 MetaImage_MosaicNumber \$1;
+#X msg 21 167 MetaImage_ColorFade \$1;
+#X connect 1 0 4 0;
+#X connect 3 0 5 0;
+#X connect 4 0 0 0;
+#X connect 5 0 2 0;
+#X coords 0 -1 1 1 150 143 1 20 20;
+#X restore 712 274 pd MetaImage;
+#N canvas 282 136 431 375 Kaleidoscope2 0;
+#X obj 21 71 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-Kaleidoscope2_Sides
+Sides 0 -8 0 10 -257985 -1 -1 23 256;
+#X obj 21 225 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-Kaleidoscope2_SlideX
+SlideX 0 -8 0 10 -257985 -1 -1 -30.21 256;
+#X obj 21 148 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-Kaleidoscope2_Angle
+Angle 0 -8 0 10 -257985 -1 -1 43.7 256;
+#X obj 21 265 s \$0-video;
+#X obj 21 188 s \$0-video;
+#X obj 21 111 s \$0-video;
+#X obj 21 302 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-Kaleidoscope2_SlideY
+SlideY 0 -8 0 10 -257985 -1 -1 15.13 256;
+#X obj 21 342 s \$0-video;
+#X msg 21 90 Kaleidoscope2_Sides \$1;
+#X msg 21 167 Kaleidoscope2_Angle \$1;
+#X msg 21 244 Kaleidoscope2_SlideX \$1;
+#X msg 21 321 Kaleidoscope2_SlideY \$1;
+#X connect 0 0 8 0;
+#X connect 1 0 10 0;
+#X connect 2 0 9 0;
+#X connect 6 0 11 0;
+#X connect 8 0 5 0;
+#X connect 9 0 4 0;
+#X connect 10 0 3 0;
+#X connect 11 0 7 0;
+#X coords 0 -1 1 1 150 297 1 20 20;
+#X restore 370 33 pd Kaleidoscope2;
+#N canvas 0 50 450 300 Grain 0;
+#X obj 21 71 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-Grain_Intensity
+Intensity 0 -8 0 10 -257985 -1 -1 29 256;
+#X obj 21 111 s \$0-video;
+#X msg 21 90 Grain_Intensity \$1;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X coords 0 -1 1 1 150 66 1 20 20;
+#X restore 199 208 pd Grain;
+#N canvas 415 32 450 446 NoiseWarp 0;
+#X obj 101 151 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-NoiseWarp_Frequency
+Frequency 0 -8 0 10 -257985 -1 -1 29 256;
+#X obj 101 228 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-NoiseWarp_Amplitude
+Amplitude 0 -8 0 10 -257985 -1 -1 4.18 256;
+#X obj 101 305 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-NoiseWarp_Speed
+Speed 0 -8 0 10 -257985 -1 -1 32 256;
+#X obj 101 268 s \$0-video;
+#X obj 101 191 s \$0-video;
+#X obj 101 345 s \$0-video;
+#X msg 101 247 NoiseWarp_Amplitude \$1;
+#X msg 101 324 NoiseWarp_Speed \$1;
+#X msg 101 170 NoiseWarp_Frequency \$1;
+#X connect 0 0 8 0;
+#X connect 1 0 6 0;
+#X connect 2 0 7 0;
+#X connect 6 0 3 0;
+#X connect 7 0 5 0;
+#X connect 8 0 4 0;
+#X coords 0 -1 1 1 150 220 1 100 100;
+#X restore 541 197 pd NoiseWarp;
+#N canvas 594 292 450 300 MosaicColor 0;
+#X obj 21 111 s \$0-video;
+#X obj 21 71 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-MosaicColor_MosaicNumber
+MosaicNumber 0 -8 0 10 -257985 -1 -1 10 256;
+#X msg 21 90 MosaicColor_MosaicNumber \$1;
+#X connect 1 0 2 0;
+#X connect 2 0 0 0;
+#X coords 0 -1 1 1 150 66 1 20 20;
+#X restore 199 295 pd MosaicColor;
+#N canvas 0 50 450 300 GreyScale 0;
+#X obj 21 111 s \$0-video;
+#X obj 21 71 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-GreyScale_Factor
+Factor 0 -8 0 10 -257985 -1 -1 0 256;
+#X msg 21 90 GreyScale_Factor \$1;
+#X connect 1 0 2 0;
+#X connect 2 0 0 0;
+#X coords 0 -1 1 1 150 66 1 20 20;
+#X restore 199 382 pd GreyScale;
+#N canvas 639 160 450 300 HSBShift 0;
+#X obj 21 71 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-HSBShift_Hue Hue
+0 -8 0 10 -257985 -1 -1 56 256;
+#X obj 21 225 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-HSBShift_Brightness
+Brightness 0 -8 0 10 -257985 -1 -1 40 256;
+#X obj 21 148 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-HSBShift_Saturation
+Saturation 0 -8 0 10 -257985 -1 -1 87 256;
+#X obj 21 265 s \$0-video;
+#X obj 21 188 s \$0-video;
+#X obj 21 111 s \$0-video;
+#X msg 21 90 HSBShift_Hue \$1;
+#X msg 21 167 HSBShift_Saturation \$1;
+#X msg 21 244 HSBShift_Brightness \$1;
+#X connect 0 0 6 0;
+#X connect 1 0 8 0;
+#X connect 2 0 7 0;
+#X connect 6 0 5 0;
+#X connect 7 0 4 0;
+#X connect 8 0 3 0;
+#X coords 0 -1 1 1 150 220 1 20 20;
+#X restore 712 33 pd HSBShift;
+#N canvas 0 50 450 300 Kaleidoscope 0;
+#X obj 21 111 s \$0-video;
+#X obj 21 71 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-Kaleidoscope_Segments
+Segments 0 -8 0 10 -257985 -1 -1 5 256;
+#X msg 21 90 Kaleidoscope_Segments \$1;
+#X connect 1 0 2 0;
+#X connect 2 0 0 0;
+#X coords 0 -1 1 1 150 66 1 20 20;
+#X restore 199 469 pd Kaleidoscope;
+#N canvas 0 50 450 300 VerticalTiltShift 0;
+#X obj 21 188 s \$0-video;
+#X obj 21 71 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-VertlTiltShift_V
+V 0 -8 0 10 -257985 -1 -1 6.25 256;
+#X obj 21 148 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-VertlTiltShiftR
+R 0 -8 0 10 -257985 -1 -1 141.54 256;
+#X obj 21 111 s \$0-video;
+#X msg 21 90 VertlTiltShift_V \$1;
+#X msg 21 167 VertlTiltShift_R \$1;
+#X connect 1 0 4 0;
+#X connect 2 0 5 0;
+#X connect 4 0 3 0;
+#X connect 5 0 0 0;
+#X coords 0 -1 1 1 150 143 1 20 20;
+#X restore 712 438 pd VerticalTiltShift;
+#N canvas 73 177 450 300 Bokeh 0;
+#X obj 101 191 s \$0-video;
+#X obj 101 268 s \$0-video;
+#X obj 101 228 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-Bokeh_Focus Focus
+0 -8 0 10 -257985 -1 -1 125 256;
+#X obj 101 151 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-Bokeh_Bias Bias
+0 -8 0 10 -257985 -1 -1 181 256;
+#X msg 101 170 Bokeh_Bias \$1;
+#X msg 101 247 Bokeh_Focus \$1;
+#X connect 2 0 5 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X connect 5 0 1 0;
+#X coords 0 -1 1 1 150 143 1 100 100;
+#X restore 541 33 pd Bokeh;
+#N canvas 0 50 450 300 AsciiArt 0;
+#X obj 21 71 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-AsciiArt_Letters
+Letters 0 -8 0 10 -257985 -1 -1 19 256;
+#X obj 21 111 s \$0-video;
+#X msg 21 90 AsciiArt_Letters \$1;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X coords 0 -1 1 1 150 66 1 20 20;
+#X restore 882 529 pd AsciiArt;
+#N canvas 0 50 450 300 Contrast 0;
+#X obj 21 71 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-Contrast_Contrast
+Contrast 0 -8 0 10 -257985 -1 -1 107 256;
+#X obj 21 148 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-Contrast_Brightness
+Brightness 0 -8 0 10 -257985 -1 -1 200 256;
+#X obj 21 225 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-Contrast_Multiple
+Multiple 0 -8 0 10 -257985 -1 -1 75 256;
+#X obj 21 111 s \$0-video;
+#X obj 21 188 s \$0-video;
+#X obj 21 265 s \$0-video;
+#X msg 21 90 Contrast_Contrast \$1;
+#X msg 21 167 Contrast_Brightness \$1;
+#X msg 21 244 Contrast_Multiple \$1;
+#X connect 0 0 6 0;
+#X connect 1 0 7 0;
+#X connect 2 0 8 0;
+#X connect 6 0 3 0;
+#X connect 7 0 4 0;
+#X connect 8 0 5 0;
+#X coords 0 -1 1 1 150 220 1 20 20;
+#X restore 1054 33 pd Contrast;
+#N canvas 0 50 450 300 GLSLdplctpix 0;
+#X obj 21 71 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-GLSLdplctpix_XDEForm
+XDEForm 0 -8 0 10 -257985 -1 -1 107 256;
+#X obj 21 111 s \$0-video;
+#X msg 21 90 GLSLdplctpix_XDEForm \$1;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X coords 0 -1 1 1 150 66 1 20 20;
+#X restore 370 351 pd GLSLdplctpix;
+#N canvas 492 229 450 300 Angle 0;
+#X obj 21 71 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-Angle_K K 0 -8 0
+10 -257985 -1 -1 148 256;
+#X obj 21 111 s \$0-video;
+#X obj 216 130 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0 256;
+#X msg 21 90 Angle_K \$1;
+#X connect 0 0 3 0;
+#X connect 3 0 1 0;
+#X coords 0 -1 1 1 150 66 1 20 20;
+#X restore 28 506 pd Angle;
+#N canvas 418 244 450 300 GaussianBlur 0;
+#X obj 21 71 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-GaussianBlur_Radius
+Radius 0 -8 0 10 -257985 -1 -1 14.77 256;
+#X obj 21 111 s \$0-video;
+#X msg 21 90 GaussianBlur_Radius \$1;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X coords 0 -1 1 1 150 66 1 20 20;
+#X restore 199 33 pd GaussianBlur;
+#N canvas 0 50 450 300 Bleach 0;
+#X obj 21 71 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-Bleach_Opacity Opacity
+0 -8 0 10 -257985 -1 -1 23 256;
+#X obj 21 111 s \$0-video;
+#X msg 21 90 Bleach_Opacity \$1;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X coords 0 -1 1 1 150 66 1 20 20;
+#X restore 199 121 pd Bleach;
+#N canvas 632 632 450 300 MagnifyingGlass 0;
+#X obj 101 191 s \$0-video;
+#X obj 101 268 s \$0-video;
+#X obj 101 228 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-MagnifyingGlass_H
+H 0 -8 0 10 -257985 -1 -1 126 256;
+#X obj 101 151 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-MagnifyingGlass_R
+R 0 -8 0 10 -257985 -1 -1 196 256;
+#X msg 101 170 MagnifyingGlass_R \$1;
+#X msg 101 247 MagnifyingGlass_H \$1;
+#X connect 2 0 5 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X connect 5 0 1 0;
+#X coords 0 -1 1 1 150 143 1 100 100;
+#X restore 541 438 pd MagnifyingGlass;
+#N canvas 882 106 450 300 Pixelate 0;
+#X obj 101 191 s \$0-video;
+#X obj 101 268 s \$0-video;
+#X obj 101 151 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-Pixelate_XPixels
+XPixels 0 -8 0 10 -257985 -1 -1 100 256;
+#X obj 101 228 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-Pixelate_YPixels
+YPixels 0 -8 0 10 -257985 -1 -1 100 256;
+#X msg 101 247 Pixelate_YPixels \$1;
+#X msg 101 170 Pixelate_XPixels \$1;
+#X connect 2 0 5 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 5 0 0 0;
+#X coords 0 -1 1 1 150 143 1 100 100;
+#X restore 883 33 pd Pixelate;
+#N canvas 974 515 450 300 PositionShift 0;
+#X obj 101 268 s \$0-video;
+#X obj 101 191 s \$0-video;
+#X obj 101 228 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-PositionShift_RateY
+RateY 0 -8 0 10 -257985 -1 -1 39.7 256;
+#X obj 101 151 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-PositionShift_RateX
+RateX 0 -8 0 10 -257985 -1 -1 139 256;
+#X msg 101 170 PositionShift_RateX \$1;
+#X msg 101 247 PositionShift_RateY \$1;
+#X connect 2 0 5 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 5 0 0 0;
+#X coords 0 -1 1 1 150 143 1 100 100;
+#X restore 883 197 pd PositionShift;
+#N canvas 624 100 450 300 RGBShift 0;
+#X obj 101 268 s \$0-video;
+#X obj 101 191 s \$0-video;
+#X obj 101 228 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-RGBShift_Amount
+Amount 0 -8 0 10 -257985 -1 -1 -2.3 256;
+#X obj 101 151 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-RGBShift_Angle
+Angle 0 -8 0 10 -257985 -1 -1 -98.79 256;
+#X msg 101 170 RGBShift_Angle \$1;
+#X msg 101 247 RGBShift_Amount \$1;
+#X connect 2 0 5 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 5 0 0 0;
+#X coords 0 -1 1 1 150 143 1 100 100;
+#X restore 883 361 pd RGBShift;
+#N canvas 436 111 450 300 CircleWarp 0;
+#X obj 101 268 s \$0-video;
+#X obj 101 191 s \$0-video;
+#X obj 101 228 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-CircleWarp_Radius
+CircleRadius 0 -8 0 10 -257985 -1 -1 23 256;
+#X obj 101 151 nbx 7 14 -1e+037 1e+037 0 0 empty \$0-CircleWarp_Rotation
+Rotation 0 -8 0 10 -257985 -1 -1 444 256;
+#X msg 101 170 CircleWarp_Rotation \$1;
+#X msg 101 247 CircleWarp_Radius \$1;
+#X connect 2 0 5 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 5 0 0 0;
+#X coords 0 -1 1 1 150 143 1 100 100;
+#X restore 370 438 pd CircleWarp;
+#X coords 0 -1 1 1 1200 600 2 20 20;
+#X restore 32 30 pd effectParameter;
+#X restore 606 742 pd EffectParameter;
+#N canvas 310 140 1186 715 EffectChain 0;
+#X obj 731 39 bng 42 250 50 0 empty \$0-effect1Bang empty 17 7 0 10
+-257985 -1 -1;
+#X obj 872 37 bng 42 250 50 0 empty \$0-effect2Bang empty 17 7 0 10
+-257985 -1 -1;
+#X obj 1013 38 bng 42 250 50 0 empty \$0-effect3Bang empty 17 7 0 10
+-257985 -1 -1;
+#X msg 731 86 0;
+#X msg 1013 85 2;
+#X msg 872 85 1;
+#X obj 731 105 s \$0-effectSelectColor;
+#X obj 872 105 s \$0-effectSelectColor;
+#X obj 1013 105 s \$0-effectSelectColor;
+#X obj 731 325 r \$0-effectSelectColor;
+#X obj 731 346 sel 0 1 2;
+#X obj 989 638 list trim;
+#X obj 989 617 list prepend color;
+#X obj 989 659 s \$0-effect3Canvas;
+#X obj 731 640 list trim;
+#X obj 731 619 list prepend color;
+#X obj 731 661 s \$0-effect1Canvas;
+#X msg 731 577 248 252 0;
+#X obj 860 638 list trim;
+#X obj 860 617 list prepend color;
+#X obj 860 659 s \$0-effect2Canvas;
+#X obj 731 535 sel 0 1;
+#X msg 750 556 196 252 252;
+#X msg 860 575 248 252 0;
+#X obj 860 533 sel 0 1;
+#X msg 879 554 196 252 252;
+#X msg 989 575 248 252 0;
+#X obj 989 533 sel 0 1;
+#X msg 1008 554 196 252 252;
+#X msg 765 367 0 0 1;
+#X obj 765 388 unpack f f f;
+#X obj 748 430 unpack f f f;
+#X obj 731 472 unpack f f f;
+#X msg 731 451 1 0 0;
+#X msg 748 409 0 1 0;
+#X obj 326 74 r \$0-effectNumber1;
+#X obj 351 179 + 1;
+#X obj 344 200 * 20;
+#X obj 326 221 +;
+#X obj 326 137 t f f;
+#X obj 326 158 * 162;
+#X obj 731 146 r \$0-effectSelectColor;
+#X obj 756 209 + 1;
+#X obj 731 251 +;
+#X obj 731 304 s pd-\$0-effect;
+#X obj 731 167 t f f;
+#X obj 731 188 * 162;
+#X obj 749 230 * 21;
+#X obj 326 274 s pd-\$0-effectParameter;
+#X obj 326 95 r \$0-effectNumber2;
+#X obj 326 116 r \$0-effectNumber3;
+#X msg 731 272 coords 1 -1 1 1 161 415 2 \, coords 0 0 160 414 161
+415 2 \$1 20;
+#X msg 326 242 coords 1 -1 1 1 162 322 2 \, coords 0 0 161 321 162
+322 2 \$1 20;
+#X obj 731 126 s \$0-effectNumber1Bang;
+#X obj 872 126 s \$0-effectNumber2Bang;
+#X obj 1013 126 s \$0-effectNumber3Bang;
+#N canvas 672 325 450 300 RGBToPdFloatColor 0;
+#X obj 195 139 +;
+#X obj 138 153 +;
+#X obj 138 116 * -65536;
+#X obj 195 116 * -256;
+#X obj 240 116 * -1;
+#X obj 138 175 - 1;
+#X obj 138 95 unpack f f f;
+#X obj 138 74 inlet;
+#X obj 138 196 outlet;
+#X connect 0 0 1 1;
+#X connect 1 0 5 0;
+#X connect 2 0 1 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 1;
+#X connect 5 0 8 0;
+#X connect 6 0 2 0;
+#X connect 6 1 3 0;
+#X connect 6 2 4 0;
+#X connect 7 0 6 0;
+#X restore 731 598 pd RGBToPdFloatColor;
+#N canvas 709 332 450 300 RGBToPdFloatColor 0;
+#X obj 195 139 +;
+#X obj 138 153 +;
+#X obj 138 116 * -65536;
+#X obj 195 116 * -256;
+#X obj 240 116 * -1;
+#X obj 138 175 - 1;
+#X obj 138 95 unpack f f f;
+#X obj 138 74 inlet;
+#X obj 138 196 outlet;
+#X connect 0 0 1 1;
+#X connect 1 0 5 0;
+#X connect 2 0 1 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 1;
+#X connect 5 0 8 0;
+#X connect 6 0 2 0;
+#X connect 6 1 3 0;
+#X connect 6 2 4 0;
+#X connect 7 0 6 0;
+#X restore 860 596 pd RGBToPdFloatColor;
+#N canvas 682 325 450 300 RGBToPdFloatColor 0;
+#X obj 195 139 +;
+#X obj 138 153 +;
+#X obj 138 116 * -65536;
+#X obj 195 116 * -256;
+#X obj 240 116 * -1;
+#X obj 138 175 - 1;
+#X obj 138 95 unpack f f f;
+#X obj 138 74 inlet;
+#X obj 138 196 outlet;
+#X connect 0 0 1 1;
+#X connect 1 0 5 0;
+#X connect 2 0 1 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 1;
+#X connect 5 0 8 0;
+#X connect 6 0 2 0;
+#X connect 6 1 3 0;
+#X connect 6 2 4 0;
+#X connect 7 0 6 0;
+#X restore 989 596 pd RGBToPdFloatColor;
+#X obj 37 182 r \$0-video;
+#X obj 79 224 ofelia define -k \$0-effect1;
+#A set local M = require("\$0-video1") \; \; local canvas = pdCanvas(this)
+\; local clock = pdClock(this \, "setup") \; local shaderDir = canvas:getDir()
+.. "/data/" \; local shader1 = ofShader() \; \; function ofelia.new()
+\; ofWindow.addListener("setup" \, this) \; ofWindow.addListener("draw"
+\, this) \; ofWindow.addListener("exit" \, this) \; end \; \; function
+ofelia.free() \; window:destroy() \; ofWindow.removeListener("setup"
+\, this) \; ofWindow.removeListener("draw" \, this) \; ofWindow.removeListener("exit"
+\, this) \; end \; \; function ofelia.glsl(s) \; shader1:load(shaderDir
+.. s) \; end \; \; function ofelia.draw() \; local mouseX = ofGetMouseX()
+\; local mouseY = ofGetMouseY() \; shader1:beginShader() \; shader1:setUniform1f("time"
+\, ofGetElapsedTimeMillis()) \; shader1:setUniform2f("resolution" \,
+800 \, 600) \; shader1:setUniform2f("center" \, ofGetWindowWidth()/2
+\, ofGetWindowHeight()/2) \; shader1:setUniform2f("mouse" \, mouseX
+\, mouseY) \; \; shader1:setUniform1f("Angle_K" \, ofelia.Angle_K)
+\; shader1:setUniform1f("AsciiArt_Letters" \, ofelia.AsciiArt_Letters)
+\; shader1:setUniform1f("Bleach_Opacity" \, ofelia.Bleach_Opacity)
+\; shader1:setUniform1f("Bokeh_Bias" \, ofelia.Bokeh_Bias / 100) \;
+shader1:setUniform1f("Bokeh_Focus" \, ofelia.Bokeh_Focus / 100) \;
+shader1:setUniform1f("Contrast_Contrast" \, ofelia.Contrast_Contrast
+/ 100) \; shader1:setUniform1f("Contrast_Multiple" \, ofelia.Contrast_Multiple
+/ 100) \; shader1:setUniform1f("Contrast_Brightness" \, ofelia.Contrast_Brightness
+/ 100) \; shader1:setUniform1f("CircleWarp_Rotation" \, ofelia.CircleWarp_Rotation
+/ 100) \; shader1:setUniform1f("CircleWarp_Radius" \, ofelia.CircleWarp_Radius
+/ 200) \; shader1:setUniform1f("GaussianBlur_Radius" \, ofelia.GaussianBlur_Radius
+/ 100) \; shader1:setUniform1f("GLSLdplctpix_XDEForm" \, ofelia.GLSLdplctpix_XDEForm
+/ 100) \; shader1:setUniform1f("Halftone_Sharpness" \, ofelia.Halftone_Sharpness
+/ 100) \; shader1:setUniform1f("Halftone_Angle" \, ofelia.Halftone_Angle
+/ 100) \; shader1:setUniform1f("Halftone_Scale" \, ofelia.Halftone_Scale
+/ 100) \; shader1:setUniform1f("Halftone_Colorize " \, ofelia.Halftone_Colorize
+/ 100) \; shader1:setUniform1f("Halftone_Divs" \, ofelia.Halftone_Divs
+/ 100) \; shader1:setUniform1i("Halftone_PatternType" \, ofelia.Halftone_PatternType)
+\; shader1:setUniform1f("HSBShift_Hue" \, ofelia.HSBShift_Hue / 100)
+\; shader1:setUniform1f("HSBShift_Brightness" \, ofelia.HSBShift_Brightness
+/ 100) \; shader1:setUniform1f("HSBShift_Saturation" \, ofelia.HSBShift_Saturation
+/ 100) \; shader1:setUniform1f("Kaleidoscope_Segments" \, ofelia.Kaleidoscope_Segments)
+\; shader1:setUniform1f("Kaleidoscope2_Sides" \, ofelia.Kaleidoscope2_Sides)
+\; shader1:setUniform1f("Kaleidoscope2_Angle" \, ofelia.Kaleidoscope2_Angle
+/ 100) \; shader1:setUniform1f("Kaleidoscope2_SlideX" \, ofelia.Kaleidoscope2_SlideX
+/ 100) \; shader1:setUniform1f("Kaleidoscope2_SlideY" \, ofelia.Kaleidoscope2_SlideY
+/ 100) \; shader1:setUniform1f("MetaImage_MosaicNumber" \, ofelia.MetaImage_MosaicNumber)
+\; shader1:setUniform1f("MetaImage_ColorFade" \, ofelia.MetaImage_ColorFade
+/ 100) \; shader1:setUniform1f("MagnifyingGlass_R" \, ofelia.MagnifyingGlass_R)
+\; shader1:setUniform1f("MagnifyingGlass_H" \, ofelia.MagnifyingGlass_H)
+\; shader1:setUniform1f("MosaicColor_MosaicNumber" \, ofelia.MosaicColor_MosaicNumber)
+\; shader1:setUniform1f("NoiseWarp_Frequency" \, ofelia.NoiseWarp_Frequency)
+\; shader1:setUniform1f("NoiseWarp_Amplitude" \, ofelia.NoiseWarp_Amplitude
+/ 100) \; shader1:setUniform1f("NoiseWarp_Speed" \, ofelia.NoiseWarp_Speed
+/ 10000) \; shader1:setUniform1f("Pixelate_XPixels" \, ofelia.Pixelate_XPixels)
+\; shader1:setUniform1f("Pixelate_YPixels" \, ofelia.Pixelate_YPixels)
+\; shader1:setUniform1f("PositionShift_RateX" \, ofelia.PositionShift_RateX
+/ 100) \; shader1:setUniform1f("PositionShift_RateY" \, ofelia.PositionShift_RateY
+/ 100) \; shader1:setUniform1f("RGBShift_Angle" \, ofelia.RGBShift_Angle
+/ 100) \; shader1:setUniform1f("RGBShift_Amount" \, ofelia.RGBShift_Amount
+/ 100) \; shader1:setUniform1f("VertlTiltShift_V" \, ofelia.VertlTiltShift_V
+/ 100) \; shader1:setUniform1f("VertlTiltShift_R" \, ofelia.VertlTiltShift_R
+/ 100) \; \; M.fbo2:beginFbo() \; ofClear(255 \, 255 \, 255 \, 0) \;
+M.fbo1:draw(0 \, 0 \, 800 \, 600) \; M.fbo2:endFbo() \; shader1:endShader()
+\; M.fbo2:draw(0 \, 0 \, 800 \, 600) \; end \; \; function ofelia.exit()
+\; shader1:unload() \; end \;;
+#X msg 79 203 glsl \$1;
+#X obj 79 57 text get \$0-shaderList;
+#X symbolatom 106 99 30 0 0 0 - - -;
+#X obj 79 38 nbx 5 14 0 24 0 0 empty \$0-effectNumber1 empty 0 -8 0
+10 -228856 -1 -1 18 256;
+#X obj 106 140 list prepend label;
+#X obj 106 161 list trim;
+#X obj 106 182 s \$0-effect1Canvas;
+#X msg 106 119 E1:\$1;
+#X obj 79 78 t s s;
+#X symbolatom 106 306 30 0 0 0 - - -;
+#X obj 106 347 list prepend label;
+#X obj 106 368 list trim;
+#X msg 106 326 E2:\$1;
+#X obj 37 389 r \$0-video;
+#X obj 79 431 ofelia define -k \$0-effect2;
+#A set local M = require("\$0-video1") \; \; local canvas = pdCanvas(this)
+\; local clock = pdClock(this \, "setup") \; local shaderDir = canvas:getDir()
+.. "/data/" \; local shader2 = ofShader() \; \; function ofelia.new()
+\; ofWindow.addListener("setup" \, this) \; ofWindow.addListener("draw"
+\, this) \; ofWindow.addListener("exit" \, this) \; end \; \; function
+ofelia.free() \; window:destroy() \; ofWindow.removeListener("setup"
+\, this) \; ofWindow.removeListener("draw" \, this) \; ofWindow.removeListener("exit"
+\, this) \; end \; \; function ofelia.glsl(s) \; shader2:load(shaderDir
+.. s) \; end \; \; function ofelia.draw() \; local mouseX = ofGetMouseX()
+\; local mouseY = ofGetMouseY() \; shader2:beginShader() \; shader2:setUniform1f("time"
+\, ofGetElapsedTimeMillis()) \; shader2:setUniform2f("resolution" \,
+800 \, 600) \; shader2:setUniform2f("center" \, ofGetWindowWidth()/2
+\, ofGetWindowHeight()/2) \; shader2:setUniform2f("mouse" \, mouseX
+\, mouseY) \; \; shader2:setUniform1f("Angle_K" \, ofelia.Angle_K)
+\; shader2:setUniform1f("AsciiArt_Letters" \, ofelia.AsciiArt_Letters)
+\; shader2:setUniform1f("Bleach_Opacity" \, ofelia.Bleach_Opacity)
+\; shader2:setUniform1f("Bokeh_Bias" \, ofelia.Bokeh_Bias / 100) \;
+shader2:setUniform1f("Bokeh_Focus" \, ofelia.Bokeh_Focus / 100) \;
+shader2:setUniform1f("Contrast_Contrast" \, ofelia.Contrast_Contrast
+/ 100) \; shader2:setUniform1f("Contrast_Multiple" \, ofelia.Contrast_Multiple
+/ 100) \; shader2:setUniform1f("Contrast_Brightness" \, ofelia.Contrast_Brightness
+/ 100) \; shader2:setUniform1f("CircleWarp_Rotation" \, ofelia.CircleWarp_Rotation
+/ 100) \; shader2:setUniform1f("CircleWarp_Radius" \, ofelia.CircleWarp_Radius
+/ 200) \; shader2:setUniform1f("GaussianBlur_Radius" \, ofelia.GaussianBlur_Radius
+/ 100) \; shader2:setUniform1f("GLSLdplctpix_XDEForm" \, ofelia.GLSLdplctpix_XDEForm
+/ 100) \; shader2:setUniform1f("Grain_Intensity" \, ofelia.Grain_Intensity)
+\; shader2:setUniform1f("Halftone_Sharpness" \, ofelia.Halftone_Sharpness
+/ 100) \; shader2:setUniform1f("Halftone_Angle" \, ofelia.Halftone_Angle
+/ 100) \; shader2:setUniform1f("Halftone_Scale" \, ofelia.Halftone_Scale
+/ 100) \; shader2:setUniform1f("Halftone_Colorize " \, ofelia.Halftone_Colorize
+/ 100) \; shader2:setUniform1f("Halftone_Divs" \, ofelia.Halftone_Divs
+/ 100) \; shader2:setUniform1i("Halftone_PatternType" \, ofelia.Halftone_PatternType)
+\; shader2:setUniform1f("HSBShift_Hue" \, ofelia.HSBShift_Hue / 100)
+\; shader2:setUniform1f("HSBShift_Brightness" \, ofelia.HSBShift_Brightness
+/ 100) \; shader2:setUniform1f("HSBShift_Saturation" \, ofelia.HSBShift_Saturation
+/ 100) \; shader2:setUniform1f("Kaleidoscope_Segments" \, ofelia.Kaleidoscope_Segments)
+\; shader2:setUniform1f("Kaleidoscope2_Sides" \, ofelia.Kaleidoscope2_Sides)
+\; shader2:setUniform1f("Kaleidoscope2_Angle" \, ofelia.Kaleidoscope2_Angle
+/ 100) \; shader2:setUniform1f("Kaleidoscope2_SlideX" \, ofelia.Kaleidoscope2_SlideX
+/ 100) \; shader2:setUniform1f("Kaleidoscope2_SlideY" \, ofelia.Kaleidoscope2_SlideY
+/ 100) \; shader2:setUniform1f("MetaImage_MosaicNumber" \, ofelia.MetaImage_MosaicNumber)
+\; shader2:setUniform1f("MetaImage_ColorFade" \, ofelia.MetaImage_ColorFade
+/ 100) \; shader2:setUniform1f("MagnifyingGlass_R" \, ofelia.MagnifyingGlass_R
+/ 100) \; shader2:setUniform1f("MagnifyingGlass_H" \, ofelia.MagnifyingGlass_H)
+\; shader2:setUniform1f("MosaicColor_MosaicNumber" \, ofelia.MosaicColor_MosaicNumber)
+\; shader2:setUniform1f("NoiseWarp_Frequency" \, ofelia.NoiseWarp_Frequency)
+\; shader2:setUniform1f("NoiseWarp_Amplitude" \, ofelia.NoiseWarp_Amplitude
+/ 100) \; shader2:setUniform1f("NoiseWarp_Speed" \, ofelia.NoiseWarp_Speed
+/ 10000) \; shader2:setUniform1f("Pixelate_XPixels" \, ofelia.Pixelate_XPixels)
+\; shader2:setUniform1f("Pixelate_YPixels" \, ofelia.Pixelate_YPixels)
+\; shader2:setUniform1f("PositionShift_RateX" \, ofelia.PositionShift_RateX
+/ 100) \; shader2:setUniform1f("PositionShift_RateY" \, ofelia.PositionShift_RateY
+/ 100) \; shader2:setUniform1f("RGBShift_Angle" \, ofelia.RGBShift_Angle
+/ 100) \; shader2:setUniform1f("RGBShift_Amount" \, ofelia.RGBShift_Amount
+/ 100) \; shader2:setUniform1f("VertlTiltShift_V" \, ofelia.VertlTiltShift_V
+/ 100) \; shader2:setUniform1f("VertlTiltShift_R" \, ofelia.VertlTiltShift_R
+/ 100) \; \; M.fbo3:beginFbo() \; ofClear(255 \, 255 \, 255 \, 0) \;
+M.fbo2:draw(0 \, 0 \, 800 \, 600) \; M.fbo3:endFbo() \; shader2:endShader()
+\; M.fbo3:draw(0 \, 0 \, 800 \, 600) \; end \; \; function ofelia.exit()
+\; shader2:unload() \; end \;;
+#X msg 79 410 glsl \$1;
+#X obj 79 264 text get \$0-shaderList;
+#X obj 79 245 nbx 5 14 0 24 0 0 empty \$0-effectNumber2 empty 0 -8
+0 10 -228856 -1 -1 23 256;
+#X obj 106 389 s \$0-effect2Canvas;
+#X obj 79 285 t s s;
+#X symbolatom 106 513 30 0 0 0 - - -;
+#X obj 106 554 list prepend label;
+#X obj 106 575 list trim;
+#X obj 106 596 s \$0-effect3Canvas;
+#X msg 106 533 E3:\$1;
+#X obj 37 596 r \$0-video;
+#X obj 79 638 ofelia define -k \$0-effect3;
+#A set local M = require("\$0-video1") \; \; local canvas = pdCanvas(this)
+\; local clock = pdClock(this \, "setup") \; local shaderDir = canvas:getDir()
+.. "/data/" \; local shader3 = ofShader() \; \; function ofelia.new()
+\; ofWindow.addListener("setup" \, this) \; ofWindow.addListener("draw"
+\, this) \; ofWindow.addListener("exit" \, this) \; end \; \; function
+ofelia.free() \; window:destroy() \; ofWindow.removeListener("setup"
+\, this) \; ofWindow.removeListener("draw" \, this) \; ofWindow.removeListener("exit"
+\, this) \; end \; \; function ofelia.glsl(s) \; shader3:load(shaderDir
+.. s) \; end \; \; function ofelia.draw() \; local mouseX = ofGetMouseX()
+\; local mouseY = ofGetMouseY() \; shader3:beginShader() \; shader3:setUniform1f("time"
+\, ofGetElapsedTimeMillis()) \; shader3:setUniform2f("resolution" \,
+800 \, 600) \; shader3:setUniform2f("center" \, ofGetWindowWidth()/2
+\, ofGetWindowHeight()/2) \; shader3:setUniform2f("mouse" \, mouseX
+\, mouseY) \; \; shader3:setUniform1f("Angle_K" \, ofelia.Angle_K)
+\; shader3:setUniform1f("AsciiArt_Letters" \, ofelia.AsciiArt_Letters)
+\; shader3:setUniform1f("Bleach_Opacity" \, ofelia.Bleach_Opacity)
+\; shader3:setUniform1f("Bokeh_Bias" \, ofelia.Bokeh_Bias / 100) \;
+shader3:setUniform1f("Bokeh_Focus" \, ofelia.Bokeh_Focus / 100) \;
+shader3:setUniform1f("Contrast_Contrast" \, ofelia.Contrast_Contrast
+/ 100) \; shader3:setUniform1f("Contrast_Multiple" \, ofelia.Contrast_Multiple
+/ 100) \; shader3:setUniform1f("Contrast_Brightness" \, ofelia.Contrast_Brightness
+/ 100) \; shader3:setUniform1f("CircleWarp_Rotation" \, ofelia.CircleWarp_Rotation
+/ 100) \; shader3:setUniform1f("CircleWarp_Radius" \, ofelia.CircleWarp_Radius
+/ 200) \; shader3:setUniform1f("GaussianBlur_Radius" \, ofelia.GaussianBlur_Radius
+/ 100) \; shader3:setUniform1f("GLSLdplctpix_XDEForm" \, ofelia.GLSLdplctpix_XDEForm
+/ 100) \; shader3:setUniform1f("Grain_Intensity" \, ofelia.Grain_Intensity)
+\; shader3:setUniform1f("Halftone_Sharpness" \, ofelia.Halftone_Sharpness
+/ 100) \; shader3:setUniform1f("Halftone_Angle" \, ofelia.Halftone_Angle
+/ 100) \; shader3:setUniform1f("Halftone_Scale" \, ofelia.Halftone_Scale
+/ 100) \; shader3:setUniform1f("Halftone_Colorize " \, ofelia.Halftone_Colorize
+/ 100) \; shader3:setUniform1f("Halftone_Divs" \, ofelia.Halftone_Divs
+/ 100) \; shader3:setUniform1i("Halftone_PatternType" \, ofelia.Halftone_PatternType)
+\; shader3:setUniform1f("HSBShift_Hue" \, ofelia.HSBShift_Hue / 100)
+\; shader3:setUniform1f("HSBShift_Brightness" \, ofelia.HSBShift_Brightness
+/ 100) \; shader3:setUniform1f("HSBShift_Saturation" \, ofelia.HSBShift_Saturation
+/ 100) \; shader3:setUniform1f("Kaleidoscope_Segments" \, ofelia.Kaleidoscope_Segments)
+\; shader3:setUniform1f("Kaleidoscope2_Sides" \, ofelia.Kaleidoscope2_Sides)
+\; shader3:setUniform1f("Kaleidoscope2_Angle" \, ofelia.Kaleidoscope2_Angle
+/ 100) \; shader3:setUniform1f("Kaleidoscope2_SlideX" \, ofelia.Kaleidoscope2_SlideX
+/ 100) \; shader3:setUniform1f("Kaleidoscope2_SlideY" \, ofelia.Kaleidoscope2_SlideY
+/ 100) \; shader3:setUniform1f("MetaImage_MosaicNumber" \, ofelia.MetaImage_MosaicNumber)
+\; shader3:setUniform1f("MetaImage_ColorFade" \, ofelia.MetaImage_ColorFade
+/ 100) \; shader3:setUniform1f("MagnifyingGlass_R" \, ofelia.MagnifyingGlass_R
+/ 100) \; shader3:setUniform1f("MagnifyingGlass_H" \, ofelia.MagnifyingGlass_H)
+\; shader3:setUniform1f("MosaicColor_MosaicNumber" \, ofelia.MosaicColor_MosaicNumber)
+\; shader3:setUniform1f("NoiseWarp_Frequency" \, ofelia.NoiseWarp_Frequency)
+\; shader3:setUniform1f("NoiseWarp_Amplitude" \, ofelia.NoiseWarp_Amplitude
+/ 100) \; shader3:setUniform1f("NoiseWarp_Speed" \, ofelia.NoiseWarp_Speed
+/ 10000) \; shader3:setUniform1f("Pixelate_XPixels" \, ofelia.Pixelate_XPixels)
+\; shader3:setUniform1f("Pixelate_YPixels" \, ofelia.Pixelate_YPixels)
+\; shader3:setUniform1f("PositionShift_RateX" \, ofelia.PositionShift_RateX
+/ 100) \; shader3:setUniform1f("PositionShift_RateY" \, ofelia.PositionShift_RateY
+/ 100) \; shader3:setUniform1f("RGBShift_Angle" \, ofelia.RGBShift_Angle
+/ 100) \; shader3:setUniform1f("RGBShift_Amount" \, ofelia.RGBShift_Amount
+/ 100) \; shader3:setUniform1f("VertlTiltShift_V" \, ofelia.VertlTiltShift_V
+/ 100) \; shader3:setUniform1f("VertlTiltShift_R" \, ofelia.VertlTiltShift_R
+/ 100) \; M.fbo4:beginFbo() \; ofClear(255 \, 255 \, 255 \, 0) \; M.fbo3:draw(0
+\, 0 \, 800 \, 600) \; M.fbo4:endFbo() \; shader3:endShader() \; M.fbo4:draw(0
+\, 0 \, 800 \, 600) \; end \; \; function ofelia.exit() \; shader3:unload()
+\; end \;;
+#X msg 79 617 glsl \$1;
+#X obj 79 471 text get \$0-shaderList;
+#X obj 79 452 nbx 5 14 0 24 0 0 empty \$0-effectNumber3 empty 0 -8
+0 10 -228856 -1 -1 0 256;
+#X obj 79 659 text define -k \$0-shaderList;
+#A set Empty \; Angle \; AsciiArt \; Bleach \; Bokeh \; Contrast \;
+CircleWarp \; FractTexture \; GaussianBlur \; GLSLdplctpix \; Grain
+\; GreyScale \; Halftone \; HSBShift \; Invert \; Kaleidoscope \; Kaleidoscope2
+\; MagnifyingGlass \; MetaImage \; MosaicColor \; NoiseWarp \; Pixelate
+\; PositionShift \; RGBShift \; VertTiltShift \;;
+#X obj 79 492 t s s;
+#X connect 0 0 3 0;
+#X connect 0 0 53 0;
+#X connect 1 0 5 0;
+#X connect 1 0 54 0;
+#X connect 2 0 4 0;
+#X connect 2 0 55 0;
+#X connect 3 0 6 0;
+#X connect 4 0 8 0;
+#X connect 5 0 7 0;
+#X connect 9 0 10 0;
+#X connect 10 0 33 0;
+#X connect 10 1 34 0;
+#X connect 10 2 29 0;
+#X connect 11 0 13 0;
+#X connect 12 0 11 0;
+#X connect 14 0 16 0;
+#X connect 15 0 14 0;
+#X connect 17 0 56 0;
+#X connect 18 0 20 0;
+#X connect 19 0 18 0;
+#X connect 21 0 17 0;
+#X connect 21 1 22 0;
+#X connect 22 0 56 0;
+#X connect 23 0 57 0;
+#X connect 24 0 23 0;
+#X connect 24 1 25 0;
+#X connect 25 0 57 0;
+#X connect 26 0 58 0;
+#X connect 27 0 26 0;
+#X connect 27 1 28 0;
+#X connect 28 0 58 0;
+#X connect 29 0 30 0;
+#X connect 30 0 21 0;
+#X connect 30 1 24 0;
+#X connect 30 2 27 0;
+#X connect 31 0 21 0;
+#X connect 31 1 24 0;
+#X connect 31 2 27 0;
+#X connect 32 0 21 0;
+#X connect 32 1 24 0;
+#X connect 32 2 27 0;
+#X connect 33 0 32 0;
+#X connect 34 0 31 0;
+#X connect 35 0 39 0;
+#X connect 36 0 37 0;
+#X connect 37 0 38 1;
+#X connect 38 0 52 0;
+#X connect 39 0 40 0;
+#X connect 39 1 36 0;
+#X connect 40 0 38 0;
+#X connect 41 0 45 0;
+#X connect 42 0 47 0;
+#X connect 43 0 51 0;
+#X connect 45 0 46 0;
+#X connect 45 1 42 0;
+#X connect 46 0 43 0;
+#X connect 47 0 43 1;
+#X connect 49 0 39 0;
+#X connect 50 0 39 0;
+#X connect 51 0 44 0;
+#X connect 52 0 48 0;
+#X connect 56 0 15 0;
+#X connect 57 0 19 0;
+#X connect 58 0 12 0;
+#X connect 59 0 60 0;
+#X connect 61 0 60 0;
+#X connect 62 0 69 0;
+#X connect 63 0 68 0;
+#X connect 64 0 62 0;
+#X connect 65 0 66 0;
+#X connect 66 0 67 0;
+#X connect 68 0 65 0;
+#X connect 69 0 61 0;
+#X connect 69 1 63 0;
+#X connect 70 0 73 0;
+#X connect 71 0 72 0;
+#X connect 72 0 79 0;
+#X connect 73 0 71 0;
+#X connect 74 0 75 0;
+#X connect 76 0 75 0;
+#X connect 77 0 80 0;
+#X connect 78 0 77 0;
+#X connect 80 0 76 0;
+#X connect 80 1 70 0;
+#X connect 81 0 85 0;
+#X connect 82 0 83 0;
+#X connect 83 0 84 0;
+#X connect 85 0 82 0;
+#X connect 86 0 87 0;
+#X connect 88 0 87 0;
+#X connect 89 0 92 0;
+#X connect 90 0 89 0;
+#X connect 92 0 88 0;
+#X connect 92 1 81 0;
+#X restore 606 721 pd EffectChain;
+#X coords 0 0 569 799 570 800 2 20 20;
+#X restore 31 12 pd interface;
+#N canvas 543 192 714 634 MusicPlayer 0;
+#X obj 314 102 f;
+#X obj 341 102 + 1;
+#X obj 368 102 mod 256;
+#X obj 395 592 noteout;
+#X obj 395 553 makenote 100 200;
+#X obj 521 599 pgmout;
+#X obj 368 404 del;
+#X obj 395 511 f;
+#X obj 395 446 spigot;
+#X obj 461 440 hradio 8 1 0 15 empty \$0-scale Scale 0 -8 0 10 -257985
+-1 -1 11;
+#X obj 494 404 text define -k \$0-scales;
+#A set 0 1 2 3 4 5 6 7 8 9 10 11 \; 0 2 4 5 7 9 11 \; 0 1 4 5 7 8 11
+\; 0 2 4 6 7 9 10 \; 0 2 3 5 7 8 11 \; 0 2 3 4 5 6 7 9 10 11 \; 0 2
+4 6 8 10 \; 0 2 3 5 6 8 9 11 \; 0 2 4 7 9 \; 0 2 3 4 7 8 9 \; 0 2 4
+7 7 9 12 \; 0 0 1 5 5 7 10 \; 0 2 3 7 7 9 10 \; 0 2 4 7 7 9 11 \; 0
+2 4 6 6 9 11 \; 0 0 1 5 5 6 10 \; 0 2 3 7 7 9 12 \;;
+#N canvas 395 480 450 297 scaleLabel 0;
+#X symbolatom 62 157 20 0 0 0 - - -;
+#X floatatom 34 41 5 0 0 0 - - -;
+#X obj 34 61 t b f;
+#X obj 34 28 hradio 8 1 0 15 empty \$0-scale Scale 0 -8 0 10 -257985
+-1 -1 11;
+#X obj 62 198 \$0;
+#X obj 62 177 t b s;
+#X obj 62 219 list;
+#X msg 62 240 \; \$1-scaleLabel label \$2;
+#X obj 34 136 list split;
+#X msg 34 82 Original Major Midle-east-minor Lydian-Dominant Harmonic-Minor
+Chromatic-blues Whole-tones Diminished Pentatonic Pentatonic-blues
+Gaku-Joshi In-Sen Hira-Joshi Yo Ryo Iwato Tamuke;
+#X connect 0 0 5 0;
+#X connect 1 0 2 0;
+#X connect 2 0 9 0;
+#X connect 2 1 8 1;
+#X connect 3 0 1 0;
+#X connect 4 0 6 0;
+#X connect 5 0 4 0;
+#X connect 5 1 6 1;
+#X connect 6 0 7 0;
+#X connect 8 1 0 0;
+#X connect 9 0 8 0;
+#X restore 494 383 pd scaleLabel;
+#N canvas 0 50 419 424 mscale 0;
+#X obj 45 106 / 12;
+#X obj 45 295 * 12;
+#X obj 45 253 -;
+#X obj 45 169 i;
+#X obj 45 148 + 0.5;
+#X obj 45 316 +;
+#X obj 72 211 mod;
+#X obj 45 43 inlet;
+#X obj 72 379 outlet;
+#X obj 45 127 * 1;
+#X obj 45 274 / 1;
+#X obj 183 43 inlet;
+#X obj 99 274 list store;
+#X obj 183 64 t a a;
+#X obj 183 85 list length;
+#X msg 99 253 get \$1 1;
+#X obj 45 190 t f f;
+#X obj 72 232 t f f;
+#X obj 114 43 inlet;
+#X obj 99 295 +;
+#X obj 114 64 mod 12;
+#X obj 45 358 moses;
+#X obj 45 337 moses 128;
+#X obj 45 85 -;
+#X connect 0 0 9 0;
+#X connect 1 0 5 0;
+#X connect 2 0 10 0;
+#X connect 3 0 16 0;
+#X connect 4 0 3 0;
+#X connect 5 0 22 0;
+#X connect 6 0 17 0;
+#X connect 7 0 23 0;
+#X connect 9 0 4 0;
+#X connect 10 0 1 0;
+#X connect 11 0 13 0;
+#X connect 12 0 19 0;
+#X connect 13 0 14 0;
+#X connect 13 1 12 1;
+#X connect 14 0 9 1;
+#X connect 14 0 10 1;
+#X connect 14 0 6 1;
+#X connect 15 0 12 0;
+#X connect 16 0 2 0;
+#X connect 16 1 6 0;
+#X connect 17 0 2 1;
+#X connect 17 1 15 0;
+#X connect 18 0 20 0;
+#X connect 19 0 5 1;
+#X connect 20 0 19 1;
+#X connect 20 0 23 1;
+#X connect 21 1 8 0;
+#X connect 22 0 21 0;
+#X connect 23 0 0 0;
+#X restore 410 490 pd mscale;
+#X obj 435 405 nbx 5 14 0 11 0 0 empty \$0-rootPitch RootPitch 0 -8
+0 10 -257985 -1 -1 0 256;
+#X obj 461 453 text get \$0-scales;
+#X obj 402 186 array get \$0-b;
+#X obj 385 207 array get \$0-r;
+#X obj 368 249 array get \$0-g;
+#X msg 442 165 1;
+#X obj 368 425 t b b;
+#X obj 521 543 nbx 5 14 -1e+037 1e+037 0 0 empty \$0-MIDISound MIDISound
+0 -8 0 10 -257985 -1 -1 47 256;
+#X obj 368 326 t f f;
+#X obj 275 102 del 1;
+#X obj 314 30 tgl 15 0 empty \$0-PlayMusic PlayMusic 17 7 0 10 -257985
+-1 -1 0 1;
+#X obj 314 50 t b b f;
+#X obj 275 81 spigot;
+#X obj 386 363 hsl 128 15 30 1 0 0 empty \$0-MusicTempo Tempo -2 -8
+0 10 -257985 -1 -1 9600 1;
+#X obj 368 383 * 1;
+#X obj 554 580 nbx 5 14 -1e+037 1e+037 0 0 empty \$0-MIDIChannel MIDIChannel
+0 -8 0 10 -257985 -1 -1 1 256;
+#X obj 21 21 cnv 15 198 548 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 31 31 cnv 15 180 530 empty empty MusicPlayer 20 22 0 22 -204800
+-260097 0;
+#X obj 51 81 tgl 15 0 \$0-PlayMusic empty PlayMusic 17 7 0 10 -257985
+-1 -1 0 1;
+#X obj 54 202 hsl 128 15 30 1 0 1 \$0-MusicTempo empty Tempo -2 -8
+0 10 -257985 -1 -1 9600 0;
+#X obj 51 359 hradio 8 1 1 15 \$0-scale empty Scale 0 -8 0 10 -257985
+-1 -1 11;
+#X obj 51 314 nbx 5 14 0 11 0 1 \$0-rootPitch empty RootPitch 0 -8
+0 10 -257985 -1 -1 0 256;
+#X obj 51 473 nbx 5 14 1 128 0 1 \$0-MIDISound empty MIDISound 0 -8
+0 10 -257985 -1 -1 47 256;
+#X obj 51 518 nbx 5 14 1 16 0 1 \$0-MIDIChannel empty MIDIChannel 0
+-8 0 10 -257985 -1 -1 1 256;
+#X obj 51 137 nbx 5 14 1 600 0 1 \$0-HorizontalScanLine empty HorizontalScanLine
+0 -8 0 10 -257985 -1 -1 250 256;
+#X obj 51 368 cnv 15 100 20 empty \$0-scaleLabel In-Sen 0 12 0 10 -204800
+-1 0;
+#X obj 368 270 / 2;
+#X obj 385 228 / 2;
+#X obj 441 511 * -0.3;
+#X obj 441 532 + 120;
+#X obj 51 408 nbx 5 14 -24 24 0 1 \$0-Transpose empty Transpose 0 -8
+0 10 -257985 -1 -1 0 256;
+#X obj 425 286 nbx 5 14 -100 100 0 0 empty \$0-Transpose Transpose
+0 -8 0 10 -257985 -1 -1 0 256;
+#X obj 410 305 +;
+#X obj 410 326 expr if($f1 < 30 \, 0 \, if($f1 > 110 \, 0 \, 1));
+#X obj 488 532 + 40;
+#X obj 495 188 nbx 5 14 -1e+037 1e+037 0 0 empty \$0-HorizontalScanLine
+HorizontalScanLine 0 -8 0 10 -257985 -1 -1 250 256;
+#X msg 495 249 HorizontalScanLine \$1;
+#X obj 495 207 * -1;
+#X obj 495 228 + 600;
+#X obj 495 270 ofelia define -k \$0-musicPlayer;
+#A set local M = require("\$0-video1") \; \; local canvas = pdCanvas(this)
+\; local clock = pdClock(this \, "setup") \; local array1 = pdArray("\$0-r")
+\; local array2 = pdArray("\$0-g") \; local array3 = pdArray("\$0-b")
+\; local image = ofImage() \; image:allocate(800 \, 600 \, OF_IMAGE_COLOR)
+\; \; function ofelia.new() \; ofWindow.addListener("setup" \, this)
+\; ofWindow.addListener("draw" \, this) \; ofWindow.addListener("exit"
+\, this) \; end \; \; function ofelia.free() \; window:destroy() \;
+ofWindow.removeListener("setup" \, this) \; ofWindow.removeListener("draw"
+\, this) \; ofWindow.removeListener("exit" \, this) \; end \; \; function
+ofelia.draw() \; image:grabScreen(0 \, 0 \, 800 \, 600) \; for i =
+0 \, 799 do \; array1:setAt(i \, image:getColor(i \, ofelia.HorizontalScanLine).r)
+\; array2:setAt(i \, image:getColor(i \, ofelia.HorizontalScanLine).g)
+\; array3:setAt(i \, image:getColor(i \, ofelia.HorizontalScanLine).b)
+\; end \; end \; \; function ofelia.exit() \; image:clear() \; end
+\;;
+#X obj 54 248 hsl 128 15 1 20 0 1 \$0-NoteLength empty NoteLength -2
+-8 0 10 -257985 -1 -1 5500 0;
+#X obj 506 491 hsl 128 15 1 20 0 0 empty \$0-NoteLength NoteLength
+-2 -8 0 10 -257985 -1 -1 5500 0;
+#X obj 488 511 *;
+#X obj 368 123 t f f f f;
+#X obj 419 144 s \$0-RGBPosition;
+#X obj 241 510 cnv 15 120 60 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 251 520 cnv 15 100 40 empty empty empty 20 12 0 14 -204800 -66577
+0;
+#N canvas 486 359 806 286 RGBArrays 0;
+#N canvas 332 364 801 280 RGBArrays 0;
+#X obj 21 21 cnv 15 748 228 empty empty RGBColors 20 12 0 14 -204800
+-260097 0;
+#X obj 64 216 hsl 195 15 0 799 0 0 empty \$0-RGBPosition empty -2 -8
+0 10 -260097 -1 -1 0 1;
+#X obj 309 216 hsl 195 15 0 799 0 0 empty \$0-RGBPosition empty -2
+-8 0 10 -260097 -1 -1 0 1;
+#X obj 554 216 hsl 195 15 0 799 0 0 empty \$0-RGBPosition empty -2
+-8 0 10 -260097 -1 -1 0 1;
+#X obj 61 71 cnv 15 200 140 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 306 71 cnv 15 200 140 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 551 71 cnv 15 200 140 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array \$0-r 800 float 3;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X coords 0 256 800 0 200 140 1 0 0;
+#X restore 61 71 graph;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array \$0-b 800 float 3;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X coords 0 256 799 0 200 140 1 0 0;
+#X restore 551 71 graph;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array \$0-g 800 float 3;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X coords 0 256 799 0 200 140 1 0 0;
+#X restore 306 71 graph;
+#X obj 286 73 vsl 15 136 0 599 0 0 empty \$0-HorizontalScanLine empty
+0 -9 0 10 -260097 -1 -1 5634 1;
+#X obj 531 73 vsl 15 136 0 599 0 0 empty \$0-HorizontalScanLine empty
+0 -9 0 10 -260097 -1 -1 5634 1;
+#X obj 41 73 vsl 15 136 0 599 0 0 empty \$0-HorizontalScanLine empty
+0 -9 0 10 -260097 -1 -1 5634 1;
+#X coords 0 -1 1 1 750 230 2 20 20;
+#X restore 30 24 pd RGBArrays;
+#X restore 263 531 pd RGBArrays;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 0 1;
+#X connect 2 0 56 0;
+#X connect 4 0 3 0;
+#X connect 4 1 3 1;
+#X connect 6 0 19 0;
+#X connect 7 0 4 0;
+#X connect 8 0 7 0;
+#X connect 9 0 14 0;
+#X connect 12 0 7 1;
+#X connect 13 0 12 1;
+#X connect 14 0 12 2;
+#X connect 15 0 55 0;
+#X connect 16 0 40 0;
+#X connect 17 0 39 0;
+#X connect 18 0 15 1;
+#X connect 18 0 16 1;
+#X connect 18 0 17 1;
+#X connect 19 0 25 0;
+#X connect 19 1 8 0;
+#X connect 20 0 5 0;
+#X connect 21 0 27 0;
+#X connect 21 1 41 0;
+#X connect 22 0 0 0;
+#X connect 23 0 24 0;
+#X connect 24 0 0 0;
+#X connect 24 1 18 0;
+#X connect 24 2 25 1;
+#X connect 25 0 22 0;
+#X connect 26 0 27 1;
+#X connect 27 0 6 0;
+#X connect 28 0 5 1;
+#X connect 28 0 3 2;
+#X connect 39 0 21 0;
+#X connect 40 0 45 0;
+#X connect 41 0 42 0;
+#X connect 42 0 4 1;
+#X connect 44 0 45 1;
+#X connect 45 0 12 0;
+#X connect 45 0 46 0;
+#X connect 46 0 8 1;
+#X connect 47 0 4 2;
+#X connect 48 0 50 0;
+#X connect 49 0 52 0;
+#X connect 50 0 51 0;
+#X connect 51 0 49 0;
+#X connect 54 0 55 1;
+#X connect 55 0 47 0;
+#X connect 56 0 17 0;
+#X connect 56 1 16 0;
+#X connect 56 2 15 0;
+#X connect 56 3 57 0;
+#X coords 0 -1 1 1 200 550 2 20 20;
+#X restore 622 262 pd MusicPlayer;
